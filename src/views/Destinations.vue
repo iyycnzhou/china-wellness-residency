@@ -1,0 +1,1520 @@
+<script setup lang="ts">
+import { currentLang } from '../composables/useLanguage'
+
+const medicalPartners = {
+  number: '50+',
+  labelCn: '合作三甲医院',
+  labelEn: 'Partner Grade-A Hospitals',
+  sublabelCn: '含 15 家全国 Top100 医院',
+  sublabelEn: 'Including 15 of China\'s Top 100',
+  descCn: '与全国 50+ 家顶级三甲医院建立深度战略合作关系，其中包括 15 家全国医院 Top100 强。合作涵盖心血管、骨科、牙科、肿瘤、神经科、康复医学等 20+ 重点专科。',
+  descEn: 'Deep strategic partnerships with 50+ top-tier Grade-A hospitals nationwide, including 15 of China\'s Top 100 Hospitals. Cooperation covers 20+ key specialties.',
+  image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&h=800&fit=crop&q=80',
+  stats: [
+    { num: '50+', labelCn: '三甲医院', labelEn: 'Grade-A Hospitals' },
+    { num: '15', labelCn: '全国 Top100', labelEn: 'Top 100' },
+    { num: '20+', labelCn: '重点专科', labelEn: 'Specialties' },
+    { num: '28', labelCn: '省市覆盖', labelEn: 'Provinces' }
+  ],
+  featuredHospitals: [
+    {
+      nameCn: '北京协和医院',
+      nameEn: 'Peking Union Medical College Hospital',
+      image: 'https://images.unsplash.com/photo-1587351021759-3e5b21f9a044?w=800&h=600&fit=crop&q=80',
+      rank: '全国 Top 3',
+      specialty: '心血管、肿瘤科'
+    },
+    {
+      nameCn: '上海华山医院',
+      nameEn: 'Shanghai Huashan Hospital',
+      image: 'https://images.unsplash.com/photo-1516574187841-69301976e499?w=800&h=600&fit=crop&q=80',
+      rank: '全国 Top 10',
+      specialty: '神经科、皮肤科'
+    },
+    {
+      nameCn: '四川华西医院',
+      nameEn: 'Sichuan West China Hospital',
+      image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=800&h=600&fit=crop&q=80',
+      rank: '全国 Top 5',
+      specialty: '骨科、呼吸科'
+    },
+    {
+      nameCn: '广州中山医院',
+      nameEn: 'Guangzhou Zhongshan Hospital',
+      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop&q=80',
+      rank: '全国 Top 10',
+      specialty: '肝胆外科、肿瘤科'
+    }
+  ]
+}
+
+const wellnessPartners = {
+  number: '20+',
+  labelCn: '康养基地',
+  labelEn: 'Wellness Bases',
+  sublabelCn: '总面积超 5000 亩',
+  sublabelEn: 'Total Area 5,000+ Mu',
+  descCn: '精选全国 20+ 高端康养社区，总占地面积超 5000 亩，年接待能力 10 万 + 人次。所有康养基地均为自有或控股，确保服务品质与价格优势。',
+  descEn: 'Carefully selected 20+ premium wellness communities nationwide, total area exceeds 5,000 mu, annual reception capacity 100,000+ person-times.',
+  eyebrowCn: '专为您的健康而设计',
+  eyebrowEn: 'DESIGNED FOR YOUR WELLNESS',
+  titleCn: '康养社区，用心打造',
+  titleEn: 'Wellness Communities, With Intention',
+  features: [
+    { icon: '🏖️', titleCn: '海滨基地', titleEn: 'Coastal Bases', descCn: '6 个海滨疗养基地', descEn: '6 coastal bases', value: '2000+ 床位' },
+    { icon: '♨️', titleCn: '温泉中心', titleEn: 'Hot Spring', descCn: '5 个温泉度假基地', descEn: '5 hot spring bases', value: '天然温泉' },
+    { icon: '⛰️', titleCn: '山林小镇', titleEn: 'Mountain Towns', descCn: '9 个山林康养基地', descEn: '9 mountain bases', value: '85% 森林' },
+    { icon: '🏠', titleCn: '自有比例', titleEn: 'Ownership', descCn: '12 个自有/控股基地', descEn: '12 owned bases', value: '60% 占比' }
+  ],
+  bases: [
+    {
+      nameCn: '青岛康养基地',
+      nameEn: 'Qingdao Wellness Base',
+      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=800&fit=crop&q=85',
+      categoryCn: '海滨疗养',
+      categoryEn: 'Coastal Wellness'
+    },
+    {
+      nameCn: '威海康养社区',
+      nameEn: 'Weihai Wellness Community',
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=800&fit=crop&q=85',
+      categoryCn: '海滨度假',
+      categoryEn: 'Coastal Retreat'
+    },
+    {
+      nameCn: '临沂温泉度假村',
+      nameEn: 'Linyi Hot Spring Resort',
+      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=800&fit=crop&q=85',
+      categoryCn: '温泉疗愈',
+      categoryEn: 'Hot Spring Healing'
+    },
+    {
+      nameCn: '泰山康养中心',
+      nameEn: 'Mount Tai Wellness Center',
+      image: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&h=800&fit=crop&q=85',
+      categoryCn: '山林康养',
+      categoryEn: 'Mountain Wellness'
+    }
+  ]
+}
+
+const tcmPartners = {
+  number: '30+',
+  labelCn: '中医机构',
+  labelEn: 'TCM Institutions',
+  sublabelCn: '含 8 家国医大师工作室',
+  sublabelEn: '8 National TCM Master Studios',
+  descCn: '与全国 30+ 家知名中医机构建立深度合作，其中包括 8 家国医大师工作室、15 家省级中医院、7 家中医养生连锁品牌。',
+  descEn: 'Deep cooperation with 30+ renowned TCM institutions, including 8 National TCM Master Studios, 15 provincial TCM hospitals.',
+  image: 'https://images.unsplash.com/photo-1544367563-12123d8965cd?w=1200&h=800&fit=crop&q=80',
+  cards: [
+    { icon: '🌿', num: '8', labelCn: '国医大师工作室', labelEn: 'TCM Master Studios' },
+    { icon: '🏥', num: '15', labelCn: '省级中医院', labelEn: 'Provincial Hospitals' },
+    { icon: '🍵', num: '10+', labelCn: '道地药材基地', labelEn: 'Herb Bases' },
+    { icon: '🧘', num: '20+', labelCn: '养生课程', labelEn: 'Wellness Courses' }
+  ],
+  partners: [
+    { nameCn: '中国中医科学院', nameEn: 'China Academy of TCM', logo: '🌿' },
+    { nameCn: '北京中医医院', nameEn: 'Beijing TCM Hospital', logo: '🏥' },
+    { nameCn: '上海中医药大学', nameEn: 'Shanghai TCM University', logo: '🎓' },
+    { nameCn: '广东省中医院', nameEn: 'Guangdong TCM Hospital', logo: '🏥' },
+    { nameCn: '同仁堂', nameEn: 'Tongrentang', logo: '🍵' },
+    { nameCn: '固生堂', nameEn: 'Gushengtang', logo: '🍵' }
+  ]
+}
+
+const tourismPartners = {
+  number: '150+',
+  labelCn: '合作景区',
+  labelEn: 'Partner Attractions',
+  sublabelCn: '含 45 家 5A 级景区',
+  sublabelEn: '45 5A-Rated Attractions',
+  descCn: '与 150+ 家知名旅游景区建立合作关系，其中包括 45 家 5A 级景区、60 家 4A 级景区。会员可享受门票 5-8 折优惠、快速入园通道、专属导游服务等。',
+  descEn: 'Partnerships with 150+ renowned attractions, including 45 5A-rated and 60 4A-rated scenic areas. Members enjoy 20-50% discounts and VIP services.',
+  image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&h=800&fit=crop&q=80',
+  benefits: [
+    { titleCn: '门票折扣', titleEn: 'Ticket Discounts', descCn: '5A 景区 5-8 折', descEn: '20-50% off at 5A', icon: '🎫' },
+    { titleCn: '快速通道', titleEn: 'Fast Track', descCn: '45 家免排队', descEn: '45 no queuing', icon: '⚡' },
+    { titleCn: '专属导游', titleEn: 'Tour Guides', descCn: '20+ 家提供', descEn: '20+ available', icon: '🎤' },
+    { titleCn: '定制行程', titleEn: 'Custom Tours', descCn: '康养 + 旅游', descEn: 'Wellness + Tour', icon: '📍' }
+  ],
+  partners: [
+    { nameCn: '故宫博物院', nameEn: 'The Palace Museum', logo: '🏯' },
+    { nameCn: '长城景区', nameEn: 'Great Wall', logo: '🏞️' },
+    { nameCn: '兵马俑博物馆', nameEn: 'Terracotta Warriors', logo: '🏛️' },
+    { nameCn: '九寨沟', nameEn: 'Jiuzhaigou', logo: '🏞️' },
+    { nameCn: '黄山风景区', nameEn: 'Mount Huangshan', logo: '⛰️' },
+    { nameCn: '桂林漓江', nameEn: 'Guilin Li River', logo: '🏞️' }
+  ]
+}
+
+const coverageStats = [
+  { number: '28', labelCn: '省市自治区', labelEn: 'Provinces', descCn: '覆盖全国 82%', descEn: '82% coverage' },
+  { number: '200+', labelCn: '服务城市', labelEn: 'Cities', descCn: '触达主要城市', descEn: 'Major cities' },
+  { number: '5000+', labelCn: '亩基地', labelEn: 'Mu of Bases', descCn: '自有 + 控股', descEn: 'Owned + controlled' },
+  { number: '10 万+', labelCn: '年接待', labelEn: 'Annual', descCn: '全网络接待能力', descEn: 'Network capacity' }
+]
+</script>
+
+<template>
+  <div class="partners-page">
+    <!-- Hero Section -->
+    <section class="page-hero">
+      <img class="hero-bg" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&h=1080&fit=crop&q=80" alt="Partners Network" />
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content container">
+        <p class="hero-eyebrow">
+          <span v-show="currentLang === 'zh'">5 年深耕 · 全国布局</span>
+          <span v-show="currentLang === 'en'">5 Years · Nationwide Network</span>
+        </p>
+        <h1>
+          <span v-show="currentLang === 'zh'" class="title-cn">我们的合作伙伴</span>
+          <span v-show="currentLang === 'en'" class="title-en">Our Partners</span>
+        </h1>
+        <p class="hero-subtitle">
+          <span v-show="currentLang === 'zh'" class="subtitle-cn">汇聚中国顶级资源 共创健康未来</span>
+          <span v-show="currentLang === 'en'" class="subtitle-en">China's Premier Resource Network for Global Health</span>
+        </p>
+        
+        <div class="hero-description">
+          <p v-show="currentLang === 'zh'" class="desc-cn">
+            历经 5 年深耕，与全国各领域头部机构建立深度战略合作关系。
+          </p>
+          <p v-show="currentLang === 'en'" class="desc-en">
+            After 5 years of deep cultivation, established strategic partnerships with leading institutions nationwide.
+          </p>
+        </div>
+        
+        <!-- Stats Bar -->
+        <div class="hero-stats-grid">
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">50+</span>
+            <span class="hero-stat-label">
+              <span v-show="currentLang === 'zh'">三甲医院</span>
+              <span v-show="currentLang === 'en'">Grade-A Hospitals</span>
+            </span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">20+</span>
+            <span class="hero-stat-label">
+              <span v-show="currentLang === 'zh'">康养基地</span>
+              <span v-show="currentLang === 'en'">Wellness Bases</span>
+            </span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">30+</span>
+            <span class="hero-stat-label">
+              <span v-show="currentLang === 'zh'">中医机构</span>
+              <span v-show="currentLang === 'en'">TCM Institutions</span>
+            </span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">150+</span>
+            <span class="hero-stat-label">
+              <span v-show="currentLang === 'zh'">合作景区</span>
+              <span v-show="currentLang === 'en'">Attractions</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Medical Partners Section -->
+    <section class="partner-section medical-section">
+      <div class="section-container">
+        <div class="medical-layout">
+          <div class="medical-image-wrapper">
+            <img :src="medicalPartners.image" alt="Medical Partners" class="medical-image" />
+            <div class="medical-image-badge">
+              <span class="badge-number">{{ medicalPartners.number }}</span>
+              <span class="badge-label">
+                <span v-show="currentLang === 'zh'">{{ medicalPartners.labelCn }}</span>
+                <span v-show="currentLang === 'en'">{{ medicalPartners.labelEn }}</span>
+              </span>
+            </div>
+          </div>
+          
+          <div class="medical-content">
+            <div class="section-label">
+              <span class="label-icon">🏥</span>
+              <span class="label-text">
+                <span v-show="currentLang === 'zh'">医疗合作伙伴</span>
+                <span v-show="currentLang === 'en'">Medical Partners</span>
+              </span>
+            </div>
+            
+            <h2 class="section-title">
+              <span v-show="currentLang === 'zh'">{{ medicalPartners.sublabelCn }}</span>
+              <span v-show="currentLang === 'en'">{{ medicalPartners.sublabelEn }}</span>
+            </h2>
+            
+            <p class="section-desc">
+              <span v-show="currentLang === 'zh'">{{ medicalPartners.descCn }}</span>
+              <span v-show="currentLang === 'en'">{{ medicalPartners.descEn }}</span>
+            </p>
+            
+            <div class="medical-stats-grid">
+              <div v-for="(stat, index) in medicalPartners.stats" :key="index" class="medical-stat">
+                <span class="stat-num">{{ stat.num }}</span>
+                <span class="stat-label">
+                  <span v-show="currentLang === 'zh'">{{ stat.labelCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ stat.labelEn }}</span>
+                </span>
+              </div>
+            </div>
+            
+            <div class="featured-hospitals">
+              <p class="hospitals-title">
+                <span v-show="currentLang === 'zh'">部分顶级合作医院</span>
+                <span v-show="currentLang === 'en'">Featured Partner Hospitals</span>
+              </p>
+              <div class="hospitals-grid">
+                <div v-for="(hospital, index) in medicalPartners.featuredHospitals" :key="index" class="hospital-card">
+                  <div class="hospital-image-wrapper">
+                    <img :src="hospital.image" :alt="hospital.nameCn" class="hospital-image" />
+                    <div class="hospital-rank-badge">{{ hospital.rank }}</div>
+                  </div>
+                  <div class="hospital-info">
+                    <h4 class="hospital-name">
+                      <span v-show="currentLang === 'zh'">{{ hospital.nameCn }}</span>
+                      <span v-show="currentLang === 'en'">{{ hospital.nameEn }}</span>
+                    </h4>
+                    <p class="hospital-specialty">{{ hospital.specialty }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wellness Partners Section - COMO Shambhala Style -->
+    <section class="partner-section wellness-section">
+      <div class="wellness-container">
+        <div class="wellness-layout">
+          <!-- Left: Content -->
+          <div class="wellness-content">
+            <p class="wellness-eyebrow">
+              <span v-show="currentLang === 'zh'">{{ wellnessPartners.eyebrowCn }}</span>
+              <span v-show="currentLang === 'en'">{{ wellnessPartners.eyebrowEn }}</span>
+            </p>
+            
+            <h2 class="wellness-main-title">
+              <span v-show="currentLang === 'zh'">{{ wellnessPartners.titleCn }}</span>
+              <span v-show="currentLang === 'en'">{{ wellnessPartners.titleEn }}</span>
+            </h2>
+            
+            <p class="wellness-main-desc">
+              <span v-show="currentLang === 'zh'">{{ wellnessPartners.descCn }}</span>
+              <span v-show="currentLang === 'en'">{{ wellnessPartners.descEn }}</span>
+            </p>
+            
+            <div class="wellness-stats-row">
+              <div class="wellness-stat">
+                <span class="stat-big">{{ wellnessPartners.number }}</span>
+                <span class="stat-label">
+                  <span v-show="currentLang === 'zh'">{{ wellnessPartners.labelCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ wellnessPartners.labelEn }}</span>
+                </span>
+                <span class="stat-sub">
+                  <span v-show="currentLang === 'zh'">{{ wellnessPartners.sublabelCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ wellnessPartners.sublabelEn }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Image Grid -->
+          <div class="wellness-images">
+            <div v-for="(base, index) in wellnessPartners.bases" :key="index" class="wellness-image-card">
+              <img :src="base.image" :alt="base.nameCn" class="wellness-base-image" />
+              <div class="wellness-image-overlay"></div>
+              <div class="wellness-image-info">
+                <span class="base-category">
+                  <span v-show="currentLang === 'zh'">{{ base.categoryCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ base.categoryEn }}</span>
+                </span>
+                <span class="base-name">
+                  <span v-show="currentLang === 'zh'">{{ base.nameCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ base.nameEn }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TCM Partners Section -->
+    <section class="partner-section tcm-section">
+      <div class="section-container">
+        <div class="tcm-header">
+          <div class="tcm-icon-large">🌿</div>
+          
+          <div class="section-label-centered">
+            <span class="label-text">
+              <span v-show="currentLang === 'zh'">中医合作伙伴</span>
+              <span v-show="currentLang === 'en'">TCM Partners</span>
+            </span>
+          </div>
+          
+          <div class="tcm-number-display">
+            <span class="number-big">{{ tcmPartners.number }}</span>
+            <span class="number-label">
+              <span v-show="currentLang === 'zh'">{{ tcmPartners.labelCn }}</span>
+              <span v-show="currentLang === 'en'">{{ tcmPartners.labelEn }}</span>
+            </span>
+            <span class="number-sublabel">
+              <span v-show="currentLang === 'zh'">{{ tcmPartners.sublabelCn }}</span>
+              <span v-show="currentLang === 'en'">{{ tcmPartners.sublabelEn }}</span>
+            </span>
+          </div>
+          
+          <p class="section-desc-centered">
+            <span v-show="currentLang === 'zh'">{{ tcmPartners.descCn }}</span>
+            <span v-show="currentLang === 'en'">{{ tcmPartners.descEn }}</span>
+          </p>
+        </div>
+        
+        <div class="tcm-cards-row">
+          <div v-for="(card, index) in tcmPartners.cards" :key="index" class="tcm-card">
+            <div class="tcm-card-icon">{{ card.icon }}</div>
+            <div class="tcm-card-num">{{ card.num }}</div>
+            <h4 class="tcm-card-title">
+              <span v-show="currentLang === 'zh'">{{ card.labelCn }}</span>
+              <span v-show="currentLang === 'en'">{{ card.labelEn }}</span>
+            </h4>
+          </div>
+        </div>
+        
+        <div class="tcm-partners-section">
+          <p class="logos-title-centered">
+            <span v-show="currentLang === 'zh'">部分合作机构</span>
+            <span v-show="currentLang === 'en'">Selected Partners</span>
+          </p>
+          <div class="tcm-logos-grid">
+            <div v-for="(partner, index) in tcmPartners.partners" :key="index" class="tcm-logo-item">
+              <div class="tcm-logo-icon">{{ partner.logo }}</div>
+              <span class="tcm-logo-name">
+                <span v-show="currentLang === 'zh'">{{ partner.nameCn }}</span>
+                <span v-show="currentLang === 'en'">{{ partner.nameEn }}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tourism Partners Section -->
+    <section class="partner-section tourism-section">
+      <div class="section-container">
+        <div class="tourism-layout">
+          <div class="tourism-content">
+            <div class="section-label">
+              <span class="label-icon">🎫</span>
+              <span class="label-text">
+                <span v-show="currentLang === 'zh'">旅游合作伙伴</span>
+                <span v-show="currentLang === 'en'">Tourism Partners</span>
+              </span>
+            </div>
+            
+            <h2 class="section-title">
+              <span class="title-number">{{ tourismPartners.number }}</span>
+              <span class="title-text">
+                <span v-show="currentLang === 'zh'">{{ tourismPartners.labelCn }}</span>
+                <span v-show="currentLang === 'en'">{{ tourismPartners.labelEn }}</span>
+              </span>
+            </h2>
+            
+            <p class="section-subtitle">
+              <span v-show="currentLang === 'zh'">{{ tourismPartners.sublabelCn }}</span>
+              <span v-show="currentLang === 'en'">{{ tourismPartners.sublabelEn }}</span>
+            </p>
+            
+            <p class="section-desc">
+              <span v-show="currentLang === 'zh'">{{ tourismPartners.descCn }}</span>
+              <span v-show="currentLang === 'en'">{{ tourismPartners.descEn }}</span>
+            </p>
+            
+            <div class="tourism-benefits">
+              <div v-for="(benefit, index) in tourismPartners.benefits" :key="index" class="benefit-item">
+                <div class="benefit-icon">{{ benefit.icon }}</div>
+                <div class="benefit-content">
+                  <h4 class="benefit-title">
+                    <span v-show="currentLang === 'zh'">{{ benefit.titleCn }}</span>
+                    <span v-show="currentLang === 'en'">{{ benefit.titleEn }}</span>
+                  </h4>
+                  <p class="benefit-desc">
+                    <span v-show="currentLang === 'zh'">{{ benefit.descCn }}</span>
+                    <span v-show="currentLang === 'en'">{{ benefit.descEn }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="partner-logos">
+              <p class="logos-title">
+                <span v-show="currentLang === 'zh'">部分合作景区</span>
+                <span v-show="currentLang === 'en'">Selected Attractions</span>
+              </p>
+              <div class="logos-row">
+                <div v-for="(partner, index) in tourismPartners.partners" :key="index" class="logo-pill">
+                  <span class="logo-icon">{{ partner.logo }}</span>
+                  <span class="logo-name">
+                    <span v-show="currentLang === 'zh'">{{ partner.nameCn }}</span>
+                    <span v-show="currentLang === 'en'">{{ partner.nameEn }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tourism-image-wrapper">
+            <img :src="tourismPartners.image" alt="Tourism Partners" class="tourism-image" />
+            <div class="tourism-image-badge">
+              <span class="badge-icon">🎫</span>
+              <span class="badge-text">
+                <span v-show="currentLang === 'zh'">会员专属权益</span>
+                <span v-show="currentLang === 'en'">Member Benefits</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coverage Section -->
+    <section class="coverage-section">
+      <div class="container">
+        <h2 class="coverage-title">
+          <span v-show="currentLang === 'zh'" class="title-cn">全国资源覆盖网络</span>
+          <span v-show="currentLang === 'en'" class="title-en">Nationwide Coverage</span>
+        </h2>
+        
+        <div class="coverage-stats">
+          <div v-for="(stat, index) in coverageStats" :key="index" class="coverage-item">
+            <span class="coverage-number">{{ stat.number }}</span>
+            <span class="coverage-label">
+              <span v-show="currentLang === 'zh'">{{ stat.labelCn }}</span>
+              <span v-show="currentLang === 'en'">{{ stat.labelEn }}</span>
+            </span>
+            <span class="coverage-desc">
+              <span v-show="currentLang === 'zh'">{{ stat.descCn }}</span>
+              <span v-show="currentLang === 'en'">{{ stat.descEn }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<style scoped>
+.partners-page {
+  padding-top: var(--header-height);
+}
+
+/* Page Hero - SHA Style */
+.page-hero {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-white);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.hero-eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.title-cn,
+.title-en {
+  display: block;
+  color: var(--color-white);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.subtitle-cn,
+.subtitle-en {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-description {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.desc-cn,
+.desc-en {
+  display: block;
+  font-size: 1.0625rem;
+  line-height: 2;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+/* Hero Stats Grid - SHA Style */
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-stat-item {
+  text-align: center;
+}
+
+.hero-stat-number {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.hero-stat-label {
+  display: block;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+/* Section Container */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.label-icon {
+  font-size: 1.5rem;
+}
+
+.label-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ==================== MEDICAL SECTION ==================== */
+.medical-section {
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+}
+
+.medical-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.medical-image-wrapper {
+  position: sticky;
+  top: 120px;
+}
+
+.medical-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+.medical-image-badge {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  padding: 1.25rem 2rem;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.badge-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.badge-label {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-stone);
+  margin-top: 0.25rem;
+}
+
+.medical-content {
+  padding-top: 2rem;
+}
+
+.medical-content .section-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.medical-content .section-desc {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: var(--color-stone);
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.medical-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.medical-stat {
+  text-align: center;
+}
+
+.medical-stat .stat-num {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.medical-stat .stat-label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-stone);
+}
+
+/* Featured Hospitals */
+.featured-hospitals {
+  margin-top: 3rem;
+}
+
+.hospitals-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-stone);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hospitals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.hospital-card {
+  background: var(--color-white);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hospital-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-secondary);
+}
+
+.hospital-image-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.hospital-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.hospital-card:hover .hospital-image {
+  transform: scale(1.05);
+}
+
+.hospital-rank-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.98);
+  padding: 0.5rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--color-black);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.05em;
+}
+
+.hospital-info {
+  padding: 1.25rem;
+}
+
+.hospital-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.hospital-specialty {
+  font-size: 0.8125rem;
+  color: var(--color-stone);
+  line-height: 1.5;
+}
+
+/* ==================== WELLNESS SECTION - COMO Shambhala Style ==================== */
+.wellness-section {
+  background: linear-gradient(180deg, #F5F0EB 0%, #EBE5DE 100%);
+  padding: 0;
+  overflow: hidden;
+}
+
+.wellness-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.wellness-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.wellness-content {
+  padding-right: 2rem;
+}
+
+.wellness-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #6B5B4F;
+  margin-bottom: 1.5rem;
+}
+
+.wellness-main-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #2C2420;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.wellness-main-desc {
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: #5A4F45;
+  margin-bottom: 2.5rem;
+  max-width: 400px;
+}
+
+.wellness-stats-row {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(107, 91, 79, 0.2);
+}
+
+.wellness-stat {
+  display: block;
+}
+
+.wellness-stat .stat-big {
+  display: block;
+  font-size: 4rem;
+  font-weight: 300;
+  color: #2C2420;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.wellness-stat .stat-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6B5B4F;
+  margin-bottom: 0.25rem;
+}
+
+.wellness-stat .stat-sub {
+  display: block;
+  font-size: 0.8125rem;
+  color: #8B7B6F;
+}
+
+/* Wellness Images Grid */
+.wellness-images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.wellness-image-card {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.wellness-base-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wellness-image-card:hover .wellness-base-image {
+  transform: scale(1.05);
+}
+
+.wellness-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(44, 36, 32, 0) 0%, rgba(44, 36, 32, 0.7) 100%);
+}
+
+.wellness-image-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.base-category {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.base-name {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.3;
+}
+
+/* ==================== TCM SECTION ==================== */
+.tcm-section {
+  background: linear-gradient(180deg, #fff9f5 0%, #ffffff 100%);
+}
+
+.tcm-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.tcm-icon-large {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-label-centered {
+  margin-bottom: 1.5rem;
+}
+
+.section-label-centered .label-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.tcm-number-display {
+  margin-bottom: 2rem;
+}
+
+.number-big {
+  display: block;
+  font-size: 6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #B79891 0%, #94716B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.number-label {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-black);
+  margin-bottom: 0.35rem;
+}
+
+.number-sublabel {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--color-stone);
+}
+
+.section-desc-centered {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: var(--color-stone);
+}
+
+.tcm-cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.tcm-card {
+  background: var(--color-white);
+  border-radius: 4px;
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(183, 152, 145, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tcm-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(183, 152, 145, 0.15);
+  border-color: var(--color-secondary);
+}
+
+.tcm-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.tcm-card-num {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #B79891 0%, #94716B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.tcm-card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.tcm-partners-section {
+  padding-top: 3rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.logos-title-centered {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-stone);
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.tcm-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+}
+
+.tcm-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  background: var(--color-white);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.tcm-logo-item:hover {
+  border-color: var(--color-secondary);
+  transform: translateY(-4px);
+}
+
+.tcm-logo-icon {
+  font-size: 2rem;
+}
+
+.tcm-logo-name {
+  font-size: 0.8125rem;
+  color: var(--color-stone);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ==================== TOURISM SECTION ==================== */
+.tourism-section {
+  background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
+}
+
+.tourism-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 4rem;
+  align-items: start;
+}
+
+.tourism-content {
+  padding-top: 2rem;
+}
+
+.tourism-content .section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tourism-content .title-number {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.tourism-content .title-text {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--color-black);
+}
+
+.tourism-content .section-subtitle {
+  font-size: 1rem;
+  color: var(--color-stone);
+  margin-bottom: 1.5rem;
+}
+
+.tourism-content .section-desc {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: var(--color-stone);
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.tourism-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: var(--color-white);
+  border-radius: 4px;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+  border-color: var(--color-secondary);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
+}
+
+.benefit-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.benefit-content {
+  flex: 1;
+}
+
+.benefit-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 0.35rem;
+}
+
+.benefit-desc {
+  font-size: 0.875rem;
+  color: var(--color-stone);
+}
+
+.partner-logos {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.logos-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-stone);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.logos-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.logo-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 50px;
+  transition: all 0.2s ease;
+}
+
+.logo-pill:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.logo-pill .logo-icon {
+  font-size: 1.25rem;
+}
+
+.logo-pill .logo-name {
+  font-size: 0.8125rem;
+  color: var(--color-stone);
+  font-weight: 500;
+}
+
+.tourism-image-wrapper {
+  position: sticky;
+  top: 120px;
+}
+
+.tourism-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+.tourism-image-badge {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  padding: 1.25rem 2rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.badge-icon {
+  font-size: 1.75rem;
+}
+
+.badge-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+/* Coverage Section */
+.coverage-section {
+  padding: 6rem 0;
+  background: var(--color-white);
+}
+
+.coverage-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.coverage-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.coverage-title .title-cn,
+.coverage-title .title-en {
+  display: block;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-black);
+  letter-spacing: 0.05em;
+}
+
+.coverage-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.coverage-item {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: var(--color-white);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.coverage-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-secondary);
+}
+
+.coverage-number {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.coverage-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.coverage-desc {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-stone);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .medical-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .medical-image-wrapper {
+    position: relative;
+    top: 0;
+  }
+  
+  .medical-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hospitals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .wellness-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .wellness-content {
+    padding-right: 0;
+  }
+  
+  .wellness-images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .wellness-image-card {
+    height: 400px;
+  }
+  
+  .tcm-cards-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tcm-logos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .tourism-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .tourism-image-wrapper {
+    position: relative;
+    top: 0;
+  }
+  
+  .coverage-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    padding: 4rem 1.5rem;
+  }
+  
+  .medical-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hospitals-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .wellness-images {
+    grid-template-columns: 1fr;
+  }
+  
+  .wellness-image-card {
+    height: 350px;
+  }
+  
+  .wellness-main-title {
+    font-size: 2rem;
+  }
+  
+  .tcm-cards-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .tcm-logos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tourism-benefits {
+    gap: 0.75rem;
+  }
+  
+  .benefit-item {
+    padding: 1.25rem;
+  }
+  
+  .coverage-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+</style>
