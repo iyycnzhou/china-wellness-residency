@@ -12,10 +12,10 @@
    CSS 变量定义
    ============================================================================= */
 :root {
-  /* 主色调 - 自然绿 */
-  --primary: #1a4a3e;
-  --primary-light: #2d6a5a;
-  --primary-dark: #0f2e26;
+  /* 主色调 - 暖灰色系 */
+  --primary: #6b6b6b;
+  --primary-light: #e8e6e1;
+  --primary-dark: #3d3d3d;
   
   /* 辅助色 - 奢华金 */
   --secondary: #c9a962;

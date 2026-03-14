@@ -142,8 +142,8 @@ const socialLinks = [
 
 <style scoped>
 .footer {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: #f0eee9;  /* Very light warm gray */
+  color: #000000;  /* Black text */
 }
 
 .footer-top {
@@ -164,20 +164,20 @@ const socialLinks = [
   font-size: 1.25rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
-  color: var(--color-white);
+  color: #000000;  /* Black */
 }
 
 .footer-brand-en {
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-secondary);
+  color: #000000;  /* Black */
   margin-bottom: 1.5rem;
 }
 
 .footer-tagline {
   font-size: 1rem;
-  color: var(--color-white);
+  color: #000000;  /* Black */
   margin-bottom: 0.25rem;
 }
 
@@ -188,6 +188,7 @@ const socialLinks = [
 
 .footer-heading {
   margin-bottom: 1.5rem;
+  color: #000000;  /* Black */
 }
 
 .heading-cn {
@@ -195,6 +196,7 @@ const socialLinks = [
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 0.25rem;
+  color: #000000;  /* Black */
 }
 
 .heading-en {
@@ -202,7 +204,7 @@ const socialLinks = [
   font-size: 0.625rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-secondary);
+  color: #000000;  /* Black */
 }
 
 .footer-links {
@@ -215,7 +217,7 @@ const socialLinks = [
 
 .footer-links a {
   display: block;
-  color: var(--color-stone);
+  color: #000000;  /* Black */
   transition: color 0.2s ease;
 }
 
@@ -272,8 +274,9 @@ const socialLinks = [
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);  /* Lighter border */
   padding: 1.5rem 0;
+  background-color: #f5f3ef;  /* Even lighter gray for bottom bar */
 }
 
 .footer-bottom-content {
@@ -284,7 +287,7 @@ const socialLinks = [
 
 .copyright {
   font-size: 0.8125rem;
-  color: var(--color-stone);
+  color: #000000;  /* Black */
 }
 
 .legal-links {
@@ -294,7 +297,7 @@ const socialLinks = [
 
 .legal-links a {
   font-size: 0.8125rem;
-  color: var(--color-stone);
+  color: #000000;  /* Black */
   transition: color 0.2s ease;
 }
 
