@@ -48,13 +48,10 @@ onMounted(() => {
 
 <template>
   <div class="home">
-    <!-- Hero Section - Full Screen Video Background -->
+    <!-- Hero Section - Image Background -->
     <section class="hero">
-      <!-- 视频背景 -->
-      <video class="hero-bg" autoplay muted loop playsinline poster="">
-        <source src="@/assets/images/hero-video.mp4" type="video/mp4">
-        您的浏览器不支持视频标签
-      </video>
+      <!-- 图片背景 - Six Senses 风格 -->
+      <div class="hero-bg" style="background-image: url('/images/banner/hero-3.jpg');"></div>
       
       <!-- 半透明遮罩 - 让背景变暗，文字更清晰 -->
       <div class="hero-overlay"></div>
@@ -307,7 +304,7 @@ onMounted(() => {
   padding-top: var(--header-height);
 }
 
-/* Hero Section */
+/* Hero Section - Six Senses Style */
 .hero {
   position: relative;
   height: 100vh;
@@ -318,19 +315,32 @@ onMounted(() => {
   overflow: hidden;
 }
 
-/* 视频背景 - 最底层 */
+/* 图片背景 - Six Senses 风格 */
 .hero-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   z-index: 0;
+  /* 添加平滑过渡 */
+  transition: transform 10s ease;
+  animation: slowZoom 20s ease-in-out infinite;
 }
 
-/* 遮罩层/背景层 - 中间层 */
-/* 没有视频时显示渐变背景，有视频时作为遮罩 */
+@keyframes slowZoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* 遮罩层 - Six Senses 风格 */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -338,11 +348,11 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   z-index: 1;
-  /* 渐变遮罩 - 视频上的遮罩 */
+  /* Six Senses 风格遮罩 - 深绿色调 */
   background: linear-gradient(135deg, 
-    rgba(0, 0, 0, 0.3) 0%, 
-    rgba(0, 0, 0, 0.4) 50%, 
-    rgba(0, 0, 0, 0.5) 100%);
+    rgba(26, 74, 62, 0.7) 0%, 
+    rgba(26, 74, 62, 0.5) 50%, 
+    rgba(26, 74, 62, 0.6) 100%);
 }
 
 /* 文字内容 - 最上层 */
