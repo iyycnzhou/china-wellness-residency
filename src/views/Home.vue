@@ -924,9 +924,12 @@ onUnmounted(() => {
 
 .highlights-title .title-en {
   display: block;
-  font-size: 1.5rem;
-  color: var(--color-secondary);
-  letter-spacing: 0.1em;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #6f7c76;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .highlights-scroll-wrapper {
@@ -1211,6 +1214,17 @@ onUnmounted(() => {
   margin-bottom: var(--spacing-md);
 }
 
+.residency-title .title-en {
+  display: block;
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #6f7c76;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-md);
+}
+
 .residency-description {
   font-size: 1rem;
   color: #6f7c76;
@@ -1224,6 +1238,17 @@ onUnmounted(() => {
   font-weight: 600;
   color: #3d3d3d;
   margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+}
+
+.service-heading .title-en {
+  display: block;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #6f7c76;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
 }
 
 .service-list {
