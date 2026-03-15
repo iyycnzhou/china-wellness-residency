@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { currentLang } from '../composables/useLanguage'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const scrollContainer = ref<HTMLElement | null>(null)
 const dots = ref<NodeList | null>(null)
+let autoScrollInterval: number | null = null
 
 // 滚动控制
 const scrollLeft = () => {
@@ -15,6 +16,31 @@ const scrollLeft = () => {
 const scrollRight = () => {
   if (scrollContainer.value) {
     scrollContainer.value.scrollBy({ left: 400, behavior: 'smooth' })
+  }
+}
+
+// 自动滚动
+const startAutoScroll = () => {
+  if (autoScrollInterval) return
+  
+  autoScrollInterval = window.setInterval(() => {
+    if (scrollContainer.value) {
+      const maxScrollLeft = scrollContainer.value.scrollWidth - scrollContainer.value.clientWidth
+      
+      // 如果已经滚动到末尾，回到开始
+      if (scrollContainer.value.scrollLeft >= maxScrollLeft - 10) {
+        scrollContainer.value.scrollTo({ left: 0, behavior: 'smooth' })
+      } else {
+        scrollContainer.value.scrollBy({ left: 400, behavior: 'smooth' })
+      }
+    }
+  }, 3000) // 每 3 秒滚动一次
+}
+
+const stopAutoScroll = () => {
+  if (autoScrollInterval) {
+    clearInterval(autoScrollInterval)
+    autoScrollInterval = null
   }
 }
 
@@ -43,6 +69,14 @@ onMounted(() => {
   if (scrollContainer.value) {
     scrollContainer.value.addEventListener('scroll', updateDots)
   }
+  
+  // 启动自动滚动
+  startAutoScroll()
+})
+
+onUnmounted(() => {
+  // 清理定时器
+  stopAutoScroll()
 })
 </script>
 
@@ -182,7 +216,12 @@ onMounted(() => {
         </h2>
         
         <div class="highlights-scroll-wrapper">
-          <div ref="scrollContainer" class="highlights-scroll">
+          <div 
+            ref="scrollContainer" 
+            class="highlights-scroll"
+            @mouseenter="stopAutoScroll"
+            @mouseleave="startAutoScroll"
+          >
             <div class="highlight-card">
               <img class="highlight-img" src="@/assets/images/hospital-doctor-consultation.png" alt="医疗绿色通道">
               <div class="highlight-content">
