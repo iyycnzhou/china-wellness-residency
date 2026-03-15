@@ -1145,7 +1145,7 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  align-items: stretch;
+  align-items: start;
 }
 
 .global-image-col {
@@ -1377,10 +1377,6 @@ onUnmounted(() => {
   
   .lifestyle-card {
     padding: 1.5rem;
-  }
-}
-</style>
-: 1.5rem;
   }
 }
 </style>
