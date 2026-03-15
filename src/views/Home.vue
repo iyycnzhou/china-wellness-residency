@@ -48,10 +48,13 @@ onMounted(() => {
 
 <template>
   <div class="home">
-    <!-- Hero Section - Image Background -->
+    <!-- Hero Section - Video Background -->
     <section class="hero">
-      <!-- 图片背景 - Six Senses 风格 -->
-      <div class="hero-bg" style="background-image: url('/images/banner/hero-3.jpg');"></div>
+      <!-- 视频背景 - 压缩优化版本 -->
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="/src/assets/images/hero-video-optimized.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       
       <!-- 半透明遮罩 - 让背景变暗，文字更清晰 -->
       <div class="hero-overlay"></div>
@@ -315,7 +318,18 @@ onMounted(() => {
   overflow: hidden;
 }
 
-/* 图片背景 - Six Senses 风格 */
+/* 视频背景 - Six Senses 风格 */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* 图片背景备用 (如果视频加载失败) */
 .hero-bg {
   position: absolute;
   top: 0;
