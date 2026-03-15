@@ -181,16 +181,6 @@ onUnmounted(() => {
     <!-- New Wellness Lifestyle Section -->
     <section class="wellness-lifestyle-section">
       <div class="container">
-        <div class="section-header centered">
-          <h2 class="section-title">
-            <span v-show="currentLang === 'zh'" class="title-cn">一种全新的健康生活方式</span>
-            <span v-show="currentLang === 'en'" class="title-en">A New Wellness Lifestyle</span>
-          </h2>
-          <p class="section-subtitle">
-            <span v-show="currentLang === 'zh'" class="subtitle-cn">医疗 · 康养 · 文化 · 旅行的融合体验</span>
-            <span v-show="currentLang === 'en'" class="subtitle-en">Integration of Medical · Wellness · Culture · Travel</span>
-          </p>
-        </div>
 
         <div class="lifestyle-hero">
           <div class="lifestyle-hero-image">
@@ -198,15 +188,15 @@ onUnmounted(() => {
             <div class="lifestyle-hero-overlay">
               <!-- 英文版：只显示副标题在图片中间 -->
               <div v-show="currentLang === 'en'" class="hero-overlay-content-en">
+				<h3 class="hero-overlay-title-en">A New Wellness Lifestyle</h3>
                 <p class="hero-overlay-subtitle-en">
                   Integration of Medical · Wellness · Culture · Travel
                 </p>
               </div>
               <!-- 中文版：显示山海疗愈 -->
               <div v-show="currentLang === 'zh'" class="hero-overlay-content-cn">
-                <h3 class="hero-overlay-title-cn">山海疗愈</h3>
-                <p class="hero-overlay-desc-cn">在自然环境中恢复身体与精神的平衡</p>
-                <p class="hero-overlay-sub-cn">远离城市喧嚣，享受宁静与疗愈</p>
+                <h3 class="hero-overlay-title-cn">一种全新的健康生活方式</h3>
+                <p class="hero-overlay-desc-cn">医疗 · 康养 · 文化 · 旅行的融合体验</p>
               </div>
             </div>
           </div>
