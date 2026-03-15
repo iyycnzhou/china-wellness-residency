@@ -101,7 +101,10 @@ onUnmounted(() => {
             <span class="title-line">这不是一次简单的旅行</span>
             <span class="title-line">而是一种生活方式的延续</span>
           </span>
-          <span v-show="currentLang === 'en'" class="title-en">More Than a Journey — A Continuation of Life</span>
+          <span v-show="currentLang === 'en'" class="title-en">
+            <span class="title-line-en">More Than a Journey —</span>
+            <span class="title-line-en">A Continuation of Life</span>
+          </span>
         </h1>
         
         <!-- 副标题 -->
@@ -120,10 +123,7 @@ onUnmounted(() => {
         </div>
       </div>
       
-      <div class="hero-scroll-indicator">
-        <span class="scroll-text">Scroll</span>
-        <div class="scroll-line"></div>
-      </div>
+
     </section>
 
     <!-- Global Members Section -->
@@ -612,8 +612,12 @@ onUnmounted(() => {
   font-size: clamp(1.75rem, 4.5vw, 3.5rem);
 }
 
-.title-en {
-  display: block;
+.hero-title .title-en {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
   font-size: clamp(1.5rem, 5vw, 4rem) !important;
   letter-spacing: 0.05em;
   color: #ffffff !important;
@@ -621,6 +625,21 @@ onUnmounted(() => {
   font-weight: 700;
   /* 欧美网站常用字体 - Montserrat/Playfair Display */
   font-family: 'Montserrat', 'Playfair Display', Georgia, serif !important;
+}
+
+.title-line-en {
+  display: block;
+  font-size: clamp(1.5rem, 5vw, 4rem) !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  font-family: 'Montserrat', 'Playfair Display', Georgia, serif !important;
+  white-space: nowrap;
+  /* 第二行稍小一点 */
+}
+
+.title-line-en:last-child {
+  font-size: clamp(1.25rem, 4.5vw, 3.5rem) !important;
 }
 
 .hero-subtitle {
@@ -710,7 +729,7 @@ onUnmounted(() => {
 .philosophy-title .title-en {
   display: block;
   font-size: 1.5rem;
-  color: var(--color-secondary);
+  color: var(--color-black);
   letter-spacing: 0.1em;
 }
 
@@ -734,7 +753,7 @@ onUnmounted(() => {
 }
 
 .statement-cn {
-  display: block !important;
+  display: block;
   color: var(--color-black);
   margin-bottom: 1rem;
   font-weight: 500;
@@ -744,7 +763,7 @@ onUnmounted(() => {
 
 .statement-en {
   display: block;
-  color: var(--color-secondary);
+  color: var(--color-black);
   font-size: 1.25rem;
 }
 
@@ -757,7 +776,7 @@ onUnmounted(() => {
 }
 
 .text-cn {
-  display: block !important;
+  display: block;
   color: var(--color-black);
   margin-bottom: 1rem;
   text-align: center;
@@ -766,7 +785,7 @@ onUnmounted(() => {
 
 .text-en {
   display: block;
-  color: var(--color-stone);
+  color: var(--color-black);
 }
 
 .beliefs-grid {
@@ -815,20 +834,20 @@ onUnmounted(() => {
 .belief-en {
   display: block;
   font-size: 0.875rem;
-  color: var(--color-secondary);
+  color: var(--color-black);
   letter-spacing: 0.1em;
 }
 
 .belief-desc-cn {
   display: block;
-  color: var(--color-stone);
+  color: var(--color-black);
   font-size: 0.9375rem;
   line-height: 1.6;
 }
 
 .belief-desc-en {
   display: block;
-  color: var(--color-stone);
+  color: var(--color-black);
   font-size: 0.8125rem;
   line-height: 1.6;
 }
@@ -856,7 +875,7 @@ onUnmounted(() => {
 .closing-en {
   display: block;
   font-size: 1rem;
-  color: var(--color-secondary);
+  color: var(--color-black);
 }
 
 /* Value Proposition */
@@ -927,10 +946,10 @@ onUnmounted(() => {
 
 .highlights-title .title-en {
   display: block;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: 1.5rem;
   font-family: var(--font-body);
   font-weight: 400;
-  color: #6f7c76;
+  color: #3d3d3d;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -1000,21 +1019,21 @@ onUnmounted(() => {
 .content-en {
   display: block;
   font-size: 0.875rem;
-  color: var(--color-secondary);
+  color: var(--color-black);
   letter-spacing: 0.1em;
 }
 
 .content-desc-cn {
   display: block;
   font-size: 0.9375rem;
-  color: var(--color-stone);
+  color: var(--color-black);
   line-height: 1.6;
 }
 
 .content-desc-en {
   display: block;
   font-size: 0.8125rem;
-  color: var(--color-stone);
+  color: var(--color-black);
   line-height: 1.6;
 }
 
@@ -1187,7 +1206,7 @@ onUnmounted(() => {
   max-width: 700px;
   margin: 0 auto;
   font-size: 1.125rem;
-  color: #6f7c76;
+  color: #3d3d3d;
   line-height: 1.8;
 }
 
@@ -1222,10 +1241,10 @@ onUnmounted(() => {
 
 .residency-title .title-en {
   display: block;
-  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  font-size: 1.625rem;
   font-family: var(--font-body);
   font-weight: 400;
-  color: #6f7c76;
+  color: #3d3d3d;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: var(--spacing-md);
@@ -1233,7 +1252,7 @@ onUnmounted(() => {
 
 .residency-description {
   font-size: 1rem;
-  color: #6f7c76;
+  color: #3d3d3d;
   line-height: 1.8;
   margin-bottom: var(--spacing-md);
 }
@@ -1248,10 +1267,10 @@ onUnmounted(() => {
 
 .service-heading .title-en {
   display: block;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: 1.25rem;
   font-family: var(--font-body);
   font-weight: 400;
-  color: #6f7c76;
+  color: #3d3d3d;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: var(--spacing-sm);
@@ -1268,7 +1287,7 @@ onUnmounted(() => {
   padding-left: var(--spacing-md);
   position: relative;
   font-size: 1rem;
-  color: #6f7c76;
+  color: #3d3d3d;
 }
 
 .service-list li::before {
@@ -1396,14 +1415,17 @@ onUnmounted(() => {
 
 .card-title {
   font-size: 1.5rem;
-  color: var(--color-black);
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #3d3d3d;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   margin-bottom: 1rem;
-  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .card-desc {
   font-size: 1.125rem;
-  color: var(--color-secondary);
+  color: var(--color-black);
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -1497,3 +1519,4 @@ onUnmounted(() => {
   }
 }
 </style>
+
