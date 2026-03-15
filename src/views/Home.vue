@@ -1335,7 +1335,7 @@ onUnmounted(() => {
   }
   
   .global-image-col {
-    height: 400px;
+    height: 300px;
   }
   
   .global-content-col {
