@@ -517,6 +517,9 @@ onMounted(() => {
 
 .main-statement {
   margin-bottom: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .statement-text {
