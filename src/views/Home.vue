@@ -1381,24 +1381,3 @@ onUnmounted(() => {
   }
 }
 </style>
-style>
-dding: 0.5rem;
-  }
-  
-  .service-icon {
-    font-size: 1.25rem;
-  }
-  
-  .lifestyle-hero-image {
-    height: 300px;
-  }
-  
-  .hero-overlay-title {
-    font-size: 2rem;
-  }
-  
-  .lifestyle-card {
-    padding: 1.5rem;
-  }
-}
-</style>
