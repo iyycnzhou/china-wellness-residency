@@ -325,18 +325,14 @@ onUnmounted(() => {
     <!-- Global Wellness Residency Section -->
     <section class="global-residency-section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header centered">
           <h2 class="section-title">
             <span v-show="currentLang === 'zh'" class="title-cn">全球会员 · 中国康养驻留</span>
             <span v-show="currentLang === 'en'" class="title-en">Global Members · China Wellness Residency</span>
           </h2>
-          <p class="section-subtitle">
-            <span v-show="currentLang === 'zh'" class="subtitle-cn">来自世界各地的会员汇聚中国</span>
-            <span v-show="currentLang === 'en'" class="subtitle-en">Members from around the world gather in China</span>
-          </p>
-          <p class="section-desc">
-            <span v-show="currentLang === 'zh'" class="desc-cn">在山东开启医疗与康养驻留生活</span>
-            <span v-show="currentLang === 'en'" class="desc-en">Begin medical and wellness residency life in Shandong</span>
+          <p class="section-subtitle combined">
+            <span v-show="currentLang === 'zh'" class="subtitle-cn">来自世界各地的会员汇聚中国，在山东开启医疗与康养驻留生活</span>
+            <span v-show="currentLang === 'en'" class="subtitle-en">Members from around the world gather in China to begin medical and wellness residency life in Shandong</span>
           </p>
         </div>
 
@@ -1372,6 +1368,41 @@ onUnmounted(() => {
     grid-template-columns: 1fr;
   }
   
+  .lifestyle-hero-image {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-subtitle.combined {
+    white-space: normal;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .global-text {
+    padding: 1rem;
+  }
+  
+  .lifestyle-hero-image {
+    height: 300px;
+  }
+  
+  .hero-overlay-title {
+    font-size: 2rem;
+  }
+  
+  .lifestyle-card {
+    padding: 1.5rem;
+  }
+}
+</style>
+ 
   .lifestyle-hero-image {
     height: 400px;
   }
