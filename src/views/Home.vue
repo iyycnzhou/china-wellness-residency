@@ -196,18 +196,21 @@ onUnmounted(() => {
           <div class="lifestyle-hero-image">
             <img src="@/assets/images/shandong-coastal-resort.png" alt="山海疗愈">
             <div class="lifestyle-hero-overlay">
-              <h3 class="hero-overlay-title">
-                <span v-show="currentLang === 'zh'" class="title-cn">山海疗愈</span>
-                <span v-show="currentLang === 'en'" class="title-en">Mountain & Sea Healing</span>
-              </h3>
-              <p class="hero-overlay-desc">
-                <span v-show="currentLang === 'zh'" class="desc-cn">在自然环境中恢复身体与精神的平衡</span>
-                <span v-show="currentLang === 'en'" class="desc-en">Restore balance of body and mind in nature</span>
-              </p>
-              <p class="hero-overlay-sub">
-                <span v-show="currentLang === 'zh'" class="sub-cn">远离城市喧嚣，享受宁静与疗愈</span>
-                <span v-show="currentLang === 'en'" class="sub-en">Away from city noise, enjoy tranquility and healing</span>
-              </p>
+              <!-- 英文版：显示主标题和副标题在图片中间 -->
+              <div v-show="currentLang === 'en'" class="hero-overlay-content-en">
+                <h3 class="hero-overlay-title-en">
+                  A New Wellness Lifestyle
+                </h3>
+                <p class="hero-overlay-subtitle-en">
+                  Integration of Medical · Wellness · Culture · Travel
+                </p>
+              </div>
+              <!-- 中文版：显示山海疗愈 -->
+              <div v-show="currentLang === 'zh'" class="hero-overlay-content-cn">
+                <h3 class="hero-overlay-title-cn">山海疗愈</h3>
+                <p class="hero-overlay-desc-cn">在自然环境中恢复身体与精神的平衡</p>
+                <p class="hero-overlay-sub-cn">远离城市喧嚣，享受宁静与疗愈</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1275,23 +1278,58 @@ onUnmounted(() => {
   color: white;
 }
 
-.hero-overlay-title {
+/* 中文版样式 */
+.hero-overlay-content-cn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-overlay-title-cn {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-family: 'Playfair Display', Georgia, serif;
   margin-bottom: 1rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
-.hero-overlay-desc {
+.hero-overlay-desc-cn {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
-.hero-overlay-sub {
+.hero-overlay-sub-cn {
   font-size: 1.125rem;
   opacity: 0.9;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+/* 英文版样式 */
+.hero-overlay-content-en {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-overlay-title-en {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: 'Montserrat', 'Playfair Display', Georgia, serif;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.hero-overlay-subtitle-en {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+  letter-spacing: 0.1em;
+  font-weight: 400;
 }
 
 .lifestyle-cards {
