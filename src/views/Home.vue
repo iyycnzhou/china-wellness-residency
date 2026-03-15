@@ -322,6 +322,170 @@ onUnmounted(() => {
       </div>
     </section>
 
+    <!-- Global Wellness Residency Section -->
+    <section class="global-residency-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span v-show="currentLang === 'zh'" class="title-cn">全球会员 · 中国康养驻留</span>
+            <span v-show="currentLang === 'en'" class="title-en">Global Members · China Wellness Residency</span>
+          </h2>
+          <p class="section-subtitle">
+            <span v-show="currentLang === 'zh'" class="subtitle-cn">来自世界各地的会员汇聚中国</span>
+            <span v-show="currentLang === 'en'" class="subtitle-en">Members from around the world gather in China</span>
+          </p>
+          <p class="section-desc">
+            <span v-show="currentLang === 'zh'" class="desc-cn">在山东开启医疗与康养驻留生活</span>
+            <span v-show="currentLang === 'en'" class="desc-en">Begin medical and wellness residency life in Shandong</span>
+          </p>
+        </div>
+
+        <div class="global-content">
+          <div class="global-image">
+            <img src="@/assets/images/benefit-detail-stay.png" alt="Global Wellness Residency">
+          </div>
+          <div class="global-text">
+            <h3 class="global-heading">
+              <span v-show="currentLang === 'zh'" class="heading-cn">全球健康驻留中心</span>
+              <span v-show="currentLang === 'en'" class="heading-en">Global Wellness Residency Center</span>
+            </h3>
+            <p class="global-paragraph">
+              <span v-show="currentLang === 'zh'" class="paragraph-cn">平台面向全球会员开放，来自世界各地的客户通过平台来到中国，在山东体验融合医疗、康养与自然疗愈的健康生活方式。</span>
+              <span v-show="currentLang === 'en'" class="paragraph-en">The platform is open to global members. Clients from around the world come to China through the platform to experience a healthy lifestyle integrating medical care, wellness, and natural healing in Shandong.</span>
+            </p>
+            <p class="global-paragraph">
+              <span v-show="currentLang === 'zh'" class="paragraph-cn">依托优质医疗资源、优越自然环境与专业健康管理体系，这里不仅提供医疗支持，更为会员打造长期健康驻留的生活方式。</span>
+              <span v-show="currentLang === 'en'" class="paragraph-en">Relying on quality medical resources, superior natural environment, and professional health management systems, we not only provide medical support but also create a long-term wellness residency lifestyle for members.</span>
+            </p>
+
+            <div class="core-services">
+              <h4 class="services-title">
+                <span v-show="currentLang === 'zh'" class="title-cn">核心服务</span>
+                <span v-show="currentLang === 'en'" class="title-en">Core Services</span>
+              </h4>
+              <ul class="services-list">
+                <li>
+                  <span class="check-icon">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">国内顶级三甲医院医疗资源</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Top-tier domestic tertiary hospital medical resources</span>
+                </li>
+                <li>
+                  <span class="check-icon">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">医疗路径规划与跨境服务支持</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Medical pathway planning and cross-border service support</span>
+                </li>
+                <li>
+                  <span class="check-icon">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">康养驻留与疗愈生活体验</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Wellness residency and healing life experience</span>
+                </li>
+                <li>
+                  <span class="check-icon">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">持续健康管理与跟踪服务</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Continuous health management and tracking services</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Wellness Lifestyle Section -->
+    <section class="wellness-lifestyle-section">
+      <div class="container">
+        <div class="section-header centered">
+          <h2 class="section-title">
+            <span v-show="currentLang === 'zh'" class="title-cn">一种全新的健康生活方式</span>
+            <span v-show="currentLang === 'en'" class="title-en">A New Wellness Lifestyle</span>
+          </h2>
+          <p class="section-subtitle">
+            <span v-show="currentLang === 'zh'" class="subtitle-cn">医疗 · 康养 · 文化 · 旅行的融合体验</span>
+            <span v-show="currentLang === 'en'" class="subtitle-en">Integration of Medical · Wellness · Culture · Travel</span>
+          </p>
+        </div>
+
+        <div class="lifestyle-hero">
+          <div class="lifestyle-hero-image">
+            <img src="@/assets/images/shandong-coastal-resort.png" alt="山海疗愈">
+            <div class="lifestyle-hero-overlay">
+              <h3 class="hero-overlay-title">
+                <span v-show="currentLang === 'zh'" class="title-cn">山海疗愈</span>
+                <span v-show="currentLang === 'en'" class="title-en">Mountain & Sea Healing</span>
+              </h3>
+              <p class="hero-overlay-desc">
+                <span v-show="currentLang === 'zh'" class="desc-cn">在自然环境中恢复身体与精神的平衡</span>
+                <span v-show="currentLang === 'en'" class="desc-en">Restore balance of body and mind in nature</span>
+              </p>
+              <p class="hero-overlay-sub">
+                <span v-show="currentLang === 'zh'" class="sub-cn">远离城市喧嚣，享受宁静与疗愈</span>
+                <span v-show="currentLang === 'en'" class="sub-en">Away from city noise, enjoy tranquility and healing</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lifestyle-cards">
+          <div class="lifestyle-card">
+            <h4 class="card-title">
+              <span v-show="currentLang === 'zh'" class="title-cn">山海疗愈</span>
+              <span v-show="currentLang === 'en'" class="title-en">Mountain & Sea Healing</span>
+            </h4>
+            <p class="card-desc">
+              <span v-show="currentLang === 'zh'" class="desc-cn">在自然环境中恢复身体与精神的平衡</span>
+              <span v-show="currentLang === 'en'" class="desc-en">Restore balance of body and mind in natural environment</span>
+            </p>
+            <p class="card-detail">
+              <span v-show="currentLang === 'zh'" class="detail-cn">远离城市喧嚣，享受宁静与疗愈</span>
+              <span v-show="currentLang === 'en'" class="detail-en">Away from city hustle, enjoy tranquility and healing</span>
+            </p>
+            <p class="card-detail">
+              <span v-show="currentLang === 'zh'" class="detail-cn">让身心在大自然的怀抱中得到彻底的放松与修复</span>
+              <span v-show="currentLang === 'en'" class="detail-en">Let body and mind get complete relaxation and restoration in nature's embrace</span>
+            </p>
+          </div>
+
+          <div class="lifestyle-card">
+            <h4 class="card-title">
+              <span v-show="currentLang === 'zh'" class="title-cn">中医养生</span>
+              <span v-show="currentLang === 'en'" class="title-en">TCM Wellness</span>
+            </h4>
+            <p class="card-desc">
+              <span v-show="currentLang === 'zh'" class="desc-cn">传统医学智慧结合现代健康管理</span>
+              <span v-show="currentLang === 'en'" class="desc-en">Traditional medicine wisdom combined with modern health management</span>
+            </p>
+            <p class="card-detail">
+              <span v-show="currentLang === 'zh'" class="detail-cn">针灸、推拿、药膳，全方位调理</span>
+              <span v-show="currentLang === 'en'" class="detail-en">Acupuncture, massage, herbal diet, comprehensive conditioning</span>
+            </p>
+            <p class="card-detail">
+              <span v-show="currentLang === 'zh'" class="detail-cn">传承千年中医智慧，打造个性化养生方案</span>
+              <span v-show="currentLang === 'en'" class="detail-en">Inherit thousands of years of TCM wisdom, create personalized wellness plans</span>
+            </p>
+          </div>
+
+          <div class="lifestyle-card">
+            <h4 class="card-title">
+              <span v-show="currentLang === 'zh'" class="title-cn">慢生活驻留</span>
+              <span v-show="currentLang === 'en'" class="title-en">Slow Life Residency</span>
+            </h4>
+            <p class="card-desc">
+              <span v-show="currentLang === 'zh'" class="desc-cn">远离城市压力，重建健康生活节奏</span>
+              <span v-show="currentLang === 'en'" class="desc-en">Away from city pressure, rebuild healthy life rhythm</span>
+            </p>
+            <p class="card-detail">
+              <span v-show="currentLang === 'zh'" class="detail-cn">太极、冥想、瑜伽，身心合一</span>
+              <span v-show="currentLang === 'en'" class="detail-en">Tai Chi, meditation, yoga, mind-body unity</span>
+            </p>
+            <p class="card-detail">
+              <span v-show="currentLang === 'zh'" class="detail-cn">在慢节奏中找回生活的本真与健康</span>
+              <span v-show="currentLang === 'en'" class="detail-en">Find the true essence of life and health in a slow pace</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
       <img class="cta-bg" src="@/assets/images/cta-background.png" alt="开启您的健康驻留之旅">
@@ -981,6 +1145,256 @@ onUnmounted(() => {
   }
   
   .belief-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Global Residency Section */
+.global-residency-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-off-white);
+}
+
+.section-header {
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+.section-header.centered {
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-black);
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.section-desc {
+  font-size: 1.125rem;
+  color: var(--color-stone);
+}
+
+.global-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.global-image {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.global-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.global-text {
+  padding: 2rem;
+}
+
+.global-heading {
+  font-size: 2rem;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.global-paragraph {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+}
+
+.core-services {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(26, 74, 62, 0.05);
+  border-radius: 12px;
+  border-left: 4px solid var(--color-primary);
+}
+
+.services-title {
+  font-size: 1.5rem;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.services-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--color-black);
+}
+
+.check-icon {
+  color: var(--color-secondary);
+  font-weight: bold;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Wellness Lifestyle Section */
+.wellness-lifestyle-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-white);
+}
+
+.lifestyle-hero {
+  margin-bottom: 4rem;
+}
+
+.lifestyle-hero-image {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.lifestyle-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lifestyle-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+}
+
+.hero-overlay-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-overlay-desc {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-overlay-sub {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.lifestyle-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.lifestyle-card {
+  padding: 2rem;
+  text-align: center;
+  background: var(--color-off-white);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.lifestyle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: var(--color-black);
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.card-desc {
+  font-size: 1.125rem;
+  color: var(--color-secondary);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.card-detail {
+  font-size: 1rem;
+  color: var(--color-black);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .global-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .global-image {
+    max-height: 400px;
+  }
+  
+  .lifestyle-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .lifestyle-hero-image {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .global-text {
+    padding: 1rem;
+  }
+  
+  .lifestyle-hero-image {
+    height: 300px;
+  }
+  
+  .hero-overlay-title {
+    font-size: 2rem;
+  }
+  
+  .lifestyle-card {
     padding: 1.5rem;
   }
 }
