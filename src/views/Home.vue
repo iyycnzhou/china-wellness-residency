@@ -1173,6 +1173,16 @@ onUnmounted(() => {
   margin-bottom: 0.5rem;
 }
 
+.section-subtitle.combined {
+  font-size: 1.5rem !important;
+  color: var(--color-black) !important;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: nowrap;
+  margin-bottom: 2rem;
+  text-align: center !important;
+}
+
 .section-desc {
   font-size: 1.125rem;
   color: var(--color-stone);
@@ -1375,8 +1385,8 @@ onUnmounted(() => {
 
 @media (max-width: 768px) {
   .section-subtitle.combined {
-    white-space: normal;
-    font-size: 1.25rem;
+    white-space: normal !important;
+    font-size: 1.25rem !important;
   }
 }
 
