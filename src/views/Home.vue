@@ -354,7 +354,7 @@ onMounted(() => {
   }
 }
 
-/* 遮罩层 - Six Senses 风格 */
+/* 遮罩层 - 中性深色调 */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -362,11 +362,11 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   z-index: 1;
-  /* Six Senses 风格遮罩 - 深绿色调 */
+  /* 中性深色遮罩 - 让视频更清晰 */
   background: linear-gradient(135deg, 
-    rgba(26, 74, 62, 0.7) 0%, 
-    rgba(26, 74, 62, 0.5) 50%, 
-    rgba(26, 74, 62, 0.6) 100%);
+    rgba(0, 0, 0, 0.5) 0%, 
+    rgba(0, 0, 0, 0.4) 50%, 
+    rgba(0, 0, 0, 0.5) 100%);
 }
 
 /* 文字内容 - 最上层 */
@@ -421,6 +421,10 @@ onMounted(() => {
 .hero-subtitle {
   margin-bottom: 3rem;
   color: #ffffff !important;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .subtitle-cn {
