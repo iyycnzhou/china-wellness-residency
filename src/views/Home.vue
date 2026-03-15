@@ -126,53 +126,66 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- Global Wellness Residency Section -->
-    <section class="global-residency-section">
-      <div class="global-container">
-        <div class="global-image-col">
-          <img src="@/assets/images/benefit-detail-stay.png" alt="Global Wellness Residency">
+    <!-- Global Members Section -->
+    <section class="global-members-section">
+      <div class="container">
+        <div class="section-header centered">
+          <h2 class="section-title-main">
+            <span v-show="currentLang === 'zh'" class="title-cn">GLOBAL MEMBERS · CHINA WELLNESS RESIDENCY</span>
+            <span v-show="currentLang === 'en'" class="title-en">GLOBAL MEMBERS · CHINA WELLNESS RESIDENCY</span>
+          </h2>
+          <p class="section-subtitle-main">
+            <span v-show="currentLang === 'zh'" class="subtitle-cn">来自世界各地的会员汇聚中国，在山东开启医疗与康养驻留生活</span>
+            <span v-show="currentLang === 'en'" class="subtitle-en">Members from around the world gather in China, Starting medical and wellness residency life in Shandong</span>
+          </p>
         </div>
-        <div class="global-content-col">
-          <h3 class="global-heading">
-            <span v-show="currentLang === 'zh'" class="heading-cn">全球健康驻留中心</span>
-            <span v-show="currentLang === 'en'" class="heading-en">Global Wellness Residency Center</span>
-          </h3>
-          <p class="global-paragraph">
-            <span v-show="currentLang === 'zh'" class="paragraph-cn">平台面向全球会员开放，来自世界各地的客户通过平台来到中国，在山东体验融合医疗、康养与自然疗愈的健康生活方式。</span>
-            <span v-show="currentLang === 'en'" class="paragraph-en">The platform is open to global members. Clients from around the world come to China through the platform to experience a healthy lifestyle integrating medical care, wellness, and natural healing in Shandong.</span>
-          </p>
-          <p class="global-paragraph">
-            <span v-show="currentLang === 'zh'" class="paragraph-cn">依托优质医疗资源、优越自然环境与专业健康管理体系，这里不仅提供医疗支持，更为会员打造长期健康驻留的生活方式。</span>
-            <span v-show="currentLang === 'en'" class="paragraph-en">Relying on quality medical resources, superior natural environment, and professional health management systems, we not only provide medical support but also create a long-term wellness residency lifestyle for members.</span>
-          </p>
 
-          <div class="core-services">
-            <h4 class="services-title">
-              <span v-show="currentLang === 'zh'" class="title-cn">核心服务</span>
-              <span v-show="currentLang === 'en'" class="title-en">Core Services</span>
-            </h4>
-            <ul class="services-list">
-              <li>
-                <span class="service-icon">🏥</span>
-                <span v-show="currentLang === 'zh'" class="service-cn">国内顶级三甲医院医疗资源</span>
-                <span v-show="currentLang === 'en'" class="service-en">Top-tier domestic tertiary hospital medical resources</span>
-              </li>
-              <li>
-                <span class="service-icon">🗺️</span>
-                <span v-show="currentLang === 'zh'" class="service-cn">医疗路径规划与跨境服务支持</span>
-                <span v-show="currentLang === 'en'" class="service-en">Medical pathway planning and cross-border service support</span>
-              </li>
-              <li>
-                <span class="service-icon">🌿</span>
-                <span v-show="currentLang === 'zh'" class="service-cn">康养驻留与疗愈生活体验</span>
-                <span v-show="currentLang === 'en'" class="service-en">Wellness residency and healing life experience</span>
-              </li>
-              <li>
-                <span class="service-icon">📊</span>
-                <span v-show="currentLang === 'zh'" class="service-cn">持续健康管理与跟踪服务</span>
-                <span v-show="currentLang === 'en'" class="service-en">Continuous health management and tracking services</span>
-              </li>
-            </ul>
+        <div class="global-members-content">
+          <div class="global-members-image">
+            <img src="@/assets/images/benefit-detail-stay.png" alt="Earth at night">
+          </div>
+          <div class="global-members-text">
+            <h3 class="members-heading">
+              <span v-show="currentLang === 'zh'" class="heading-cn">全球健康驻留中心</span>
+              <span v-show="currentLang === 'en'" class="heading-en">Global Wellness Residency Center</span>
+            </h3>
+            <p class="members-paragraph">
+              <span v-show="currentLang === 'zh'" class="paragraph-cn">平台面向全球会员开放，来自世界各地的客户通过平台来到中国，在山东体验融合医疗、康养与自然疗愈的健康生活方式。</span>
+              <span v-show="currentLang === 'en'" class="paragraph-en">The platform is open to global members. Clients from around the world come to China through the platform to experience a healthy lifestyle integrating healthcare, wellness, and natural healing in Shandong.</span>
+            </p>
+            <p class="members-paragraph">
+              <span v-show="currentLang === 'zh'" class="paragraph-cn">依托优质医疗资源、优越自然环境与专业健康管理体系，这里不仅提供医疗支持，更为会员打造长期健康驻留的生活方式。</span>
+              <span v-show="currentLang === 'en'" class="paragraph-en">Relying on quality medical resources, superior natural environment, and professional health management system, this provides not only medical support, but creates a long-term wellness residency lifestyle for members.</span>
+            </p>
+
+            <div class="members-services">
+              <h4 class="services-heading">
+                <span v-show="currentLang === 'zh'" class="heading-cn">Core Services</span>
+                <span v-show="currentLang === 'en'" class="heading-en">Core Services</span>
+              </h4>
+              <ul class="services-check-list">
+                <li>
+                  <span class="check-mark">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">国内顶级三甲医院医疗资源</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Top-tier Grade-A hospital medical resources in China</span>
+                </li>
+                <li>
+                  <span class="check-mark">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">医疗路径规划与跨境服务支持</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Medical pathway planning and cross-border service support</span>
+                </li>
+                <li>
+                  <span class="check-mark">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">康养驻留与疗愈生活体验</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Wellness residency and healing life experience</span>
+                </li>
+                <li>
+                  <span class="check-mark">✓</span>
+                  <span v-show="currentLang === 'zh'" class="service-cn">持续健康管理与跟踪服务</span>
+                  <span v-show="currentLang === 'en'" class="service-en">Continuous health management and tracking services</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -1122,106 +1135,111 @@ onUnmounted(() => {
   }
 }
 
-/* Global Residency Section */
-.global-residency-section {
+/* Global Members Section */
+.global-members-section {
   padding: var(--spacing-xl) 0;
-  background-color: var(--color-white);
+  background-color: #f8f5f1;
 }
 
-.global-container {
-  max-width: 1400px;
+.section-header.centered {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title-main {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.section-subtitle-main {
+  font-size: 1.125rem;
+  color: #888888;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.global-members-content {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
+  gap: 4rem;
   align-items: start;
 }
 
-.global-image-col {
-  position: relative;
-  height: 700px;
+.global-members-image {
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.global-image-col img {
+.global-members-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.global-content-col {
-  padding: 4rem 3rem;
-  display: flex;
-  flex-direction: column;
-  background: var(--color-off-white);
+.global-members-text {
+  padding: 2rem 0;
 }
 
-.global-heading {
-  font-size: 2.5rem;
-  color: var(--color-black);
+.members-heading {
+  font-size: 2rem;
+  color: #1a1a1a;
   margin-bottom: 1.5rem;
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 600;
 }
 
-.global-paragraph {
-  font-size: 1.125rem;
+.members-paragraph {
+  font-size: 1rem;
   line-height: 1.8;
-  color: var(--color-stone);
-  margin-bottom: 1.5rem;
+  color: #666666;
+  margin-bottom: 1.25rem;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.core-services {
-  margin-top: 2rem;
-  padding: 2.5rem;
-  background: rgba(26, 74, 62, 0.03);
-  border-radius: 8px;
-  border-left: 4px solid var(--color-primary);
+.members-services {
+  margin-top: 2.5rem;
 }
 
-.services-title {
+.services-heading {
   font-size: 1.5rem;
-  color: var(--color-black);
-  margin-bottom: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 600;
 }
 
-.services-title .title-en {
-  color: var(--color-black) !important;
-  text-shadow: none !important;
-  font-size: 1.5rem !important;
-}
-
-.services-list {
+.services-check-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.services-list li {
+.services-check-list li {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.9375rem;
+  color: #666666;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.check-mark {
+  color: #c9a962;
+  font-weight: bold;
   font-size: 1rem;
-  color: var(--color-black);
-  padding: 0.75rem 1rem;
-  background: white;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.services-list li:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateX(5px);
-}
-
-.service-icon {
-  font-size: 1.5rem;
   flex-shrink: 0;
+  margin-top: 0.125rem;
 }
 
 /* Wellness Lifestyle Section */
@@ -1361,16 +1379,13 @@ onUnmounted(() => {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .global-container {
+  .global-members-content {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
-  .global-image-col {
+  .global-members-image {
     height: 300px;
-  }
-  
-  .global-content-col {
-    padding: 3rem 2rem;
   }
   
   .lifestyle-cards {
@@ -1390,6 +1405,39 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
+  .section-title-main {
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .section-subtitle-main {
+    font-size: 1rem;
+  }
+  
+  .global-members-content {
+    gap: 1.5rem;
+  }
+  
+  .global-members-image {
+    height: 250px;
+  }
+  
+  .members-heading {
+    font-size: 1.5rem;
+  }
+  
+  .members-paragraph {
+    font-size: 0.9375rem;
+  }
+  
+  .services-heading {
+    font-size: 1.25rem;
+  }
+  
+  .services-check-list li {
+    font-size: 0.875rem;
+  }
+  
   .section-header {
     margin-bottom: 2rem;
   }
