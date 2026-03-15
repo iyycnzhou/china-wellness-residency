@@ -526,11 +526,12 @@ onMounted(() => {
 }
 
 .statement-cn {
-  display: block;
+  display: block !important;
   color: var(--color-black);
   margin-bottom: 1rem;
   font-weight: 500;
   text-align: center;
+  width: 100%;
 }
 
 .statement-en {
@@ -545,9 +546,11 @@ onMounted(() => {
 }
 
 .text-cn {
-  display: block;
+  display: block !important;
   color: var(--color-black);
   margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
 }
 
 .text-en {
@@ -934,6 +937,10 @@ onMounted(() => {
   
   .belief-card {
     padding: 1.5rem;
+  }
+}
+</style>
+m;
   }
 }
 </style>
