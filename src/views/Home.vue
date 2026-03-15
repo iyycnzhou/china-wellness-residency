@@ -1175,7 +1175,7 @@ onUnmounted(() => {
 
 .section-subtitle.combined {
   font-size: 1.5rem !important;
-  color: var(--color-black) !important;
+  color: #1a1a1a !important;
   font-weight: 500;
   line-height: 1.6;
   white-space: nowrap;
@@ -1412,3 +1412,4 @@ onUnmounted(() => {
   }
 }
 </style>
+style>
