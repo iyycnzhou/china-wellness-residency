@@ -125,6 +125,100 @@ onUnmounted(() => {
         <div class="scroll-line"></div>
       </div>
     </section>
+    <!-- 模块 2：全球会员 · 中国康养驻留 -->
+    <section class="global-residency">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span v-show="currentLang === 'zh'" class="title-cn">全球会员 · 中国康养驻留</span>
+            <span v-show="currentLang === 'en'" class="title-en">Global Members · China Wellness Residency</span>
+          </h2>
+          <p class="section-subtitle">
+            <span v-show="currentLang === 'zh'" class="subtitle-cn">
+              来自世界各地的会员汇聚中国<br>
+              在山东开启医疗与康养驻留生活
+            </span>
+            <span v-show="currentLang === 'en'" class="subtitle-en">
+              Members from around the world gather in China<br>
+              Starting medical and wellness residency life in Shandong
+            </span>
+          </p>
+        </div>
+
+        <div class="residency-grid">
+          <div class="map-area">
+            <img src="/images/network/world-map-dark.png" alt="Global Network" class="map-image">
+          </div>
+
+          <div class="residency-text">
+            <h3 class="residency-title">
+              <span v-show="currentLang === 'zh'">全球健康驻留中心</span>
+              <span v-show="currentLang === 'en'">Global Wellness Residency Center</span>
+            </h3>
+
+            <p class="residency-description">
+              <span v-show="currentLang === 'zh'">
+                平台面向全球会员开放，来自世界各地的客户通过平台来到中国，<br>
+                在山东体验融合医疗、康养与自然疗愈的健康生活方式。
+              </span>
+              <span v-show="currentLang === 'en'">
+                The platform is open to global members. Clients from around the world come to China through the platform
+                to experience a healthy lifestyle integrating healthcare, wellness, and natural healing in Shandong.
+              </span>
+            </p>
+
+            <p class="residency-description">
+              <span v-show="currentLang === 'zh'">
+                依托优质医疗资源、优越自然环境与专业健康管理体系，<br>
+                这里不仅提供医疗支持，更为会员打造长期健康驻留的生活方式。
+              </span>
+              <span v-show="currentLang === 'en'">
+                Relying on quality medical resources, superior natural environment, and professional health management system,<br>
+                this provides not only medical support, but creates a long-term wellness residency lifestyle for members.
+              </span>
+            </p>
+
+            <h4 class="service-heading">
+              <span v-show="currentLang === 'zh'">核心服务</span>
+              <span v-show="currentLang === 'en'">Core Services</span>
+            </h4>
+
+            <ul class="service-list">
+              <li>
+                <span v-show="currentLang === 'zh'">国内顶级三甲医院医疗资源</span>
+                <span v-show="currentLang === 'en'">Top-tier Grade-A hospital medical resources in China</span>
+              </li>
+              <li>
+                <span v-show="currentLang === 'zh'">医疗路径规划与跨境服务支持</span>
+                <span v-show="currentLang === 'en'">Medical pathway planning and cross-border service support</span>
+              </li>
+              <li>
+                <span v-show="currentLang === 'zh'">康养驻留与疗愈生活体验</span>
+                <span v-show="currentLang === 'en'">Wellness residency and healing life experience</span>
+              </li>
+              <li>
+                <span v-show="currentLang === 'zh'">持续健康管理与跟踪服务</span>
+                <span v-show="currentLang === 'en'">Continuous health management and tracking services</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 模块 3：健康生活方式 -->
+    <section class="lifestyle">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span v-show="currentLang === 'zh'" class="title-cn">一种全新的健康生活方式</span>
+            <span v-show="currentLang === 'en'" class="title-en">A New Way of Healthy Living</span>
+          </h2>
+          <p class="section-subtitle">
+            <span v-show="currentLang === 'zh'" class="subtitle-cn">医疗 · 康养 · 文化 · 旅行的融合体验</span>
+            <span v-show="currentLang === 'en'" class="subtitle-en">Integration of Healthcare · Wellness · Culture · Travel</span>
+          </p>
+        </div>
 
     <!-- Global Members Section -->
     <section class="global-members-section">
@@ -1135,111 +1229,102 @@ onUnmounted(() => {
   }
 }
 
-/* Global Members Section */
-.global-members-section {
-  padding: var(--spacing-xl) 0;
-  background-color: #f8f5f1;
+/* Global Residency Section */
+.global-residency {
+  padding: var(--spacing-2xl) 0;
+  background-color: var(--sand);
 }
 
-.section-header.centered {
+.global-residency .section-header {
+  margin-bottom: var(--spacing-2xl);
   text-align: center;
-  margin-bottom: 4rem;
 }
 
-.section-title-main {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.global-residency .section-title .title-cn {
+  font-size: 2.375rem;
+  color: #3d3d3d;
+  margin-bottom: var(--spacing-sm);
 }
 
-.section-subtitle-main {
-  font-size: 1.125rem;
-  color: #888888;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-weight: 400;
-  line-height: 1.8;
+.global-residency .section-title .title-en {
+  font-size: 1.75rem;
+  color: #3d3d3d;
+  margin-bottom: var(--spacing-sm);
 }
 
-.global-members-content {
-  max-width: 1200px;
+.global-residency .section-subtitle {
+  max-width: 700px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-.global-members-image {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-}
-
-.global-members-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.global-members-text {
-  padding: 2rem 0;
-}
-
-.members-heading {
-  font-size: 2rem;
-  color: #1a1a1a;
-  margin-bottom: 1.5rem;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 600;
-}
-
-.members-paragraph {
-  font-size: 1rem;
+  font-size: 1.125rem;
+  color: #6f7c76;
   line-height: 1.8;
-  color: #666666;
-  margin-bottom: 1.25rem;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.members-services {
-  margin-top: 2.5rem;
+.residency-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: center;
 }
 
-.services-heading {
-  font-size: 1.5rem;
-  color: #1a1a1a;
-  margin-bottom: 1.5rem;
-  font-family: 'Playfair Display', Georgia, serif;
+.map-area {
+  position: relative;
+}
+
+.map-area .map-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+.residency-text {
+  padding: var(--spacing-lg);
+}
+
+.residency-title {
+  font-size: 1.625rem;
+  font-family: var(--font-heading);
   font-weight: 600;
+  color: #3d3d3d;
+  margin-bottom: var(--spacing-md);
 }
 
-.services-check-list {
+.residency-description {
+  font-size: 1rem;
+  color: #6f7c76;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.service-heading {
+  font-size: 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: #3d3d3d;
+  margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+}
+
+.service-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: var(--spacing-lg) 0 0 0;
 }
 
-.services-check-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  font-size: 0.9375rem;
-  color: #666666;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.check-mark {
-  color: #c9a962;
-  font-weight: bold;
+.service-list li {
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-md);
+  position: relative;
   font-size: 1rem;
-  flex-shrink: 0;
-  margin-top: 0.125rem;
+  color: #6f7c76;
+}
+
+.service-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 1.125rem;
 }
 
 /* Wellness Lifestyle Section */
@@ -1405,37 +1490,28 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
-  .section-title-main {
-    font-size: 1.25rem;
-    letter-spacing: 0.1em;
+  .residency-grid {
+    gap: var(--spacing-lg);
   }
   
-  .section-subtitle-main {
-    font-size: 1rem;
+  .residency-text {
+    padding: var(--spacing-md);
   }
   
-  .global-members-content {
-    gap: 1.5rem;
+  .residency-title {
+    font-size: 1.375rem;
   }
   
-  .global-members-image {
-    height: 250px;
-  }
-  
-  .members-heading {
-    font-size: 1.5rem;
-  }
-  
-  .members-paragraph {
+  .residency-description {
     font-size: 0.9375rem;
   }
   
-  .services-heading {
-    font-size: 1.25rem;
+  .service-heading {
+    font-size: 1.125rem;
   }
   
-  .services-check-list li {
-    font-size: 0.875rem;
+  .service-list li {
+    font-size: 0.9375rem;
   }
   
   .section-header {
@@ -1448,6 +1524,18 @@ onUnmounted(() => {
   
   .lifestyle-hero-image {
     height: 300px;
+  }
+  
+  .hero-overlay-title {
+    font-size: 2rem;
+  }
+  
+  .lifestyle-card {
+    padding: 1.5rem;
+  }
+}
+</style>
+: 300px;
   }
   
   .hero-overlay-title {
