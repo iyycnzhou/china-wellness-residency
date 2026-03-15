@@ -125,7 +125,8 @@ onUnmounted(() => {
         <div class="scroll-line"></div>
       </div>
     </section>
-    <!-- 模块 2：全球会员 · 中国康养驻留 -->
+
+    <!-- Global Members Section -->
     <section class="global-residency">
       <div class="container">
         <div class="section-header">
@@ -201,85 +202,6 @@ onUnmounted(() => {
                 <span v-show="currentLang === 'en'">Continuous health management and tracking services</span>
               </li>
             </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 模块 3：健康生活方式 -->
-    <section class="lifestyle">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">
-            <span v-show="currentLang === 'zh'" class="title-cn">一种全新的健康生活方式</span>
-            <span v-show="currentLang === 'en'" class="title-en">A New Way of Healthy Living</span>
-          </h2>
-          <p class="section-subtitle">
-            <span v-show="currentLang === 'zh'" class="subtitle-cn">医疗 · 康养 · 文化 · 旅行的融合体验</span>
-            <span v-show="currentLang === 'en'" class="subtitle-en">Integration of Healthcare · Wellness · Culture · Travel</span>
-          </p>
-        </div>
-
-    <!-- Global Members Section -->
-    <section class="global-members-section">
-      <div class="container">
-        <div class="section-header centered">
-          <h2 class="section-title-main">
-            <span v-show="currentLang === 'zh'" class="title-cn">GLOBAL MEMBERS · CHINA WELLNESS RESIDENCY</span>
-            <span v-show="currentLang === 'en'" class="title-en">GLOBAL MEMBERS · CHINA WELLNESS RESIDENCY</span>
-          </h2>
-          <p class="section-subtitle-main">
-            <span v-show="currentLang === 'zh'" class="subtitle-cn">来自世界各地的会员汇聚中国，在山东开启医疗与康养驻留生活</span>
-            <span v-show="currentLang === 'en'" class="subtitle-en">Members from around the world gather in China, Starting medical and wellness residency life in Shandong</span>
-          </p>
-        </div>
-
-        <div class="global-members-content">
-          <div class="global-members-image">
-            <img src="@/assets/images/benefit-detail-stay.png" alt="Earth at night">
-          </div>
-          <div class="global-members-text">
-            <h3 class="members-heading">
-              <span v-show="currentLang === 'zh'" class="heading-cn">全球健康驻留中心</span>
-              <span v-show="currentLang === 'en'" class="heading-en">Global Wellness Residency Center</span>
-            </h3>
-            <p class="members-paragraph">
-              <span v-show="currentLang === 'zh'" class="paragraph-cn">平台面向全球会员开放，来自世界各地的客户通过平台来到中国，在山东体验融合医疗、康养与自然疗愈的健康生活方式。</span>
-              <span v-show="currentLang === 'en'" class="paragraph-en">The platform is open to global members. Clients from around the world come to China through the platform to experience a healthy lifestyle integrating healthcare, wellness, and natural healing in Shandong.</span>
-            </p>
-            <p class="members-paragraph">
-              <span v-show="currentLang === 'zh'" class="paragraph-cn">依托优质医疗资源、优越自然环境与专业健康管理体系，这里不仅提供医疗支持，更为会员打造长期健康驻留的生活方式。</span>
-              <span v-show="currentLang === 'en'" class="paragraph-en">Relying on quality medical resources, superior natural environment, and professional health management system, this provides not only medical support, but creates a long-term wellness residency lifestyle for members.</span>
-            </p>
-
-            <div class="members-services">
-              <h4 class="services-heading">
-                <span v-show="currentLang === 'zh'" class="heading-cn">Core Services</span>
-                <span v-show="currentLang === 'en'" class="heading-en">Core Services</span>
-              </h4>
-              <ul class="services-check-list">
-                <li>
-                  <span class="check-mark">✓</span>
-                  <span v-show="currentLang === 'zh'" class="service-cn">国内顶级三甲医院医疗资源</span>
-                  <span v-show="currentLang === 'en'" class="service-en">Top-tier Grade-A hospital medical resources in China</span>
-                </li>
-                <li>
-                  <span class="check-mark">✓</span>
-                  <span v-show="currentLang === 'zh'" class="service-cn">医疗路径规划与跨境服务支持</span>
-                  <span v-show="currentLang === 'en'" class="service-en">Medical pathway planning and cross-border service support</span>
-                </li>
-                <li>
-                  <span class="check-mark">✓</span>
-                  <span v-show="currentLang === 'zh'" class="service-cn">康养驻留与疗愈生活体验</span>
-                  <span v-show="currentLang === 'en'" class="service-en">Wellness residency and healing life experience</span>
-                </li>
-                <li>
-                  <span class="check-mark">✓</span>
-                  <span v-show="currentLang === 'zh'" class="service-cn">持续健康管理与跟踪服务</span>
-                  <span v-show="currentLang === 'en'" class="service-en">Continuous health management and tracking services</span>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>
@@ -1464,13 +1386,13 @@ onUnmounted(() => {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .global-members-content {
+  .residency-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: var(--spacing-xl);
   }
   
-  .global-members-image {
-    height: 300px;
+  .map-area {
+    max-height: 400px;
   }
   
   .lifestyle-cards {
@@ -1490,28 +1412,37 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
-  .residency-grid {
-    gap: var(--spacing-lg);
+  .section-title-main {
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
   }
   
-  .residency-text {
-    padding: var(--spacing-md);
+  .section-subtitle-main {
+    font-size: 1rem;
   }
   
-  .residency-title {
-    font-size: 1.375rem;
+  .global-members-content {
+    gap: 1.5rem;
   }
   
-  .residency-description {
+  .global-members-image {
+    height: 250px;
+  }
+  
+  .members-heading {
+    font-size: 1.5rem;
+  }
+  
+  .members-paragraph {
     font-size: 0.9375rem;
   }
   
-  .service-heading {
-    font-size: 1.125rem;
+  .services-heading {
+    font-size: 1.25rem;
   }
   
-  .service-list li {
-    font-size: 0.9375rem;
+  .services-check-list li {
+    font-size: 0.875rem;
   }
   
   .section-header {
@@ -1524,18 +1455,6 @@ onUnmounted(() => {
   
   .lifestyle-hero-image {
     height: 300px;
-  }
-  
-  .hero-overlay-title {
-    font-size: 2rem;
-  }
-  
-  .lifestyle-card {
-    padding: 1.5rem;
-  }
-}
-</style>
-: 300px;
   }
   
   .hero-overlay-title {
