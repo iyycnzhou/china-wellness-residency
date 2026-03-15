@@ -196,11 +196,8 @@ onUnmounted(() => {
           <div class="lifestyle-hero-image">
             <img src="@/assets/images/shandong-coastal-resort.png" alt="山海疗愈">
             <div class="lifestyle-hero-overlay">
-              <!-- 英文版：显示主标题和副标题在图片中间 -->
+              <!-- 英文版：只显示副标题在图片中间 -->
               <div v-show="currentLang === 'en'" class="hero-overlay-content-en">
-                <h3 class="hero-overlay-title-en">
-                  A New Wellness Lifestyle
-                </h3>
                 <p class="hero-overlay-subtitle-en">
                   Integration of Medical · Wellness · Culture · Travel
                 </p>
