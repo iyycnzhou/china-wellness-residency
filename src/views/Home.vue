@@ -1371,7 +1371,7 @@ onUnmounted(() => {
   }
   
   .global-image {
-    max-height: 400px;
+    max-width: 100%;
   }
   
   .lifestyle-cards {
