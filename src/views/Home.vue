@@ -883,9 +883,12 @@ onUnmounted(() => {
 
 .title-en {
   display: block;
-  font-size: 1.5rem;
-  color: var(--color-secondary);
-  letter-spacing: 0.1em;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #6f7c76;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .section-description {
@@ -1108,9 +1111,12 @@ onUnmounted(() => {
 
 .cta-title-en {
   display: block;
-  font-size: 1.25rem;
-  color: var(--color-secondary);
-  letter-spacing: 0.1em;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: white;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 /* Responsive */
