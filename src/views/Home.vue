@@ -52,7 +52,7 @@ onMounted(() => {
     <section class="hero">
       <!-- 视频背景 - 压缩优化版本 -->
       <video class="hero-video" autoplay muted loop playsinline>
-        <source src="/src/assets/images/hero-video-optimized.mp4" type="video/mp4">
+        <source src="@/assets/images/hero-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       
