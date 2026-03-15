@@ -522,6 +522,7 @@ onMounted(() => {
 .statement-text {
   font-size: clamp(1.5rem, 3vw, 2rem);
   line-height: 1.6;
+  text-align: center;
 }
 
 .statement-cn {
@@ -529,6 +530,7 @@ onMounted(() => {
   color: var(--color-black);
   margin-bottom: 1rem;
   font-weight: 500;
+  text-align: center;
 }
 
 .statement-en {
