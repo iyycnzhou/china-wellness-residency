@@ -1402,31 +1402,3 @@ onUnmounted(() => {
   }
 }
 </style>
- 
-  .lifestyle-hero-image {
-    height: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-header {
-    margin-bottom: 2rem;
-  }
-  
-  .global-text {
-    padding: 1rem;
-  }
-  
-  .lifestyle-hero-image {
-    height: 300px;
-  }
-  
-  .hero-overlay-title {
-    font-size: 2rem;
-  }
-  
-  .lifestyle-card {
-    padding: 1.5rem;
-  }
-}
-</style>
