@@ -1199,6 +1199,12 @@ onUnmounted(() => {
   font-weight: 600;
 }
 
+.services-title .title-en {
+  color: var(--color-black) !important;
+  text-shadow: none !important;
+  font-size: 1.5rem !important;
+}
+
 .services-list {
   list-style: none;
   padding: 0;
