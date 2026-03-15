@@ -543,6 +543,9 @@ onMounted(() => {
 .intro-text p {
   font-size: 1.125rem;
   line-height: 2;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text-cn {
