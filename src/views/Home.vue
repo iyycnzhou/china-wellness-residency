@@ -1165,7 +1165,6 @@ onUnmounted(() => {
   padding: 4rem 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background: var(--color-off-white);
 }
 
@@ -1378,6 +1377,10 @@ onUnmounted(() => {
   
   .lifestyle-card {
     padding: 1.5rem;
+  }
+}
+</style>
+: 1.5rem;
   }
 }
 </style>
