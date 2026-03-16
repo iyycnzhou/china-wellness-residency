@@ -90,6 +90,20 @@ const medicalPartners = {
       image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop&q=80',
       rank: '全国 Top 10',
       specialty: '肝胆外科、肿瘤科'
+    },
+    {
+      nameCn: '武汉同济医院',
+      nameEn: 'Wuhan Tongji Hospital',
+      image: 'https://images.unsplash.com/photo-1587351021759-3e5b21f9a044?w=800&h=600&fit=crop&q=80',
+      rank: '全国 Top 10',
+      specialty: '泌尿外科、器官移植'
+    },
+    {
+      nameCn: '浙江邵逸夫医院',
+      nameEn: 'Zhejiang Sir Run Run Shaw Hospital',
+      image: 'https://images.unsplash.com/photo-1516574187841-69301976e499?w=800&h=600&fit=crop&q=80',
+      rank: '全国 Top 50',
+      specialty: '消化内科、普外科'
     }
   ]
 }
@@ -893,6 +907,8 @@ const coverageStats = [
   padding-top: 2rem;
   position: sticky;
   top: 120px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
 }
 
 .medical-label {
@@ -944,6 +960,7 @@ const coverageStats = [
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   padding-top: 2rem;
+  align-content: start;
 }
 
 .hospital-card-mayo {
