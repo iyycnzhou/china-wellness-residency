@@ -346,6 +346,9 @@ const coverageStats = [
           </div>
         </div>
         
+        <!-- 右侧占位空白区（与左侧对齐） -->
+        <div class="medical-content-spacer"></div>
+        
         <!-- 右侧医院图片网格 -->
         <div class="medical-hospitals-grid">
           <!-- 前 4 家医院图片 -->
@@ -989,10 +992,11 @@ const coverageStats = [
 /* 左侧文案区 */
 .medical-content-left {
   padding-top: 2rem;
-  position: sticky;
-  top: 120px;
-  max-height: calc(100vh - 140px);
-  overflow-y: auto;
+}
+
+/* 右侧占位空白区 */
+.medical-content-spacer {
+  display: block;
 }
 
 .medical-label {
@@ -1063,33 +1067,29 @@ const coverageStats = [
 /* 价值主张文案区域 */
 .medical-value-prop {
   grid-column: span 2;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 8px;
-  padding: 2.5rem;
-  color: var(--color-white);
+  padding: 3rem 2rem;
   margin-top: 1rem;
 }
 
 .value-prop-title {
   font-size: 1.5rem;
   font-weight: 600;
+  color: var(--color-black);
   margin-bottom: 1.5rem;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .value-prop-desc {
   font-size: 1rem;
-  line-height: 1.7;
-  opacity: 0.95;
+  line-height: 1.8;
+  color: var(--color-stone);
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .value-prop-services {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
@@ -1101,15 +1101,16 @@ const coverageStats = [
 
 .service-check {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.2);
+  width: 20px;
+  height: 20px;
+  background: var(--color-secondary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 700;
+  color: var(--color-white);
 }
 
 .service-content {
@@ -1121,20 +1122,21 @@ const coverageStats = [
 .service-title {
   font-size: 1rem;
   font-weight: 600;
+  color: var(--color-black);
 }
 
 .service-detail {
   font-size: 0.875rem;
-  opacity: 0.9;
+  color: var(--color-stone);
   line-height: 1.5;
 }
 
 .value-prop-footer {
   font-size: 0.9375rem;
-  opacity: 0.9;
-  line-height: 1.6;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-stone);
+  line-height: 1.7;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .card-img {
@@ -2020,7 +2022,11 @@ const coverageStats = [
   
   .value-prop-services {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+  
+  .medical-content-spacer {
+    display: none;
   }
   
   .specialties-container {
