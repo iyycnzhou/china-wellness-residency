@@ -997,38 +997,39 @@ const coverageStats = [
 /* ==================== MEDICAL SECTION - 参考排版布局 ==================== */
 .medical-section {
   background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
-  padding: 5rem 0;
+  padding: 6rem 0;
 }
 
 .medical-container-ref {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 5rem;
   align-items: start;
 }
 
 /* 左侧文案区 */
 .medical-left-content {
-  padding-top: 0.5rem;
+  padding-top: 1rem;
+  max-width: 520px;
 }
 
 /* 上部：大数字 + 标题 */
 .medical-header-section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .big-number-wrapper {
   display: flex;
   align-items: baseline;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .big-number {
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 300;
   line-height: 1;
   color: var(--color-text-primary);
@@ -1036,44 +1037,44 @@ const coverageStats = [
 }
 
 .number-title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--color-text-primary);
   line-height: 1.3;
 }
 
 .header-desc {
-  font-size: 0.9375rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.8;
   color: var(--color-text-tertiary);
-  max-width: 400px;
+  max-width: 480px;
 }
 
 /* 分隔线 */
 .medical-divider-line {
   height: 1px;
-  background: rgba(0, 0, 0, 0.1);
-  margin: 2.5rem 0;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 3rem 0;
 }
 
 /* 下部：价值主张 + 服务列表 */
 .medical-value-section {
-  padding-top: 0.5rem;
+  padding-top: 0.75rem;
 }
 
 .value-statement {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   font-weight: 500;
   color: var(--color-text-primary);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 }
 
 .value-desc {
-  font-size: 0.9375rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.8;
   color: var(--color-text-tertiary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .services-checklist {
@@ -1082,14 +1083,14 @@ const coverageStats = [
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
 .checklist-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 0.875rem;
 }
 
 .checkmark {
@@ -1103,27 +1104,27 @@ const coverageStats = [
 .checklist-content {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.375rem;
 }
 
 .checklist-title {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-text-primary);
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .checklist-detail {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--color-text-tertiary);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .value-footer {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--color-text-tertiary);
   line-height: 1.7;
-  padding-top: 1.25rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -1190,17 +1191,17 @@ const coverageStats = [
 
 /* 重点服务专科区域（合并后） */
 .medical-specialties-section {
-  margin-top: 4rem;
-  padding-top: 3.5rem;
-  padding-bottom: 2rem;
+  margin-top: 5rem;
+  padding-top: 4rem;
+  padding-bottom: 2.5rem;
 }
 
 .specialties-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
 .divider-line {
@@ -1223,12 +1224,12 @@ const coverageStats = [
 .specialties-row-horizontal {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .specialty-item-minimal {
-  padding: 1.5rem 1rem;
+  padding: 1.75rem 1.25rem;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 4px;
@@ -1237,52 +1238,53 @@ const coverageStats = [
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.625rem;
+  min-height: 140px;
 }
 
 .specialty-item-minimal:hover {
   border-color: rgba(102, 126, 234, 0.3);
   background: rgba(102, 126, 234, 0.02);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
 }
 
 .specialty-item-minimal .specialty-name-cn {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin: 0 0 0.25rem 0;
-  line-height: 1.3;
+  margin: 0 0 0.375rem 0;
+  line-height: 1.4;
   letter-spacing: 0.05em;
 }
 
 .specialty-item-minimal .specialty-divider-dot {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: rgba(0, 0, 0, 0.15);
   line-height: 1;
   display: block;
 }
 
 .specialty-item-minimal .specialty-desc-cn {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: #6b6b6b;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
   letter-spacing: 0.02em;
 }
 
 .specialties-footer-minimal {
   text-align: center;
-  padding: 1.25rem 2rem;
+  padding: 1.5rem 2.5rem;
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.04) 100%);
   border-radius: 4px;
   border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .specialties-footer-minimal .footer-text {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: #6b6b6b;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0;
   letter-spacing: 0.05em;
 }
