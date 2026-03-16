@@ -319,15 +319,9 @@ const coverageStats = [
             <span v-show="currentLang === 'en'">{{ medicalPartners.descEn }}</span>
           </p>
           
-          <!-- 统计数据 -->
-          <div class="medical-stats-vertical">
-            <div v-for="(stat, index) in medicalPartners.stats" :key="index" class="stat-vertical-item">
-              <span class="stat-v-number">{{ stat.num }}</span>
-              <span class="stat-v-label">
-                <span v-show="currentLang === 'zh'">{{ stat.labelCn }}</span>
-                <span v-show="currentLang === 'en'">{{ stat.labelEn }}</span>
-              </span>
-            </div>
+          <!-- 左侧医院展示图片 -->
+          <div class="medical-showcase-image">
+            <img src="@/assets/images/hospital-doctor-consultation.png" alt="Medical Service" class="showcase-img" />
           </div>
         </div>
         
@@ -922,42 +916,26 @@ const coverageStats = [
   font-size: 1.125rem;
   line-height: 1.9;
   color: var(--color-stone);
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
-/* 统计数据垂直排列 */
-.medical-stats-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 2.5rem;
-  background: var(--color-white);
+/* 左侧医院展示图片 */
+.medical-showcase-image {
   border-radius: 8px;
-  border: 1px solid rgba(102, 126, 234, 0.15);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.stat-vertical-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.medical-showcase-image:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
-.stat-v-number {
+.showcase-img {
+  width: 100%;
+  height: auto;
   display: block;
-  font-size: 3rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-}
-
-.stat-v-label {
-  display: block;
-  font-size: 0.9375rem;
-  color: var(--color-stone);
-  font-weight: 500;
 }
 
 /* 右侧医院图片网格 */
@@ -1841,13 +1819,8 @@ const coverageStats = [
     font-size: 1rem;
   }
   
-  .medical-stats-vertical {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-  
-  .stat-v-number {
-    font-size: 2.5rem;
+  .medical-showcase-image {
+    margin-top: 2rem;
   }
   
   .medical-hospitals-grid {
