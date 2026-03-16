@@ -445,7 +445,7 @@ const coverageStats = [
 
     <!-- 底部特色科室区域 -->
     <section class="featured-specialties">
-        <div class="specialties-container">
+      <div class="specialties-container">
           <div class="specialties-header">
             <h3 class="specialties-title">
               <span v-show="currentLang === 'zh'">重点服务专科</span>
