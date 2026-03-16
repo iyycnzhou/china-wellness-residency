@@ -346,9 +346,6 @@ const coverageStats = [
           </div>
         </div>
         
-        <!-- 右侧占位空白区（与左侧对齐） -->
-        <div class="medical-content-spacer"></div>
-        
         <!-- 右侧医院图片网格 -->
         <div class="medical-hospitals-grid">
           <!-- 前 4 家医院图片 -->
@@ -1905,17 +1902,6 @@ const coverageStats = [
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .medical-container {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .medical-content-left {
-    position: relative;
-    top: 0;
-    padding-top: 0;
-  }
-  
   .medical-hospitals-grid {
     grid-template-columns: repeat(2, 1fr);
   }
