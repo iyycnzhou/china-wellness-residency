@@ -263,7 +263,7 @@ const coverageStats = [
         </div>
         
         <!-- Stats Bar -->
-        <div class="hero-stats-grid">
+        <div class="hero-stats-row">
           <div class="hero-stat-item">
             <span class="hero-stat-number">50+</span>
             <span class="hero-stat-label">
@@ -271,6 +271,7 @@ const coverageStats = [
               <span v-show="currentLang === 'en'">Grade-A Hospitals</span>
             </span>
           </div>
+          <span class="stat-divider"></span>
           <div class="hero-stat-item">
             <span class="hero-stat-number">20+</span>
             <span class="hero-stat-label">
@@ -278,6 +279,7 @@ const coverageStats = [
               <span v-show="currentLang === 'en'">Wellness Bases</span>
             </span>
           </div>
+          <span class="stat-divider"></span>
           <div class="hero-stat-item">
             <span class="hero-stat-number">30+</span>
             <span class="hero-stat-label">
@@ -285,6 +287,7 @@ const coverageStats = [
               <span v-show="currentLang === 'en'">TCM Institutions</span>
             </span>
           </div>
+          <span class="stat-divider"></span>
           <div class="hero-stat-item">
             <span class="hero-stat-number">150+</span>
             <span class="hero-stat-label">
@@ -756,12 +759,13 @@ const coverageStats = [
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Hero Stats Grid - SHA Style */
-.hero-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  padding: 3rem;
+/* Hero Stats Row - 横向排列带分隔符 */
+.hero-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2.5rem 3rem;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   border-radius: 4px;
@@ -770,6 +774,10 @@ const coverageStats = [
 
 .hero-stat-item {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hero-stat-number {
@@ -777,7 +785,6 @@ const coverageStats = [
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--color-white);
-  margin-bottom: 0.5rem;
   line-height: 1;
   text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
@@ -788,6 +795,18 @@ const coverageStats = [
   color: rgba(255, 255, 255, 0.95);
   font-weight: 400;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 分隔符：小竖杠 */
+.stat-divider {
+  width: 1px;
+  height: 3rem;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.5) 20%, 
+    rgba(255, 255, 255, 0.5) 80%, 
+    transparent 100%
+  );
 }
 
 /* Section Container */
@@ -1614,8 +1633,13 @@ const coverageStats = [
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .hero-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-stats-row {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .stat-divider {
+    display: none;
   }
 }
 
@@ -1664,9 +1688,14 @@ const coverageStats = [
     grid-template-columns: 1fr;
   }
   
-  .hero-stats-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .hero-stats-row {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+  
+  .stat-divider {
+    display: none;
   }
 }
 </style>
