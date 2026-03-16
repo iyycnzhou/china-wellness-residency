@@ -346,40 +346,74 @@ const coverageStats = [
           <!-- 下部：价值主张 + 服务列表 -->
           <div class="medical-value-section">
             <p class="value-statement">
-              <span v-show="currentLang === 'zh'">我们不是医院——<br/>我们是您通往中国顶级医疗资源的桥梁</span>
-              <span v-show="currentLang === 'en'">We are not a hospital —<br/>we are your gateway to China's top medical resources.</span>
+              <span v-show="currentLang === 'zh'">我们不是医院，而是您通往顶级医疗资源的桥梁</span>
+              <span v-show="currentLang === 'en'">We are not a hospital, but your bridge to premier medical resources.</span>
+            </p>
+            
+            <p class="value-desc">
+              <span v-show="currentLang === 'zh'">不直接诊疗，只专注资源协调。依托 50+ 家三甲医院（含 15 家全国 Top100）深度合作网络，为您提供：</span>
+              <span v-show="currentLang === 'en'">We focus on resource coordination through our network of 50+ Grade-A hospitals.</span>
             </p>
             
             <ul class="services-checklist">
               <li class="checklist-item">
                 <span class="checkmark">✓</span>
-                <span class="checklist-text">
-                  <span v-show="currentLang === 'zh'">诊疗路径规划</span>
-                  <span v-show="currentLang === 'en'">Treatment planning</span>
-                </span>
+                <div class="checklist-content">
+                  <span class="checklist-title">
+                    <span v-show="currentLang === 'zh'">路径规划</span>
+                    <span v-show="currentLang === 'en'">Care Path Planning</span>
+                  </span>
+                  <span class="checklist-detail">
+                    <span v-show="currentLang === 'zh'">从初诊到康复的全程科学引导</span>
+                    <span v-show="currentLang === 'en'">Scientific guidance from diagnosis to recovery</span>
+                  </span>
+                </div>
               </li>
               <li class="checklist-item">
                 <span class="checkmark">✓</span>
-                <span class="checklist-text">
-                  <span v-show="currentLang === 'zh'">专家预约</span>
-                  <span v-show="currentLang === 'en'">Specialist appointments</span>
-                </span>
+                <div class="checklist-content">
+                  <span class="checklist-title">
+                    <span v-show="currentLang === 'zh'">专家预约</span>
+                    <span v-show="currentLang === 'en'">Expert Appointment</span>
+                  </span>
+                  <span class="checklist-detail">
+                    <span v-show="currentLang === 'zh'">突破挂号瓶颈，直通核心科室</span>
+                    <span v-show="currentLang === 'en'">Direct access to core departments</span>
+                  </span>
+                </div>
               </li>
               <li class="checklist-item">
                 <span class="checkmark">✓</span>
-                <span class="checklist-text">
-                  <span v-show="currentLang === 'zh'">医疗协调</span>
-                  <span v-show="currentLang === 'en'">Medical coordination</span>
-                </span>
+                <div class="checklist-content">
+                  <span class="checklist-title">
+                    <span v-show="currentLang === 'zh'">手术协调</span>
+                    <span v-show="currentLang === 'en'">Surgery Coordination</span>
+                  </span>
+                  <span class="checklist-detail">
+                    <span v-show="currentLang === 'zh'">缩短等待周期，优化就医体验</span>
+                    <span v-show="currentLang === 'en'">Reduce waiting time, optimize experience</span>
+                  </span>
+                </div>
               </li>
               <li class="checklist-item">
                 <span class="checkmark">✓</span>
-                <span class="checklist-text">
-                  <span v-show="currentLang === 'zh'">跨院转诊</span>
-                  <span v-show="currentLang === 'en'">Cross-border care</span>
-                </span>
+                <div class="checklist-content">
+                  <span class="checklist-title">
+                    <span v-show="currentLang === 'zh'">跨院转诊</span>
+                    <span v-show="currentLang === 'en'">Cross-Hospital Referral</span>
+                  </span>
+                  <span class="checklist-detail">
+                    <span v-show="currentLang === 'zh'">打破地域壁垒，整合最优资源</span>
+                    <span v-show="currentLang === 'en'">Integrate optimal resources across regions</span>
+                  </span>
+                </div>
               </li>
             </ul>
+            
+            <p class="value-footer">
+              <span v-show="currentLang === 'zh'">以专业顾问身份，为您定制高效、私密的专属医疗方案</span>
+              <span v-show="currentLang === 'en'">Professional, efficient, and private medical solutions tailored for you.</span>
+            </p>
           </div>
         </div>
         
@@ -1034,11 +1068,18 @@ const coverageStats = [
 }
 
 .value-statement {
-  font-size: 1.0625rem;
-  font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 500;
   color: var(--color-black);
   line-height: 1.6;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.value-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-stone);
+  margin-bottom: 1.5rem;
 }
 
 .services-checklist {
@@ -1047,13 +1088,14 @@ const coverageStats = [
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .checklist-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.625rem;
+  gap: 0.75rem;
 }
 
 .checkmark {
@@ -1064,10 +1106,31 @@ const coverageStats = [
   margin-top: 0.125rem;
 }
 
-.checklist-text {
+.checklist-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.checklist-title {
   font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-black);
+  line-height: 1.3;
+}
+
+.checklist-detail {
+  font-size: 0.875rem;
   color: var(--color-stone);
   line-height: 1.5;
+}
+
+.value-footer {
+  font-size: 0.9375rem;
+  color: var(--color-stone);
+  line-height: 1.7;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 /* 右侧图片区 */
@@ -2027,7 +2090,19 @@ const coverageStats = [
     font-size: 1rem;
   }
   
-  .checklist-text {
+  .value-desc {
+    font-size: 0.875rem;
+  }
+  
+  .checklist-title {
+    font-size: 0.875rem;
+  }
+  
+  .checklist-detail {
+    font-size: 0.8125rem;
+  }
+  
+  .value-footer {
     font-size: 0.875rem;
   }
   
