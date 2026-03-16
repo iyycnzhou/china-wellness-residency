@@ -2,13 +2,17 @@
 import { currentLang } from '../composables/useLanguage'
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// 背景图片轮播数组
+// 使用 import.meta.glob 导入图片
+const bgImages = import.meta.glob('@/assets/images/*.jpg', { eager: true, import: 'default' })
+const bgImagesPng = import.meta.glob('@/assets/images/*.png', { eager: true, import: 'default' })
+
+// 背景图片轮播数组 - 使用实际导入的图片路径
 const backgroundImages = [
-  'benefit-detail-medical.png',
-  'medical-mri-scan.jpg',
-  'medical-lab-test.jpg',
-  'wellness-treatment.png',
-  'health-consultation.jpg'
+  bgImages['/src/assets/images/medical-mri-scan.jpg'],
+  bgImages['/src/assets/images/medical-lab-test.jpg'],
+  bgImages['/src/assets/images/health-consultation.jpg'],
+  bgImagesPng['/src/assets/images/wellness-treatment.png'],
+  bgImagesPng['/src/assets/images/benefit-detail-medical.png']
 ]
 
 // 当前背景图片索引
@@ -209,7 +213,7 @@ const coverageStats = [
           :key="index"
           class="hero-bg" 
           :class="{ active: index === currentBgIndex }"
-          :src="`@/assets/images/${img}`" 
+          :src="img" 
           :alt="'Partners Network ' + (index + 1)"
         />
       </div>
