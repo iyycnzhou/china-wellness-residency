@@ -485,65 +485,6 @@ const coverageStats = [
     </section>
 
     <!-- Featured Specialties Section -->
-    <section class="featured-specialties">
-      <div class="specialties-container">
-          <div class="specialties-header">
-            <h3 class="specialties-title">
-              <span v-show="currentLang === 'zh'">重点服务专科</span>
-              <span v-show="currentLang === 'en'">Featured Specialties</span>
-            </h3>
-            <p class="specialties-desc">
-              <span v-show="currentLang === 'zh'">我们提供 20+ 重点专科的深度医疗服务，涵盖心血管、骨科、肿瘤、神经科等领域</span>
-              <span v-show="currentLang === 'en'">We provide deep medical services in 20+ key specialties</span>
-            </p>
-          </div>
-          
-          <div class="specialties-list">
-            <div class="specialty-item">
-              <span class="specialty-name">
-                <span v-show="currentLang === 'zh'">心血管内科</span>
-                <span v-show="currentLang === 'en'">Cardiology</span>
-              </span>
-              <span class="specialty-arrow">›</span>
-            </div>
-            <div class="specialty-item">
-              <span class="specialty-name">
-                <span v-show="currentLang === 'zh'">骨科</span>
-                <span v-show="currentLang === 'en'">Orthopedics</span>
-              </span>
-              <span class="specialty-arrow">›</span>
-            </div>
-            <div class="specialty-item">
-              <span class="specialty-name">
-                <span v-show="currentLang === 'zh'">肿瘤科</span>
-                <span v-show="currentLang === 'en'">Oncology</span>
-              </span>
-              <span class="specialty-arrow">›</span>
-            </div>
-            <div class="specialty-item">
-              <span class="specialty-name">
-                <span v-show="currentLang === 'zh'">神经科</span>
-                <span v-show="currentLang === 'en'">Neurology</span>
-              </span>
-              <span class="specialty-arrow">›</span>
-            </div>
-            <div class="specialty-item">
-              <span class="specialty-name">
-                <span v-show="currentLang === 'zh'">康复医学</span>
-                <span v-show="currentLang === 'en'">Rehabilitation</span>
-              </span>
-              <span class="specialty-arrow">›</span>
-            </div>
-            <div class="specialty-item">
-              <span class="specialty-name">
-                <span v-show="currentLang === 'zh'">牙科</span>
-                <span v-show="currentLang === 'en'">Dentistry</span>
-              </span>
-              <span class="specialty-arrow">›</span>
-            </div>
-          </div>
-        </div>
-    </section>
 
     <!-- Wellness Partners Section - COMO Shambhala Style -->
     <section class="partner-section wellness-section">
