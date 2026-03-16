@@ -502,7 +502,6 @@ const coverageStats = [
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- Wellness Partners Section - COMO Shambhala Style -->
