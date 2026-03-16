@@ -1247,6 +1247,92 @@ const coverageStats = [
   transition: transform 0.3s ease;
 }
 
+/* 重点服务专科区域（合并后） */
+.medical-specialties-section {
+  margin-top: 4rem;
+  padding-top: 3.5rem;
+}
+
+.specialties-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.divider-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
+}
+
+.divider-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.specialties-grid-merged {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.specialty-card {
+  padding: 1.75rem 1.5rem;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.specialty-card:hover {
+  border-color: var(--color-secondary);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
+  transform: translateY(-4px);
+}
+
+.specialty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.specialty-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.specialty-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+  line-height: 1.5;
+}
+
+.specialties-footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(102, 126, 234, 0.04);
+  border-radius: 8px;
+}
+
+.footer-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-tertiary);
+  line-height: 1.6;
+  margin: 0;
+}
+
 .hospital-image-large {
   grid-column: span 2;
   height: 220px;
@@ -1363,87 +1449,7 @@ const coverageStats = [
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* 底部特色科室区域 */
-.featured-specialties {
-  margin-top: 6rem;
-  padding-top: 4rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
 
-.specialties-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.specialties-header {
-  margin-bottom: 3rem;
-}
-
-.specialties-header .section-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-secondary);
-  margin-bottom: 1rem;
-}
-
-.specialties-header .section-title {
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--color-text-primary);
-  line-height: 1.3;
-  margin-bottom: 1.25rem;
-}
-
-.specialties-header .section-desc {
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--color-text-tertiary);
-  max-width: 700px;
-}
-
-.specialties-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.specialty-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 1.5rem;
-  background: var(--color-white);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.specialty-item:hover {
-  border-color: var(--color-secondary);
-  background: rgba(102, 126, 234, 0.03);
-  transform: translateX(8px);
-}
-
-.specialty-name {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-text-primary);
-}
-
-.specialty-arrow {
-  font-size: 1.5rem;
-  color: var(--color-secondary);
-  line-height: 1;
-  transition: transform 0.3s ease;
-}
-
-.specialty-item:hover .specialty-arrow {
-  transform: translateX(4px);
-}
 
 /* Featured Hospitals */
 .featured-hospitals {
