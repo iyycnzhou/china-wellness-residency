@@ -232,25 +232,33 @@ const coverageStats = [
       </div>
       
       <div class="hero-content container">
-        <p class="hero-eyebrow">
-          <span v-show="currentLang === 'zh'">5 年深耕 · 全国布局</span>
-          <span v-show="currentLang === 'en'">5 Years · Nationwide Network</span>
-        </p>
+        <!-- 顶部标签：5 年深耕 -->
+        <div class="hero-badge">
+          <span class="badge-text">
+            <span v-show="currentLang === 'zh'">5 年深耕 · 全国布局</span>
+            <span v-show="currentLang === 'en'">5 Years · Nationwide Network</span>
+          </span>
+        </div>
+        
+        <!-- 主标题 -->
         <h1>
           <span v-show="currentLang === 'zh'" class="title-cn">服务网络</span>
           <span v-show="currentLang === 'en'" class="title-en">Service Network</span>
         </h1>
-        <p class="hero-subtitle">
-          <span v-show="currentLang === 'zh'" class="subtitle-cn">汇聚中国顶级资源 共创健康未来</span>
-          <span v-show="currentLang === 'en'" class="subtitle-en">China's Premier Resource Network for Global Health</span>
+        
+        <!-- 副标题：一句话 Slogan -->
+        <p class="hero-tagline">
+          <span v-show="currentLang === 'zh'" class="tagline-cn">汇聚中国顶级资源，共创健康未来</span>
+          <span v-show="currentLang === 'en'" class="tagline-en">China's Premier Resource Network for Global Health</span>
         </p>
         
+        <!-- 描述文字 -->
         <div class="hero-description">
           <p v-show="currentLang === 'zh'" class="desc-cn">
-            历经 5 年深耕，与全国各领域头部机构建立深度战略合作关系。
+            历经 5 年深耕，与全国各领域头部机构建立深度战略合作关系
           </p>
           <p v-show="currentLang === 'en'" class="desc-en">
-            After 5 years of deep cultivation, established strategic partnerships with leading institutions nationwide.
+            After 5 years of deep cultivation, established strategic partnerships with leading institutions nationwide
           </p>
         </div>
         
@@ -675,22 +683,31 @@ const coverageStats = [
   padding: 3rem 2rem;
 }
 
-.hero-eyebrow {
-  font-size: 0.8125rem;
+/* 顶部徽章：5 年深耕 */
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+}
+
+.badge-text {
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1.5rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 1rem;
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 1.5rem;
   font-weight: 300;
-  letter-spacing: 0.05em;
-  /* 文字阴影，增强对比度 */
+  letter-spacing: 0.1em;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -701,33 +718,40 @@ const coverageStats = [
   text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
 }
 
-.hero-subtitle {
-  font-size: 1.25rem;
-  margin-bottom: 2.5rem;
-  font-weight: 300;
-  letter-spacing: 0.1em;
+/* 副标题：Slogan */
+.hero-tagline {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
-.subtitle-cn,
-.subtitle-en {
+.tagline-cn {
   display: block;
   color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tagline-en {
+  display: block;
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.1em;
 }
 
 .hero-description {
   max-width: 700px;
   margin: 0 auto 3rem;
+  padding: 0 1rem;
 }
 
 .desc-cn,
 .desc-en {
   display: block;
-  font-size: 1.0625rem;
-  line-height: 2;
+  font-size: 1.125rem;
+  line-height: 1.8;
   margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 300;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
