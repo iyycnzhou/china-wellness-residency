@@ -320,77 +320,131 @@ const coverageStats = [
       </div>
     </section>
 
-    <!-- Medical Partners Section - Mayo Clinic 风格布局 -->
+    <!-- Medical Partners Section - 参考排版布局 -->
     <section class="partner-section medical-section">
-      <div class="medical-container">
-        <!-- 左侧文案区 -->
-        <div class="medical-content-left">
-          <p class="medical-label">
-            <span v-show="currentLang === 'zh'">医疗服务机构</span>
-            <span v-show="currentLang === 'en'">Medical Service Network</span>
-          </p>
+      <div class="medical-container-new">
+        <!-- 左侧区域 -->
+        <div class="medical-left-col">
+          <!-- 上部：数字 + 标题 + 描述 -->
+          <div class="medical-intro">
+            <div class="intro-number">
+              <span class="num-big">15</span>
+              <span class="num-label">
+                <span v-show="currentLang === 'zh'">家全国 Top100 医院</span>
+                <span v-show="currentLang === 'en'">Top Hospitals in China</span>
+              </span>
+            </div>
+            
+            <p class="intro-desc">
+              <span v-show="currentLang === 'zh'">我们的网络包含 50+ 家领先三级医院，其中 15 家位列中国医院 Top100</span>
+              <span v-show="currentLang === 'en'">Our network includes more than 50 leading tertiary hospitals, with 15 ranked among China's Top 100.</span>
+            </p>
+          </div>
           
-          <h2 class="medical-title">
-            <span v-show="currentLang === 'zh'">{{ medicalPartners.sublabelCn }}</span>
-            <span v-show="currentLang === 'en'">{{ medicalPartners.sublabelEn }}</span>
-          </h2>
+          <!-- 分隔线 -->
+          <div class="medical-divider"></div>
           
-          <p class="medical-desc">
-            <span v-show="currentLang === 'zh'">{{ medicalPartners.descCn }}</span>
-            <span v-show="currentLang === 'en'">{{ medicalPartners.descEn }}</span>
-          </p>
-          
-          <!-- 左侧医院展示图片 -->
-          <div class="medical-showcase-image">
-            <img src="@/assets/images/hospital-doctor-consultation.png" alt="Medical Service" class="showcase-img" />
+          <!-- 下部：价值主张 + 服务列表 -->
+          <div class="medical-value">
+            <p class="value-title">
+              <span v-show="currentLang === 'zh'">我们不是医院——我们是您通往中国顶级医疗资源的桥梁</span>
+              <span v-show="currentLang === 'en'">We are not a hospital — we are your gateway to China's top medical resources.</span>
+            </p>
+            
+            <ul class="service-list">
+              <li class="service-item">
+                <span class="service-check">✓</span>
+                <span class="service-text">
+                  <span v-show="currentLang === 'zh'">诊疗路径规划</span>
+                  <span v-show="currentLang === 'en'">Treatment planning</span>
+                </span>
+              </li>
+              <li class="service-item">
+                <span class="service-check">✓</span>
+                <span class="service-text">
+                  <span v-show="currentLang === 'zh'">专家预约</span>
+                  <span v-show="currentLang === 'en'">Specialist appointments</span>
+                </span>
+              </li>
+              <li class="service-item">
+                <span class="service-check">✓</span>
+                <span class="service-text">
+                  <span v-show="currentLang === 'zh'">医疗协调</span>
+                  <span v-show="currentLang === 'en'">Medical coordination</span>
+                </span>
+              </li>
+              <li class="service-item">
+                <span class="service-check">✓</span>
+                <span class="service-text">
+                  <span v-show="currentLang === 'zh'">跨院转诊</span>
+                  <span v-show="currentLang === 'en'">Cross-border care</span>
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
         
-        <!-- 右侧医院图片 -->
-        <div class="medical-hospitals-showcase">
-          <!-- 只展示 2 家医院大图 -->
-          <div class="hospital-showcase-row">
-            <div class="hospital-card-large">
-              <img :src="medicalPartners.featuredHospitals[0].image" :alt="medicalPartners.featuredHospitals[0].nameCn" class="hospital-large-img" />
-              <div class="hospital-large-overlay"></div>
-              <div class="hospital-large-content">
-                <h3 class="hospital-large-name">
+        <!-- 右侧区域：4 张医院图片 -->
+        <div class="medical-right-col">
+          <div class="hospital-grid-new">
+            <!-- 大图（占 2 行） -->
+            <div class="hospital-card-tall">
+              <img :src="medicalPartners.featuredHospitals[0].image" :alt="medicalPartners.featuredHospitals[0].nameCn" class="hospital-img" />
+              <div class="hospital-overlay"></div>
+              <div class="hospital-info">
+                <h4 class="hospital-name">
                   <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[0].nameCn }}</span>
                   <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[0].nameEn }}</span>
-                </h3>
-                <span class="hospital-large-rank">{{ medicalPartners.featuredHospitals[0].rank }}</span>
+                </h4>
+                <span class="hospital-rank">{{ medicalPartners.featuredHospitals[0].rank }}</span>
               </div>
             </div>
-            <div class="hospital-card-large">
-              <img :src="medicalPartners.featuredHospitals[1].image" :alt="medicalPartners.featuredHospitals[1].nameCn" class="hospital-large-img" />
-              <div class="hospital-large-overlay"></div>
-              <div class="hospital-large-content">
-                <h3 class="hospital-large-name">
+            
+            <!-- 中等图 1 -->
+            <div class="hospital-card-medium">
+              <img :src="medicalPartners.featuredHospitals[1].image" :alt="medicalPartners.featuredHospitals[1].nameCn" class="hospital-img" />
+              <div class="hospital-overlay"></div>
+              <div class="hospital-info">
+                <h4 class="hospital-name">
                   <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[1].nameCn }}</span>
                   <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[1].nameEn }}</span>
-                </h3>
-                <span class="hospital-large-rank">{{ medicalPartners.featuredHospitals[1].rank }}</span>
+                </h4>
+                <span class="hospital-rank">{{ medicalPartners.featuredHospitals[1].rank }}</span>
               </div>
             </div>
-          </div>
-          
-          <!-- 简化文案区域 -->
-          <div class="medical-value-simple">
-            <p class="value-simple-title">
-              <span v-show="currentLang === 'zh'">我们不是医院，而是您通往顶级医疗资源的桥梁</span>
-              <span v-show="currentLang === 'en'">Your Bridge to Premier Medical Resources</span>
-            </p>
-            <a href="#" class="value-simple-link">
-              <span v-show="currentLang === 'zh'">查看更多</span>
-              <span v-show="currentLang === 'en'">View More</span>
-              <span>→</span>
-            </a>
+            
+            <!-- 中等图 2 -->
+            <div class="hospital-card-medium">
+              <img :src="medicalPartners.featuredHospitals[2].image" :alt="medicalPartners.featuredHospitals[2].nameCn" class="hospital-img" />
+              <div class="hospital-overlay"></div>
+              <div class="hospital-info">
+                <h4 class="hospital-name">
+                  <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[2].nameCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[2].nameEn }}</span>
+                </h4>
+                <span class="hospital-rank">{{ medicalPartners.featuredHospitals[2].rank }}</span>
+              </div>
+            </div>
+            
+            <!-- 横向图 -->
+            <div class="hospital-card-wide">
+              <img :src="medicalPartners.featuredHospitals[3].image" :alt="medicalPartners.featuredHospitals[3].nameCn" class="hospital-img" />
+              <div class="hospital-overlay"></div>
+              <div class="hospital-info">
+                <h4 class="hospital-name">
+                  <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[3].nameCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[3].nameEn }}</span>
+                </h4>
+                <span class="hospital-rank">{{ medicalPartners.featuredHospitals[3].rank }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-      <!-- 底部特色科室区域 -->
-      <div class="featured-specialties">
+    </section>
+
+    <!-- 底部特色科室区域 -->
+    <section class="featured-specialties">
         <div class="specialties-container">
           <div class="specialties-header">
             <h3 class="specialties-title">
@@ -917,174 +971,196 @@ const coverageStats = [
   text-transform: uppercase;
 }
 
-/* ==================== MEDICAL SECTION - Mayo Clinic 风格 ==================== */
+/* ==================== MEDICAL SECTION - 参考排版布局 ==================== */
 .medical-section {
   background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
   padding: 6rem 0;
 }
 
-.medical-container {
+.medical-container-new {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
 }
 
-/* 左侧文案区 */
-.medical-content-left {
-  padding-top: 2rem;
+/* 左侧列 */
+.medical-left-col {
   display: flex;
   flex-direction: column;
+  gap: 3rem;
 }
 
-.medical-showcase-image {
-  margin-top: auto;
+/* 上部介绍区 */
+.medical-intro {
+  padding-top: 1rem;
 }
 
-.medical-label {
+.intro-number {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.num-big {
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-black);
+}
+
+.num-label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-black);
+  line-height: 1.2;
+}
+
+.intro-desc {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-stone);
+  max-width: 480px;
+}
+
+/* 分隔线 */
+.medical-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+/* 下部价值主张 */
+.medical-value {
+  padding-top: 1rem;
+}
+
+.value-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-black);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.service-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-secondary);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  margin-top: 0.125rem;
 }
 
-.medical-title {
-  font-size: 2.5rem;
-  font-weight: 400;
-  color: var(--color-black);
-  margin-bottom: 1.5rem;
-  line-height: 1.3;
-}
-
-.medical-desc {
-  font-size: 1.125rem;
-  line-height: 1.9;
+.service-text {
+  font-size: 1rem;
   color: var(--color-stone);
-  margin-bottom: 2.5rem;
+  line-height: 1.5;
 }
 
-/* 左侧医院展示图片 */
-.medical-showcase-image {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 2rem;
+/* 右侧列 */
+.medical-right-col {
+  padding-top: 0.5rem;
 }
 
-.medical-showcase-image:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-.showcase-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* 右侧医院图片展示 - 简化版 */
-.medical-hospitals-showcase {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding-top: 2rem;
-}
-
-.hospital-showcase-row {
+.hospital-grid-new {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
-.hospital-card-large {
+.hospital-card-tall {
+  grid-row: span 2;
   position: relative;
-  height: 320px;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
 }
 
-.hospital-large-img {
+.hospital-card-medium {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hospital-card-wide {
+  grid-column: span 2;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hospital-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.hospital-card-large:hover .hospital-large-img {
+.hospital-card-tall:hover .hospital-img,
+.hospital-card-medium:hover .hospital-img,
+.hospital-card-wide:hover .hospital-img {
   transform: scale(1.05);
 }
 
-.hospital-large-overlay {
+.hospital-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
 }
 
-.hospital-large-content {
+.hospital-info {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 2rem;
+  padding: 1.5rem;
   z-index: 2;
 }
 
-.hospital-large-name {
-  font-size: 1.5rem;
+.hospital-name {
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--color-white);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   line-height: 1.3;
 }
 
-.hospital-large-rank {
+.hospital-rank {
   display: inline-block;
   background: rgba(255, 255, 255, 0.95);
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.875rem;
   border-radius: 50px;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-black);
-}
-
-/* 简化文案区域 */
-.medical-value-simple {
-  padding: 2.5rem 2rem;
-  background: var(--color-white);
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.value-simple-title {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--color-black);
-  line-height: 1.6;
-  margin: 0 0 1rem 0;
-}
-
-.value-simple-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--color-secondary);
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.value-simple-link:hover {
-  color: var(--color-black);
-  gap: 0.75rem;
 }
 
 .card-img {
@@ -1853,8 +1929,23 @@ const coverageStats = [
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .medical-hospitals-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .medical-container-new {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .hospital-grid-new {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  
+  .hospital-card-tall {
+    grid-row: span 1;
+    height: 320px;
+  }
+  
+  .hospital-card-wide {
+    grid-column: span 1;
   }
   
   .specialties-list {
@@ -1924,41 +2015,45 @@ const coverageStats = [
     padding: 4rem 1.5rem;
   }
   
-  .medical-container {
+  .medical-container-new {
     padding: 0 1.5rem;
+    gap: 2.5rem;
   }
   
-  .medical-title {
-    font-size: 1.75rem;
+  .medical-left-col {
+    gap: 2.5rem;
   }
   
-  .medical-desc {
+  .num-big {
+    font-size: 4rem;
+  }
+  
+  .num-label {
+    font-size: 1.25rem;
+  }
+  
+  .intro-desc {
     font-size: 1rem;
   }
   
-  .medical-showcase-image {
-    margin-top: 2rem;
-  }
-  
-  .hospital-showcase-row {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .hospital-card-large {
-    height: 280px;
-  }
-  
-  .medical-value-simple {
-    padding: 2rem 1.5rem;
-  }
-  
-  .value-simple-title {
+  .value-title {
     font-size: 1.125rem;
   }
   
-  .medical-content-spacer {
-    display: none;
+  .hospital-grid-new {
+    gap: 1rem;
+  }
+  
+  .hospital-card-tall {
+    height: 280px;
+  }
+  
+  .hospital-card-medium {
+    height: 200px;
+  }
+  
+  .hospital-card-wide {
+    height: 200px;
   }
   
   .specialties-container {
