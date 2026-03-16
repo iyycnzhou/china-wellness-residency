@@ -64,13 +64,33 @@ const benefits = [
         <p class="hero-description">
           <span v-show="currentLang === 'zh'" class="desc-cn">
             健康驻留权益是您购买驻留席位后获得的核心服务，<br>
-            每年可享 30-90 天中国康养驻留，整合三甲医院医疗资源、中医调理、康复疗养于一体
+            每年可享 30-90 天灵活驻留期，深度整合中国顶级三甲医院医疗资源、<br>
+            千年中医养生智慧、专业康复疗养与文化底蕴体验，<br>
+            为您打造全方位、个性化、可持续的健康生活方式
           </span>
           <span v-show="currentLang === 'en'" class="desc-en">
             Wellness Residency Benefits are the core services you receive after purchasing a residency seat.<br>
-            Enjoy 30-90 days annually in China, integrating top-tier medical resources, TCM wellness, and rehabilitation.
+            Enjoy 30-90 days annually of flexible stays in China, with deep integration of top-tier Grade-A hospital resources,<br>
+            millennia-old TCM wellness wisdom, professional rehabilitation, and cultural immersion.<br>
+            We create a comprehensive, personalized, and sustainable healthy lifestyle just for you.
           </span>
         </p>
+        
+        <!-- 三个标签 -->
+        <div class="hero-tags">
+          <span class="tag">
+            <span v-show="currentLang === 'zh'">健康投资</span>
+            <span v-show="currentLang === 'en'">Health Investment</span>
+          </span>
+          <span class="tag">
+            <span v-show="currentLang === 'zh'">驻留体验</span>
+            <span v-show="currentLang === 'en'">Residency Experience</span>
+          </span>
+          <span class="tag">
+            <span v-show="currentLang === 'zh'">核心权益</span>
+            <span v-show="currentLang === 'en'">Core Entitlements</span>
+          </span>
+        </div>
       </div>
     </section>
 
@@ -191,187 +211,7 @@ const benefits = [
       </div>
     </section>
 
-    <!-- 模块 2：全球会员 · 中国康养驻留 -->
-    <section class="global-residency">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">
-            <span v-show="currentLang === 'zh'" class="title-cn">全球会员 · 中国康养驻留</span>
-            <span v-show="currentLang === 'en'" class="title-en">Global Members · China Wellness Residency</span>
-          </h2>
-          <p class="section-subtitle">
-            <span v-show="currentLang === 'zh'" class="subtitle-cn">
-              来自世界各地的会员汇聚中国<br>
-              在山东开启医疗与康养驻留生活
-            </span>
-            <span v-show="currentLang === 'en'" class="subtitle-en">
-              Members from around the world gather in China<br>
-              Starting medical and wellness residency life in Shandong
-            </span>
-          </p>
-        </div>
-
-        <div class="residency-grid">
-          <div class="map-area">
-            <img src="/images/network/world-map-dark.png" alt="Global Network" class="map-image">
-          </div>
-
-          <div class="residency-text">
-            <h3 class="residency-title">
-              <span v-show="currentLang === 'zh'">全球健康驻留中心</span>
-              <span v-show="currentLang === 'en'">Global Wellness Residency Center</span>
-            </h3>
-
-            <p class="residency-description">
-              <span v-show="currentLang === 'zh'">
-                平台面向全球会员开放，来自世界各地的客户通过平台来到中国，<br>
-                在山东体验融合医疗、康养与自然疗愈的健康生活方式。
-              </span>
-              <span v-show="currentLang === 'en'">
-                The platform is open to global members. Clients from around the world come to China through the platform
-                to experience a healthy lifestyle integrating healthcare, wellness, and natural healing in Shandong.
-              </span>
-            </p>
-
-            <p class="residency-description">
-              <span v-show="currentLang === 'zh'">
-                依托优质医疗资源、优越自然环境与专业健康管理体系，<br>
-                这里不仅提供医疗支持，更为会员打造长期健康驻留的生活方式。
-              </span>
-              <span v-show="currentLang === 'en'">
-                Relying on quality medical resources, superior natural environment, and professional health management system,<br>
-                this provides not only medical support, but creates a long-term wellness residency lifestyle for members.
-              </span>
-            </p>
-
-            <h4 class="service-heading">
-              <span v-show="currentLang === 'zh'">核心服务</span>
-              <span v-show="currentLang === 'en'">Core Services</span>
-            </h4>
-
-            <ul class="service-list">
-              <li>
-                <span v-show="currentLang === 'zh'">国内顶级三甲医院医疗资源</span>
-                <span v-show="currentLang === 'en'">Top-tier Grade-A hospital medical resources in China</span>
-              </li>
-              <li>
-                <span v-show="currentLang === 'zh'">医疗路径规划与跨境服务支持</span>
-                <span v-show="currentLang === 'en'">Medical pathway planning and cross-border service support</span>
-              </li>
-              <li>
-                <span v-show="currentLang === 'zh'">康养驻留与疗愈生活体验</span>
-                <span v-show="currentLang === 'en'">Wellness residency and healing life experience</span>
-              </li>
-              <li>
-                <span v-show="currentLang === 'zh'">持续健康管理与跟踪服务</span>
-                <span v-show="currentLang === 'en'">Continuous health management and tracking services</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 模块 3：健康生活方式 -->
-    <section class="lifestyle">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">
-            <span v-show="currentLang === 'zh'" class="title-cn">一种全新的健康生活方式</span>
-            <span v-show="currentLang === 'en'" class="title-en">A New Way of Healthy Living</span>
-          </h2>
-          <p class="section-subtitle">
-            <span v-show="currentLang === 'zh'" class="subtitle-cn">医疗 · 康养 · 文化 · 旅行的融合体验</span>
-            <span v-show="currentLang === 'en'" class="subtitle-en">Integration of Healthcare · Wellness · Culture · Travel</span>
-          </p>
-        </div>
-
-        <!-- 全屏图片区域 -->
-        <div class="lifestyle-hero">
-          <img src="/images/lifestyle/healing-nature.jpg" alt="山海疗愈" class="hero-image">
-          <div class="hero-overlay">
-            <div class="hero-text">
-              <h3 class="hero-card-title">
-                <span v-show="currentLang === 'zh'">山海疗愈</span>
-                <span v-show="currentLang === 'en'">Nature Healing</span>
-              </h3>
-              <p class="hero-card-desc">
-                <span v-show="currentLang === 'zh'">
-                  在自然环境中恢复身体与精神的平衡<br>
-                  远离城市喧嚣，享受宁静与疗愈
-                </span>
-                <span v-show="currentLang === 'en'">
-                  Restore balance of body and mind in natural environments<br>
-                  Escape city noise, enjoy tranquility and healing
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 三个文字卡片 -->
-        <div class="lifestyle-cards">
-          <div class="lifestyle-card">
-            <h4 class="card-title">
-              <span v-show="currentLang === 'zh'">山海疗愈</span>
-              <span v-show="currentLang === 'en'">Nature Healing</span>
-            </h4>
-            <p class="card-description">
-              <span v-show="currentLang === 'zh'">
-                在自然环境中恢复身体与精神的平衡<br>
-                远离城市喧嚣，享受宁静与疗愈<br>
-                让身心在大自然的怀抱中得到彻底的放松与修复
-              </span>
-              <span v-show="currentLang === 'en'">
-                Restore balance of body and mind in natural environments<br>
-                Escape city noise, enjoy tranquility and healing<br>
-                Let body and mind be completely relaxed in nature
-              </span>
-            </p>
-          </div>
-
-          <div class="lifestyle-card">
-            <h4 class="card-title">
-              <span v-show="currentLang === 'zh'">中医养生</span>
-              <span v-show="currentLang === 'en'">TCM Wellness</span>
-            </h4>
-            <p class="card-description">
-              <span v-show="currentLang === 'zh'">
-                传统医学智慧结合现代健康管理<br>
-                针灸、推拿、药膳，全方位调理<br>
-                传承千年中医智慧，打造个性化养生方案
-              </span>
-              <span v-show="currentLang === 'en'">
-                Traditional medicine wisdom meets modern health management<br>
-                Acupuncture, massage, medicinal cuisine for holistic care<br>
-                Inheriting TCM wisdom, personalized wellness plans
-              </span>
-            </p>
-          </div>
-
-          <div class="lifestyle-card">
-            <h4 class="card-title">
-              <span v-show="currentLang === 'zh'">慢生活驻留</span>
-              <span v-show="currentLang === 'en'">Slow Living Residency</span>
-            </h4>
-            <p class="card-description">
-              <span v-show="currentLang === 'zh'">
-                远离城市压力，重建健康生活节奏<br>
-                太极、冥想、瑜伽，身心合一<br>
-                在慢节奏中找回生活的本真与健康
-              </span>
-              <span v-show="currentLang === 'en'">
-                Escape urban stress, rebuild healthy life rhythm<br>
-                Tai Chi, meditation, yoga for mind-body unity<br>
-                Find true meaning of life in slow pace
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 模块 4：会员驻留体验 -->
+    <!-- 模块 2：会员驻留体验 -->
     <section class="testimonials">
       <div class="container">
         <div class="section-header">
@@ -506,24 +346,78 @@ const benefits = [
   z-index: 2;
   text-align: center;
   color: #ffffff;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Hero Tags */
+.hero-tags {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-content h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 1rem;
-  color: #ffffff;
+  font-size: clamp(4rem, 8vw, 7rem);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content h1 .title-cn,
+.hero-content h1 .title-en {
+  display: block;
+  color: #ffffff !important;
 }
 
 .title-cn {
   display: block;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .title-en {
   display: block;
-  font-size: 2rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   letter-spacing: 0.1em;
-  color: #ffffff;
+  color: #ffffff !important;
+  font-weight: 600;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Tags - moved below description */
+.hero-tags {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  flex-wrap: wrap;
 }
 
 .hero-subtitle {
@@ -548,23 +442,33 @@ const benefits = [
 }
 
 .hero-description {
-  max-width: 700px;
-  margin: 1.5rem auto 0;
-  font-size: 1rem;
-  line-height: 1.8;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  padding: 2rem 2.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  font-size: 1.0625rem;
+  line-height: 2;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .desc-cn {
   display: block;
-  color: var(--color-white);
-  opacity: 0.9;
+  color: #ffffff;
+  font-weight: 400;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 .desc-en {
   display: block;
-  color: var(--color-white);
-  opacity: 0.85;
+  color: #ffffff;
   font-size: 0.9375rem;
+  margin-top: 1rem;
+  font-weight: 400;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Benefits Section */
@@ -585,22 +489,22 @@ const benefits = [
   margin-bottom: var(--spacing-sm);
 }
 
-.title-cn {
+.section-title .title-cn {
   display: block;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-family: var(--font-heading);
   font-weight: 600;
-  color: var(--primary-dark);
+  color: #000000 !important;
   letter-spacing: -0.02em;
 }
 
-.title-en {
+.section-title .title-en {
   display: block;
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-family: var(--font-body);
   font-weight: 400;
-  color: var(--stone);
-  letter-spacing: 0.15em;
+  color: #000000 !important;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
