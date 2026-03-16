@@ -320,7 +320,7 @@ const coverageStats = [
       </div>
     </section>
 
-    <!-- Medical Partners Section - 参考排版布局 -->
+    <!-- Medical Partners Section -->
     <section class="partner-section medical-section">
       <div class="medical-container-new">
         <!-- 左侧区域 -->
@@ -443,7 +443,7 @@ const coverageStats = [
       </div>
     </section>
 
-    <!-- 底部特色科室区域 -->
+    <!-- Featured Specialties Section -->
     <section class="featured-specialties">
       <div class="specialties-container">
           <div class="specialties-header">
