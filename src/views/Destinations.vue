@@ -364,6 +364,16 @@ const coverageStats = [
             </div>
           </div>
           
+          <!-- 查看更多按钮 -->
+          <div class="view-more-btn-wrapper">
+            <button class="view-more-btn">
+              <span v-show="currentLang === 'zh'">查看更多</span>
+              <span v-show="currentLang === 'en'">View More</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+          
           <!-- 底部文案区域 -->
           <div class="medical-value-prop">
             <p class="value-prop-title">
@@ -1062,6 +1072,48 @@ const coverageStats = [
   overflow: hidden;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* 查看更多按钮 */
+.view-more-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.view-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.view-more-btn:hover {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+}
+
+.view-more-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-arrow {
+  font-size: 1.125rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
 }
 
 /* 价值主张文案区域 */
@@ -2003,6 +2055,10 @@ const coverageStats = [
   
   .hospital-card-image {
     height: 240px;
+  }
+  
+  .view-more-btn-wrapper {
+    grid-column: span 1;
   }
   
   .medical-value-prop {
