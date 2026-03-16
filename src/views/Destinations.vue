@@ -418,56 +418,67 @@ const coverageStats = [
         </div>
         
         <!-- 右侧图片区 -->
-        <div class="medical-images-grid">
-          <!-- 顶部大图 -->
-          <div class="hospital-image-card hospital-image-large">
-            <img :src="medicalPartners.featuredHospitals[0].image" :alt="medicalPartners.featuredHospitals[0].nameCn" class="hospital-photo" />
-            <div class="photo-overlay"></div>
-            <div class="photo-caption">
-              <h4 class="photo-hospital-name">
-                <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[0].nameCn }}</span>
-                <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[0].nameEn }}</span>
-              </h4>
-              <span class="photo-rank">{{ medicalPartners.featuredHospitals[0].rank }}</span>
+        <div class="medical-images-wrapper">
+          <div class="medical-images-grid">
+            <!-- 顶部大图 -->
+            <div class="hospital-image-card hospital-image-large">
+              <img :src="medicalPartners.featuredHospitals[0].image" :alt="medicalPartners.featuredHospitals[0].nameCn" class="hospital-photo" />
+              <div class="photo-overlay"></div>
+              <div class="photo-caption">
+                <h4 class="photo-hospital-name">
+                  <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[0].nameCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[0].nameEn }}</span>
+                </h4>
+                <span class="photo-rank">{{ medicalPartners.featuredHospitals[0].rank }}</span>
+              </div>
+            </div>
+            
+            <!-- 中间两张并排 -->
+            <div class="hospital-image-card hospital-image-medium">
+              <img :src="medicalPartners.featuredHospitals[2].image" :alt="medicalPartners.featuredHospitals[2].nameCn" class="hospital-photo" />
+              <div class="photo-overlay"></div>
+              <div class="photo-caption">
+                <h4 class="photo-hospital-name">
+                  <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[2].nameCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[2].nameEn }}</span>
+                </h4>
+                <span class="photo-rank">{{ medicalPartners.featuredHospitals[2].rank }}</span>
+              </div>
+            </div>
+            
+            <div class="hospital-image-card hospital-image-medium">
+              <img :src="medicalPartners.featuredHospitals[1].image" :alt="medicalPartners.featuredHospitals[1].nameCn" class="hospital-photo" />
+              <div class="photo-overlay"></div>
+              <div class="photo-caption">
+                <h4 class="photo-hospital-name">
+                  <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[1].nameCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[1].nameEn }}</span>
+                </h4>
+                <span class="photo-rank">{{ medicalPartners.featuredHospitals[1].rank }}</span>
+              </div>
+            </div>
+            
+            <!-- 底部横向图 -->
+            <div class="hospital-image-card hospital-image-wide">
+              <img :src="medicalPartners.featuredHospitals[3].image" :alt="medicalPartners.featuredHospitals[3].nameCn" class="hospital-photo" />
+              <div class="photo-overlay"></div>
+              <div class="photo-caption">
+                <h4 class="photo-hospital-name">
+                  <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[3].nameCn }}</span>
+                  <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[3].nameEn }}</span>
+                </h4>
+                <span class="photo-rank">{{ medicalPartners.featuredHospitals[3].rank }}</span>
+              </div>
             </div>
           </div>
           
-          <!-- 中间两张并排 -->
-          <div class="hospital-image-card hospital-image-medium">
-            <img :src="medicalPartners.featuredHospitals[2].image" :alt="medicalPartners.featuredHospitals[2].nameCn" class="hospital-photo" />
-            <div class="photo-overlay"></div>
-            <div class="photo-caption">
-              <h4 class="photo-hospital-name">
-                <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[2].nameCn }}</span>
-                <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[2].nameEn }}</span>
-              </h4>
-              <span class="photo-rank">{{ medicalPartners.featuredHospitals[2].rank }}</span>
-            </div>
-          </div>
-          
-          <div class="hospital-image-card hospital-image-medium">
-            <img :src="medicalPartners.featuredHospitals[1].image" :alt="medicalPartners.featuredHospitals[1].nameCn" class="hospital-photo" />
-            <div class="photo-overlay"></div>
-            <div class="photo-caption">
-              <h4 class="photo-hospital-name">
-                <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[1].nameCn }}</span>
-                <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[1].nameEn }}</span>
-              </h4>
-              <span class="photo-rank">{{ medicalPartners.featuredHospitals[1].rank }}</span>
-            </div>
-          </div>
-          
-          <!-- 底部横向图 -->
-          <div class="hospital-image-card hospital-image-wide">
-            <img :src="medicalPartners.featuredHospitals[3].image" :alt="medicalPartners.featuredHospitals[3].nameCn" class="hospital-photo" />
-            <div class="photo-overlay"></div>
-            <div class="photo-caption">
-              <h4 class="photo-hospital-name">
-                <span v-show="currentLang === 'zh'">{{ medicalPartners.featuredHospitals[3].nameCn }}</span>
-                <span v-show="currentLang === 'en'">{{ medicalPartners.featuredHospitals[3].nameEn }}</span>
-              </h4>
-              <span class="photo-rank">{{ medicalPartners.featuredHospitals[3].rank }}</span>
-            </div>
+          <!-- 查看更多按钮 -->
+          <div class="view-more-wrapper">
+            <a href="#" class="view-more-btn">
+              <span v-show="currentLang === 'zh'">查看更多合作医院</span>
+              <span v-show="currentLang === 'en'">View More Partner Hospitals</span>
+              <span class="btn-arrow">→</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1000,6 +1011,48 @@ const coverageStats = [
   text-transform: uppercase;
 }
 
+/* ==================== GLOBAL TYPOGRAPHY ==================== */
+/* 统一字体样式 */
+:root {
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a4a4a;
+  --color-text-tertiary: #6b6b6b;
+  --color-text-muted: #8a8a8a;
+}
+
+/* 标题样式 */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.section-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-tertiary);
+}
+
 /* ==================== MEDICAL SECTION - 参考排版布局 ==================== */
 .medical-section {
   background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
@@ -1134,6 +1187,12 @@ const coverageStats = [
 }
 
 /* 右侧图片区 */
+.medical-images-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 .medical-images-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1145,6 +1204,47 @@ const coverageStats = [
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
+}
+
+/* 查看更多按钮 */
+.view-more-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.view-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-black);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.view-more-btn:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+.view-more-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-arrow {
+  font-size: 1.125rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
 }
 
 .hospital-image-large {
@@ -1271,7 +1371,7 @@ const coverageStats = [
 }
 
 .specialties-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -1280,17 +1380,27 @@ const coverageStats = [
   margin-bottom: 3rem;
 }
 
-.specialties-title {
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--color-black);
+.specialties-header .section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
   margin-bottom: 1rem;
 }
 
-.specialties-desc {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: var(--color-stone);
+.specialties-header .section-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+}
+
+.specialties-header .section-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-tertiary);
   max-width: 700px;
 }
 
@@ -2120,6 +2230,11 @@ const coverageStats = [
   
   .hospital-image-wide {
     height: 160px;
+  }
+  
+  .view-more-btn {
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
   }
   
   .specialties-container {
