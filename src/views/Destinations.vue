@@ -614,6 +614,8 @@ const coverageStats = [
   object-fit: cover;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  /* 统一背景色调，降低亮度 */
+  filter: brightness(0.85) contrast(1.05);
 }
 
 .hero-bg.active {
@@ -659,7 +661,8 @@ const coverageStats = [
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+  /* 加深遮罩层，确保文字在任何背景上都清晰 */
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.85) 100%);
 }
 
 .hero-content {
@@ -677,8 +680,9 @@ const coverageStats = [
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content h1 {
@@ -686,12 +690,15 @@ const coverageStats = [
   margin-bottom: 1rem;
   font-weight: 300;
   letter-spacing: 0.05em;
+  /* 文字阴影，增强对比度 */
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .title-cn,
 .title-en {
   display: block;
   color: var(--color-white);
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
 }
 
 .hero-subtitle {
@@ -699,12 +706,14 @@ const coverageStats = [
   margin-bottom: 2.5rem;
   font-weight: 300;
   letter-spacing: 0.1em;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
 .subtitle-cn,
 .subtitle-en {
   display: block;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-description {
@@ -718,8 +727,9 @@ const coverageStats = [
   font-size: 1.0625rem;
   line-height: 2;
   margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 300;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Hero Stats Grid - SHA Style */
@@ -745,13 +755,15 @@ const coverageStats = [
   color: var(--color-white);
   margin-bottom: 0.5rem;
   line-height: 1;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
 .hero-stat-label {
   display: block;
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Section Container */
