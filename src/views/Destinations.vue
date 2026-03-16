@@ -8,6 +8,8 @@ const bgImagesPng = import.meta.glob('@/assets/images/*.png', { eager: true, imp
 
 // 协和医院本地图片
 const xieheImage = bgImages['/src/assets/images/xiehe-caption.jpg']
+// 华山医院本地图片
+const huashanImage = bgImagesPng['/src/assets/images/huashan-caption.png']
 
 // 背景图片轮播数组 - 使用实际导入的图片路径
 const backgroundImages = [
@@ -76,7 +78,7 @@ const medicalPartners = {
     {
       nameCn: '上海华山医院',
       nameEn: 'Shanghai Huashan Hospital',
-      image: 'https://images.unsplash.com/photo-1516574187841-69301976e499?w=800&h=600&fit=crop&q=80',
+      image: huashanImage,
       rank: '全国 Top 10',
       specialty: '神经科、皮肤科'
     },
