@@ -202,14 +202,17 @@ const coverageStats = [
   <div class="partners-page">
     <!-- Hero Section -->
     <section class="page-hero">
-      <transition name="fade" mode="out-in">
+      <!-- 背景图片轮播 -->
+      <div class="hero-bg-container">
         <img 
-          :key="currentBgIndex"
+          v-for="(img, index) in backgroundImages" 
+          :key="index"
           class="hero-bg" 
-          :src="`@/assets/images/${backgroundImages[currentBgIndex]}`" 
-          alt="Partners Network" 
+          :class="{ active: index === currentBgIndex }"
+          :src="`@/assets/images/${img}`" 
+          :alt="'Partners Network ' + (index + 1)"
         />
-      </transition>
+      </div>
       <div class="hero-overlay"></div>
       
       <!-- 轮播指示器 -->
@@ -589,6 +592,15 @@ const coverageStats = [
   overflow: hidden;
 }
 
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .hero-bg {
   position: absolute;
   top: 0;
@@ -596,18 +608,13 @@ const coverageStats = [
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 1s ease-in-out;
-}
-
-/* 淡入淡出过渡 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
   opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-bg.active {
+  opacity: 1;
+  z-index: 1;
 }
 
 /* 背景轮播指示器 */
