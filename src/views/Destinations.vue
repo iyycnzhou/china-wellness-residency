@@ -989,11 +989,12 @@ const coverageStats = [
 /* 左侧文案区 */
 .medical-content-left {
   padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-/* 右侧占位空白区 */
-.medical-content-spacer {
-  display: block;
+.medical-showcase-image {
+  margin-top: auto;
 }
 
 .medical-label {
@@ -1026,6 +1027,7 @@ const coverageStats = [
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 2rem;
 }
 
 .medical-showcase-image:hover {
@@ -1046,6 +1048,7 @@ const coverageStats = [
   gap: 1.5rem;
   padding-top: 2rem;
   align-content: start;
+  height: 100%;
 }
 
 .hospital-card-mayo {
@@ -1064,8 +1067,11 @@ const coverageStats = [
 /* 价值主张文案区域 */
 .medical-value-prop {
   grid-column: span 2;
-  padding: 3rem 2rem;
-  margin-top: 1rem;
+  padding: 3rem 0 0 0;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .value-prop-title {
@@ -1086,7 +1092,7 @@ const coverageStats = [
 .value-prop-services {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 1.5rem 2.5rem;
   margin-bottom: 2rem;
 }
 
@@ -1108,24 +1114,26 @@ const coverageStats = [
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-white);
+  margin-top: 0.25rem;
 }
 
 .service-content {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.375rem;
 }
 
 .service-title {
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-black);
+  line-height: 1.3;
 }
 
 .service-detail {
   font-size: 0.875rem;
   color: var(--color-stone);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .value-prop-footer {
