@@ -364,21 +364,19 @@ const coverageStats = [
             </div>
           </div>
           
-          <!-- 查看更多按钮 -->
-          <div class="view-more-btn-wrapper">
-            <button class="view-more-btn">
-              <span v-show="currentLang === 'zh'">查看更多</span>
-              <span v-show="currentLang === 'en'">View More</span>
-              <span class="btn-arrow">→</span>
-            </button>
-          </div>
-          
           <!-- 底部文案区域 -->
           <div class="medical-value-prop">
-            <p class="value-prop-title">
-              <span v-show="currentLang === 'zh'">我们不是医院，而是您通往顶级医疗资源的桥梁</span>
-              <span v-show="currentLang === 'en'">Your Bridge to Premier Medical Resources</span>
-            </p>
+            <div class="value-prop-header">
+              <p class="value-prop-title">
+                <span v-show="currentLang === 'zh'">我们不是医院，而是您通往顶级医疗资源的桥梁</span>
+                <span v-show="currentLang === 'en'">Your Bridge to Premier Medical Resources</span>
+              </p>
+              <a href="#" class="view-more-link">
+                <span v-show="currentLang === 'zh'">查看更多</span>
+                <span v-show="currentLang === 'en'">View More</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </div>
             
             <p class="value-prop-desc">
               <span v-show="currentLang === 'zh'">不直接诊疗，只专注资源协调。依托 50+ 家三甲医院（含 15 家全国 Top100）深度合作网络，为您提供：</span>
@@ -1073,47 +1071,7 @@ const coverageStats = [
   cursor: pointer;
 }
 
-/* 查看更多按钮 */
-.view-more-btn-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
 
-.view-more-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: var(--color-white);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 50px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--color-black);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.view-more-btn:hover {
-  background: var(--color-secondary);
-  border-color: var(--color-secondary);
-  color: var(--color-white);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
-  transform: translateY(-2px);
-}
-
-.view-more-btn:hover .btn-arrow {
-  transform: translateX(4px);
-}
-
-.btn-arrow {
-  font-size: 1.125rem;
-  line-height: 1;
-  transition: transform 0.3s ease;
-}
 
 /* 价值主张文案区域 */
 .medical-value-prop {
@@ -1125,12 +1083,52 @@ const coverageStats = [
   justify-content: flex-end;
 }
 
+.value-prop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .value-prop-title {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-black);
-  margin-bottom: 1.5rem;
   line-height: 1.4;
+  margin: 0;
+}
+
+.value-prop-title + .value-prop-desc {
+  margin-top: 1.5rem;
+}
+
+/* 查看更多文字链接 */
+.view-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.view-more-link:hover {
+  color: var(--color-black);
+}
+
+.view-more-link:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+.link-arrow {
+  font-size: 1.125rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
 }
 
 .value-prop-desc {
@@ -2056,13 +2054,15 @@ const coverageStats = [
     height: 240px;
   }
   
-  .view-more-btn-wrapper {
-    grid-column: span 1;
-  }
-  
   .medical-value-prop {
     grid-column: span 1;
     padding: 2rem 1.5rem;
+  }
+  
+  .value-prop-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
   
   .value-prop-title {
