@@ -1251,6 +1251,7 @@ const coverageStats = [
 .medical-specialties-section {
   margin-top: 4rem;
   padding-top: 3.5rem;
+  padding-bottom: 2rem;
 }
 
 .specialties-divider {
@@ -1287,7 +1288,7 @@ const coverageStats = [
 
 .specialty-item-minimal {
   padding: 1.5rem 1rem;
-  background: var(--color-white);
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   text-align: center;
@@ -1305,24 +1306,25 @@ const coverageStats = [
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-.specialty-name-cn {
+.specialty-item-minimal .specialty-name-cn {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin: 0;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
   line-height: 1.3;
   letter-spacing: 0.05em;
 }
 
-.specialty-divider-dot {
+.specialty-item-minimal .specialty-divider-dot {
   font-size: 1.5rem;
   color: rgba(0, 0, 0, 0.15);
   line-height: 1;
+  display: block;
 }
 
-.specialty-desc-cn {
+.specialty-item-minimal .specialty-desc-cn {
   font-size: 0.75rem;
-  color: var(--color-text-tertiary);
+  color: #6b6b6b;
   margin: 0;
   line-height: 1.5;
   letter-spacing: 0.02em;
@@ -1336,9 +1338,9 @@ const coverageStats = [
   border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
-.footer-text {
+.specialties-footer-minimal .footer-text {
   font-size: 0.875rem;
-  color: var(--color-text-tertiary);
+  color: #6b6b6b;
   line-height: 1.6;
   margin: 0;
   letter-spacing: 0.05em;
