@@ -165,31 +165,6 @@ const wellnessPartners = {
   ]
 }
 
-const tcmPartners = {
-  number: '30+',
-  labelCn: '中医机构',
-  labelEn: 'TCM Institutions',
-  sublabelCn: '含 8 家国医大师工作室',
-  sublabelEn: '8 National TCM Master Studios',
-  descCn: '与全国 30+ 家知名中医机构建立深度合作，其中包括 8 家国医大师工作室、15 家省级中医院、7 家中医养生连锁品牌。',
-  descEn: 'Deep cooperation with 30+ renowned TCM institutions, including 8 National TCM Master Studios, 15 provincial TCM hospitals.',
-  image: 'https://images.unsplash.com/photo-1544367563-12123d8965cd?w=1200&h=800&fit=crop&q=80',
-  cards: [
-    { icon: '🌿', num: '8', labelCn: '国医大师工作室', labelEn: 'TCM Master Studios' },
-    { icon: '🏥', num: '15', labelCn: '省级中医院', labelEn: 'Provincial Hospitals' },
-    { icon: '🍵', num: '10+', labelCn: '道地药材基地', labelEn: 'Herb Bases' },
-    { icon: '🧘', num: '20+', labelCn: '养生课程', labelEn: 'Wellness Courses' }
-  ],
-  partners: [
-    { nameCn: '中国中医科学院', nameEn: 'China Academy of TCM', logo: '🌿' },
-    { nameCn: '北京中医医院', nameEn: 'Beijing TCM Hospital', logo: '🏥' },
-    { nameCn: '上海中医药大学', nameEn: 'Shanghai TCM University', logo: '🎓' },
-    { nameCn: '广东省中医院', nameEn: 'Guangdong TCM Hospital', logo: '🏥' },
-    { nameCn: '同仁堂', nameEn: 'Tongrentang', logo: '🍵' },
-    { nameCn: '固生堂', nameEn: 'Gushengtang', logo: '🍵' }
-  ]
-}
-
 const tourismPartners = {
   number: '150+',
   labelCn: '合作景区',
@@ -537,66 +512,6 @@ const coverageStats = [
                   <span v-show="currentLang === 'en'">{{ base.nameEn }}</span>
                 </span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TCM Partners Section -->
-    <section class="partner-section tcm-section">
-      <div class="section-container">
-        <div class="tcm-header">
-          <div class="tcm-icon-large">🌿</div>
-          
-          <div class="section-label-centered">
-            <span class="label-text">
-              <span v-show="currentLang === 'zh'">中医服务机构</span>
-              <span v-show="currentLang === 'en'">TCM Service Network</span>
-            </span>
-          </div>
-          
-          <div class="tcm-number-display">
-            <span class="number-big">{{ tcmPartners.number }}</span>
-            <span class="number-label">
-              <span v-show="currentLang === 'zh'">{{ tcmPartners.labelCn }}</span>
-              <span v-show="currentLang === 'en'">{{ tcmPartners.labelEn }}</span>
-            </span>
-            <span class="number-sublabel">
-              <span v-show="currentLang === 'zh'">{{ tcmPartners.sublabelCn }}</span>
-              <span v-show="currentLang === 'en'">{{ tcmPartners.sublabelEn }}</span>
-            </span>
-          </div>
-          
-          <p class="section-desc-centered">
-            <span v-show="currentLang === 'zh'">{{ tcmPartners.descCn }}</span>
-            <span v-show="currentLang === 'en'">{{ tcmPartners.descEn }}</span>
-          </p>
-        </div>
-        
-        <div class="tcm-cards-row">
-          <div v-for="(card, index) in tcmPartners.cards" :key="index" class="tcm-card">
-            <div class="tcm-card-icon">{{ card.icon }}</div>
-            <div class="tcm-card-num">{{ card.num }}</div>
-            <h4 class="tcm-card-title">
-              <span v-show="currentLang === 'zh'">{{ card.labelCn }}</span>
-              <span v-show="currentLang === 'en'">{{ card.labelEn }}</span>
-            </h4>
-          </div>
-        </div>
-        
-        <div class="tcm-partners-section">
-          <p class="logos-title-centered">
-            <span v-show="currentLang === 'zh'">部分服务机构</span>
-            <span v-show="currentLang === 'en'">Selected Service Network</span>
-          </p>
-          <div class="tcm-logos-grid">
-            <div v-for="(partner, index) in tcmPartners.partners" :key="index" class="tcm-logo-item">
-              <div class="tcm-logo-icon">{{ partner.logo }}</div>
-              <span class="tcm-logo-name">
-                <span v-show="currentLang === 'zh'">{{ partner.nameCn }}</span>
-                <span v-show="currentLang === 'en'">{{ partner.nameEn }}</span>
-              </span>
             </div>
           </div>
         </div>
