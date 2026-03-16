@@ -10,6 +10,8 @@ const bgImagesPng = import.meta.glob('@/assets/images/*.png', { eager: true, imp
 const xieheImage = bgImages['/src/assets/images/xiehe-caption.jpg']
 // 华山医院本地图片
 const huashanImage = bgImagesPng['/src/assets/images/huashan-caption.png']
+// 同济医院本地图片
+const tongjiImage = bgImages['/src/assets/images/tongji-caption.jpeg']
 
 // 背景图片轮播数组 - 使用实际导入的图片路径
 const backgroundImages = [
@@ -99,7 +101,7 @@ const medicalPartners = {
     {
       nameCn: '武汉同济医院',
       nameEn: 'Wuhan Tongji Hospital',
-      image: 'https://images.unsplash.com/photo-1587351021759-3e5b21f9a044?w=800&h=600&fit=crop&q=80',
+      image: tongjiImage,
       rank: '全国 Top 10',
       specialty: '泌尿外科、器官移植'
     },
