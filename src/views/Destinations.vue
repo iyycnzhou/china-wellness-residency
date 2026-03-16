@@ -6,6 +6,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const bgImages = import.meta.glob('@/assets/images/*.jpg', { eager: true, import: 'default' })
 const bgImagesPng = import.meta.glob('@/assets/images/*.png', { eager: true, import: 'default' })
 
+// 协和医院本地图片
+const xieheImage = bgImages['/src/assets/images/xiehe-caption.jpg']
+
 // 背景图片轮播数组 - 使用实际导入的图片路径
 const backgroundImages = [
   bgImages['/src/assets/images/medical-mri-scan.jpg'],
@@ -66,7 +69,7 @@ const medicalPartners = {
     {
       nameCn: '北京协和医院',
       nameEn: 'Peking Union Medical College Hospital',
-      image: 'https://images.unsplash.com/photo-1587351021759-3e5b21f9a044?w=800&h=600&fit=crop&q=80',
+      image: xieheImage,
       rank: '全国 Top 3',
       specialty: '心血管、肿瘤科'
     },
