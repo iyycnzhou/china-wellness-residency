@@ -372,7 +372,6 @@ const coverageStats = [
               <span class="btn-arrow">→</span>
             </button>
           </div>
-        </div>
           
           <!-- 底部文案区域 -->
           <div class="medical-value-prop">
