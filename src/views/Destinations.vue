@@ -348,7 +348,8 @@ const coverageStats = [
         
         <!-- 右侧医院图片网格 -->
         <div class="medical-hospitals-grid">
-          <div v-for="(hospital, index) in medicalPartners.featuredHospitals" :key="index" class="hospital-card-mayo">
+          <!-- 前 4 家医院图片 -->
+          <div v-for="(hospital, index) in medicalPartners.featuredHospitals.slice(0, 4)" :key="index" class="hospital-card-mayo">
             <div class="hospital-card-image">
               <img :src="hospital.image" :alt="hospital.nameCn" class="card-img" />
               <div class="card-overlay"></div>
@@ -361,6 +362,82 @@ const coverageStats = [
                 <span class="card-rank">{{ hospital.rank }}</span>
               </div>
             </div>
+          </div>
+          
+          <!-- 底部文案区域 -->
+          <div class="medical-value-prop">
+            <p class="value-prop-title">
+              <span v-show="currentLang === 'zh'">我们不是医院，而是您通往顶级医疗资源的桥梁</span>
+              <span v-show="currentLang === 'en'">Your Bridge to Premier Medical Resources</span>
+            </p>
+            
+            <p class="value-prop-desc">
+              <span v-show="currentLang === 'zh'">不直接诊疗，只专注资源协调。依托 50+ 家三甲医院（含 15 家全国 Top100）深度合作网络，为您提供：</span>
+              <span v-show="currentLang === 'en'">We coordinate resources through our network of 50+ Grade-A hospitals.</span>
+            </p>
+            
+            <div class="value-prop-services">
+              <div class="service-item">
+                <span class="service-check">✓</span>
+                <div class="service-content">
+                  <span class="service-title">
+                    <span v-show="currentLang === 'zh'">路径规划</span>
+                    <span v-show="currentLang === 'en'">Care Path Planning</span>
+                  </span>
+                  <span class="service-detail">
+                    <span v-show="currentLang === 'zh'">从初诊到康复的全程科学引导</span>
+                    <span v-show="currentLang === 'en'">Scientific guidance from diagnosis to recovery</span>
+                  </span>
+                </div>
+              </div>
+              
+              <div class="service-item">
+                <span class="service-check">✓</span>
+                <div class="service-content">
+                  <span class="service-title">
+                    <span v-show="currentLang === 'zh'">专家预约</span>
+                    <span v-show="currentLang === 'en'">Expert Appointment</span>
+                  </span>
+                  <span class="service-detail">
+                    <span v-show="currentLang === 'zh'">突破挂号瓶颈，直通核心科室</span>
+                    <span v-show="currentLang === 'en'">Direct access to core departments</span>
+                  </span>
+                </div>
+              </div>
+              
+              <div class="service-item">
+                <span class="service-check">✓</span>
+                <div class="service-content">
+                  <span class="service-title">
+                    <span v-show="currentLang === 'zh'">手术协调</span>
+                    <span v-show="currentLang === 'en'">Surgery Coordination</span>
+                  </span>
+                  <span class="service-detail">
+                    <span v-show="currentLang === 'zh'">缩短等待周期，优化就医体验</span>
+                    <span v-show="currentLang === 'en'">Reduce waiting time, optimize experience</span>
+                  </span>
+                </div>
+              </div>
+              
+              <div class="service-item">
+                <span class="service-check">✓</span>
+                <div class="service-content">
+                  <span class="service-title">
+                    <span v-show="currentLang === 'zh'">跨院转诊</span>
+                    <span v-show="currentLang === 'en'">Cross-Hospital Referral</span>
+                  </span>
+                  <span class="service-detail">
+                    <span v-show="currentLang === 'zh'">打破地域壁垒，整合最优资源</span>
+                    <span v-show="currentLang === 'en'">Integrate optimal resources across regions</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <p class="value-prop-footer">
+              <span v-show="currentLang === 'zh'">以专业顾问身份，为您定制高效、私密的专属医疗方案</span>
+              <span v-show="currentLang === 'en'">Professional, efficient, and private medical solutions</span>
+            </p>
           </div>
         </div>
       </div>
@@ -981,6 +1058,83 @@ const coverageStats = [
   overflow: hidden;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* 价值主张文案区域 */
+.medical-value-prop {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  padding: 2.5rem;
+  color: var(--color-white);
+  margin-top: 1rem;
+}
+
+.value-prop-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.value-prop-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.95;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.value-prop-services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.service-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.service-check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.service-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.service-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.service-detail {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.value-prop-footer {
+  font-size: 0.9375rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .card-img {
@@ -1853,6 +2007,20 @@ const coverageStats = [
   
   .hospital-card-image {
     height: 240px;
+  }
+  
+  .medical-value-prop {
+    grid-column: span 1;
+    padding: 2rem 1.5rem;
+  }
+  
+  .value-prop-title {
+    font-size: 1.25rem;
+  }
+  
+  .value-prop-services {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .specialties-container {
