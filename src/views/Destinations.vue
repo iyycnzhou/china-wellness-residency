@@ -1087,24 +1087,24 @@ const coverageStats = [
 }
 
 .big-number {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 300;
   line-height: 1;
-  color: var(--color-black);
+  color: var(--color-text-primary);
   letter-spacing: -0.02em;
 }
 
 .number-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 500;
-  color: var(--color-black);
+  color: var(--color-text-primary);
   line-height: 1.3;
 }
 
 .header-desc {
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--color-stone);
+  color: var(--color-text-tertiary);
   max-width: 400px;
 }
 
@@ -1121,9 +1121,9 @@ const coverageStats = [
 }
 
 .value-statement {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 500;
-  color: var(--color-black);
+  color: var(--color-text-primary);
   line-height: 1.6;
   margin-bottom: 1.25rem;
 }
@@ -1131,7 +1131,7 @@ const coverageStats = [
 .value-desc {
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--color-stone);
+  color: var(--color-text-tertiary);
   margin-bottom: 1.5rem;
 }
 
@@ -1168,19 +1168,19 @@ const coverageStats = [
 .checklist-title {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--color-black);
+  color: var(--color-text-primary);
   line-height: 1.3;
 }
 
 .checklist-detail {
   font-size: 0.875rem;
-  color: var(--color-stone);
+  color: var(--color-text-tertiary);
   line-height: 1.5;
 }
 
 .value-footer {
   font-size: 0.9375rem;
-  color: var(--color-stone);
+  color: var(--color-text-tertiary);
   line-height: 1.7;
   padding-top: 1.25rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
@@ -1431,7 +1431,7 @@ const coverageStats = [
 .specialty-name {
   font-size: 1rem;
   font-weight: 500;
-  color: var(--color-black);
+  color: var(--color-text-primary);
 }
 
 .specialty-arrow {
