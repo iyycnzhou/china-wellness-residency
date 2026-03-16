@@ -1206,8 +1206,15 @@ onUnmounted(() => {
   max-width: 700px;
   margin: 0 auto;
   font-size: 1.125rem;
-  color: #3d3d3d;
   line-height: 1.8;
+}
+
+.global-residency .subtitle-cn {
+  color: #3d3d3d !important;
+}
+
+.global-residency .subtitle-en {
+  color: #3d3d3d !important;
 }
 
 .residency-grid {

@@ -110,100 +110,42 @@ const benefits = [
           <div class="section-divider"></div>
         </div>
         
-        <!-- 交错的图文卡片 - 2 行 x3 列布局 -->
-        <div class="benefits-showcase">
-          <!-- 第一行 -->
-          <div class="benefits-row">
-            <div 
-              v-for="(benefit, index) in benefits.slice(0, 3)" 
-              :key="index"
-              class="benefit-showcase-item"
-              :class="{ 'reverse': index % 2 === 1 }"
-            >
-              <!-- 图片区域 -->
-              <div class="benefit-showcase-image">
-                <img 
-                  :src="benefit.image" 
-                  :alt="currentLang === 'zh' ? benefit.nameCn : benefit.nameEn"
-                  class="showcase-img"
-                  loading="lazy"
-                >
-                <div class="showcase-image-overlay"></div>
-                <!-- 权益编号 -->
-                <div class="benefit-number">
-                  <span class="number-bg">0{{ index + 1 }}</span>
-                </div>
-              </div>
-              
-              <!-- 文字区域 -->
-              <div class="benefit-showcase-content">
-                <div class="content-inner">
-                  <span class="benefit-label">
-                    <span v-show="currentLang === 'zh'">核心权益</span>
-                    <span v-show="currentLang === 'en'">CORE ENTITLEMENT</span>
-                    <span class="label-number">0{{ index + 1 }}</span>
-                  </span>
-                  
-                  <h3 class="benefit-title">
-                    <span v-show="currentLang === 'zh'" class="title-cn">{{ benefit.nameCn }}</span>
-                    <span v-show="currentLang === 'en'" class="title-en">{{ benefit.nameEn }}</span>
-                  </h3>
-                  
-                  <p class="benefit-description">
-                    <span v-show="currentLang === 'zh'" class="desc-cn">{{ benefit.descCn }}</span>
-                    <span v-show="currentLang === 'en'" class="desc-en">{{ benefit.descEn }}</span>
-                  </p>
-                  
-                  <div class="benefit-decoration"></div>
-                </div>
-              </div>
+        <!-- 六大权益 - 杂志排版式布局 -->
+        <div class="benefits-alternating">
+          <div 
+            v-for="(benefit, index) in benefits" 
+            :key="index"
+            class="benefit-alternating-item"
+            :class="{ 'reverse': index % 2 === 1 }"
+          >
+            <!-- 图片区域 - 金色边框 -->
+            <div class="benefit-image-wrapper">
+              <img 
+                :src="benefit.image" 
+                :alt="currentLang === 'zh' ? benefit.nameCn : benefit.nameEn"
+                class="benefit-img"
+                loading="lazy"
+              >
+              <div class="benefit-img-overlay"></div>
             </div>
-          </div>
-          
-          <!-- 第二行 -->
-          <div class="benefits-row">
-            <div 
-              v-for="(benefit, index) in benefits.slice(3, 6)" 
-              :key="index + 3"
-              class="benefit-showcase-item"
-              :class="{ 'reverse': (index + 3) % 2 === 1 }"
-            >
-              <!-- 图片区域 -->
-              <div class="benefit-showcase-image">
-                <img 
-                  :src="benefit.image" 
-                  :alt="currentLang === 'zh' ? benefit.nameCn : benefit.nameEn"
-                  class="showcase-img"
-                  loading="lazy"
-                >
-                <div class="showcase-image-overlay"></div>
-                <!-- 权益编号 -->
-                <div class="benefit-number">
-                  <span class="number-bg">0{{ index + 4 }}</span>
-                </div>
-              </div>
-              
-              <!-- 文字区域 -->
-              <div class="benefit-showcase-content">
-                <div class="content-inner">
-                  <span class="benefit-label">
-                    <span v-show="currentLang === 'zh'">核心权益</span>
-                    <span v-show="currentLang === 'en'">CORE ENTITLEMENT</span>
-                    <span class="label-number">0{{ index + 4 }}</span>
-                  </span>
-                  
-                  <h3 class="benefit-title">
-                    <span v-show="currentLang === 'zh'" class="title-cn">{{ benefit.nameCn }}</span>
-                    <span v-show="currentLang === 'en'" class="title-en">{{ benefit.nameEn }}</span>
-                  </h3>
-                  
-                  <p class="benefit-description">
-                    <span v-show="currentLang === 'zh'" class="desc-cn">{{ benefit.descCn }}</span>
-                    <span v-show="currentLang === 'en'" class="desc-en">{{ benefit.descEn }}</span>
-                  </p>
-                  
-                  <div class="benefit-decoration"></div>
-                </div>
+            
+            <!-- 文字区域 -->
+            <div class="benefit-text-wrapper">
+              <div class="benefit-text-inner">
+                <h3 class="benefit-heading">
+                  <span class="heading-number">0{{ index + 1 }}</span>
+                  <span v-show="currentLang === 'zh'" class="heading-cn">{{ benefit.nameCn }}</span>
+                  <span v-show="currentLang === 'en'" class="heading-en">{{ benefit.nameEn }}</span>
+                </h3>
+                
+                <div class="benefit-heading-divider"></div>
+                
+                <p class="benefit-text">
+                  <span v-show="currentLang === 'zh'" class="text-cn">{{ benefit.descCn }}</span>
+                  <span v-show="currentLang === 'en'" class="text-en">{{ benefit.descEn }}</span>
+                </p>
+                
+                <div class="benefit-accent-line"></div>
               </div>
             </div>
           </div>
@@ -300,6 +242,15 @@ const benefits = [
             </div>
           </div>
         </div>
+        
+        <!-- 查看更多按钮 -->
+        <div class="view-more-container">
+          <button class="view-more-btn">
+            <span v-show="currentLang === 'zh'">查看更多</span>
+            <span v-show="currentLang === 'en'">View More</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
       </div>
     </section>
   </div>
@@ -384,7 +335,7 @@ const benefits = [
 }
 
 .hero-content h1 {
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   margin-bottom: 1.5rem;
   font-weight: 700;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
@@ -403,7 +354,7 @@ const benefits = [
 
 .title-en {
   display: block;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   letter-spacing: 0.1em;
   color: #ffffff !important;
   font-weight: 600;
@@ -483,6 +434,68 @@ const benefits = [
   text-align: center;
   margin-bottom: var(--spacing-2xl);
   padding: 0 var(--spacing-lg);
+  position: relative;
+}
+
+/* ========== Decorative Number Badge ========== */
+.section-number-badge {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.badge-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, 
+    var(--secondary) 0%, 
+    #c9a962 50%, 
+    #b89654 100%);
+  box-shadow: 
+    0 4px 15px rgba(201, 169, 98, 0.4),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.badge-circle::before {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  z-index: 2;
+}
+
+.badge-circle::after {
+  content: '';
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1px dashed rgba(201, 169, 98, 0.5);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.badge-number {
+  font-size: 1.75rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  letter-spacing: -0.02em;
 }
 
 .section-title {
@@ -538,200 +551,187 @@ const benefits = [
   margin: var(--spacing-md) auto 0;
 }
 
-/* Benefits Showcase - 2 Rows x 3 Columns Layout */
-.benefits-showcase {
+/* Benefits Magazine Layout - Scheme B */
+.benefits-alternating {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: 8rem;
+  padding: 2rem 0;
 }
 
-.benefits-row {
+.benefit-alternating-item {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-md);  /* 缩小列间距 */
-  overflow-x: auto;  /* 支持横向滚动 */
-  padding-bottom: var(--spacing-md);
+  grid-template-columns: 48% 52%;
+  gap: 5rem;
+  align-items: start;
 }
 
-/* 滚动条样式 */
-.benefits-row::-webkit-scrollbar {
-  height: 6px;
-}
-
-.benefits-row::-webkit-scrollbar-track {
-  background: var(--sand);
-  border-radius: 3px;
-}
-
-.benefits-row::-webkit-scrollbar-thumb {
-  background: var(--secondary);
-  border-radius: 3px;
-}
-
-.benefits-row::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-dark);
-}
-
-.benefit-showcase-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 280px;  /* 降低高度，形成扁长方形 */
-  min-width: 600px;  /* 增加宽度，形成长方形 */
-  background-color: var(--white);
-  box-shadow: var(--shadow-md);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: all var(--transition-base);
-  flex-shrink: 0;
-  gap: 0;  /* 移除间距，让两个区域独立 */
-}
-
-.benefit-showcase-item:hover {
-  box-shadow: var(--shadow-xl);
-  transform: translateY(-4px);
-}
-
-.benefit-showcase-item.reverse {
+/* Reverse layout for even items (right image, left text) */
+.benefit-alternating-item.reverse {
   direction: rtl;
 }
 
-.benefit-showcase-item.reverse .benefit-showcase-content {
+.benefit-alternating-item.reverse .benefit-image-wrapper {
+  direction: ltr;
+  margin-left: 0;
+  margin-right: -50px;
+}
+
+.benefit-alternating-item.reverse .benefit-text-wrapper {
   direction: ltr;
 }
 
-/* Image Side - Perfect Square */
-.benefit-showcase-image {
-  position: relative;
-  overflow: hidden;
-  border-right: 3px solid var(--secondary);  /* 金色分隔线 */
-  aspect-ratio: 1 / 1;  /* 强制正方形 */
+.benefit-alternating-item.reverse .benefit-number-row {
+  direction: ltr;
 }
 
-.showcase-img {
+
+
+/* ========== Image Wrapper with Gold Border ========== */
+.benefit-image-wrapper {
+  position: relative;
+  width: calc(100% + 50px);
+  height: 580px;
+  overflow: hidden;
+  border: 3px solid var(--secondary);
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: all 0.5s ease;
+  margin-left: -50px;
+}
+
+.benefit-alternating-item:hover .benefit-image-wrapper {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+/* ========== Text Wrapper ========== */
+.benefit-text-wrapper {
+  padding: 0;
+}
+
+.benefit-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  transition: transform 0.8s ease;
 }
 
-.benefit-showcase-item:hover .showcase-img {
-  transform: scale(1.05);
+.benefit-alternating-item:hover .benefit-img {
+  transform: scale(1.06);
 }
 
-.showcase-image-overlay {
+.benefit-img-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, 
-    rgba(26, 74, 62, 0.4) 0%, 
-    rgba(26, 74, 62, 0.2) 100%);
+    rgba(26, 74, 62, 0.35) 0%, 
+    rgba(26, 74, 62, 0.1) 100%);
   pointer-events: none;
 }
 
-/* Number Badge */
-.benefit-number {
-  position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-  z-index: 2;
+/* ========== Text Wrapper ========== */
+.benefit-text-wrapper {
+  padding: 1rem 0;
 }
 
-.number-bg {
-  display: inline-block;
-  font-size: 3rem;  /* 缩小编号 */
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  line-height: 1;
-}
-
-/* Content Side - Square Independent */
-.benefit-showcase-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--spacing-lg);
-  background-color: var(--white);
-  border-left: 3px solid var(--sand);  /* 左侧淡色分隔线 */
-  max-height: 280px;  /* 限制最大高度，与图片区域一致 */
-  overflow: hidden;  /* 隐藏溢出 */
-}
-
-.content-inner {
+.benefit-text-inner {
   max-width: 100%;
 }
 
-.benefit-label {
-  display: block;
-  font-size: 0.6875rem;  /* 缩小标签 */
-  font-weight: 600;
-  color: var(--secondary);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-xs);
+.benefit-heading {
+  margin-bottom: 1.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.label-number {
+.benefit-heading .heading-number {
   display: inline-block;
-  margin-left: 0.5rem;
-  opacity: 0.5;
+  font-size: 2.25rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--secondary);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.benefit-title {
-  margin-bottom: var(--spacing-sm);
-}
-
-.benefit-title .title-cn {
+.benefit-heading .heading-cn {
   display: block;
-  font-size: 1.5rem;  /* 调整标题大小 */
+  font-size: 2.25rem;
   font-family: var(--font-heading);
   font-weight: 600;
-  color: var(--primary-dark);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-xs);
+  color: #000000;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
 }
 
-.benefit-title .title-en {
+.benefit-heading .heading-en {
   display: block;
-  font-size: 1.125rem;  /* 调整英文标题 */
+  font-size: 1.375rem;
   font-family: var(--font-body);
-  font-weight: 400;
-  color: var(--stone-dark);
+  font-weight: 500;
+  color: #000000;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.benefit-description {
-  margin-bottom: var(--spacing-sm);
+/* Double Gold Lines */
+.benefit-heading-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.25rem 0;
 }
 
-.benefit-description .desc-cn {
-  display: block;
-  font-size: 0.875rem;  /* 调整中文描述 */
-  color: var(--stone-dark);
-  line-height: 1.6;
-  white-space: pre-line;
-}
-
-.benefit-description .desc-en {
-  display: block;
-  font-size: 0.8125rem;  /* 调整英文描述 */
-  color: var(--stone);
-  line-height: 1.5;
-  margin-top: 0.5rem;
-  white-space: pre-line;
-}
-
-.benefit-decoration {
-  width: 40px;  /* 缩小装饰线 */
+.benefit-heading-divider::before,
+.benefit-heading-divider::after {
+  content: '';
+  flex: 1;
   height: 2px;
   background: linear-gradient(90deg, 
     var(--secondary) 0%, 
-    transparent 100%);
-  margin-top: var(--spacing-sm);
+    rgba(201, 169, 98, 0.3) 100%);
+}
+
+.benefit-heading-divider::after {
+  background: linear-gradient(90deg, 
+    rgba(201, 169, 98, 0.3) 0%, 
+    var(--secondary) 100%);
+}
+
+.benefit-text {
+  margin-bottom: 2rem;
+}
+
+.benefit-text .text-cn {
+  display: block;
+  font-size: 1.25rem;
+  color: #6f7c76;
+  line-height: 2.2;
+  white-space: pre-line;
+}
+
+.benefit-text .text-en {
+  display: block;
+  font-size: 1.0625rem;
+  color: #6f7c76;
+  line-height: 2.1;
+  margin-top: 1.5rem;
+  white-space: pre-line;
+}
+
+.benefit-accent-line {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--secondary) 0%, 
+    rgba(201, 169, 98, 0.2) 100%);
+  border-radius: 2px;
 }
 
 /* Detail Section */
@@ -977,97 +977,140 @@ const benefits = [
   color: #6f7c76;
 }
 
+/* View More Button */
+.view-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.view-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 2px solid var(--secondary);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.view-more-btn:hover {
+  background: var(--secondary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 169, 98, 0.4);
+}
+
+.view-more-btn .btn-arrow {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
 /* Responsive */
-@media (max-width: 1440px) {
-  .benefits-row {
-    grid-template-columns: repeat(2, 1fr);  /* 中等屏幕 2 列 */
-  }
-}
-
-@media (max-width: 1024px) {
-  .benefits-row {
-    grid-template-columns: 1fr;  /* 小屏幕 1 列滚动 */
+@media (max-width: 1200px) {
+  .benefit-alternating {
+    gap: 6rem;
   }
   
-  .benefit-showcase-item {
-    min-height: 400px;
-    min-width: auto;
+  .benefit-alternating-item,
+  .benefit-alternating-item.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
-  .benefit-showcase-image {
-    min-height: 200px;
-  }
-}
-
-@media (max-width: 768px) {
-  .benefits-row {
-    grid-template-columns: 1fr;  /* 移动端 1 列 */
+  .benefit-alternating-item.reverse {
+    direction: ltr;
   }
   
-  .section-title .title-cn {
-    font-size: 1.75rem;
+  .benefit-image-wrapper {
+    height: 450px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
   }
   
-  .section-title .title-en {
+  .benefit-heading .heading-number,
+  .benefit-heading .heading-cn {
+    font-size: 2rem;
+  }
+  
+  .benefit-heading .heading-en {
     font-size: 1.25rem;
   }
   
-  .benefit-showcase-item {
-    min-height: auto;
-    border-radius: var(--radius-lg);
-  }
-  
-  .benefit-showcase-image {
-    height: 250px;
-    min-height: 250px;
-  }
-  
-  .number-bg {
-    font-size: 2.5rem;
-  }
-  
-  .benefit-showcase-content {
-    padding: var(--spacing-md);
-  }
-  
-  .benefit-title .title-cn {
-    font-size: 1.5rem;
-  }
-  
-  .benefit-title .title-en {
+  .benefit-text .text-cn {
     font-size: 1.125rem;
   }
   
-  .benefit-description .desc-cn {
-    font-size: 0.875rem;
-  }
-  
-  .benefit-description .desc-en {
-    font-size: 0.8125rem;
-  }
-  
-  .benefit-decoration {
-    width: 30px;
-  }
-}
-
-/* Detail Section Responsive */
-@media (max-width: 768px) {
-  .detail-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .detail-item,
-  .detail-item.reverse {
-    grid-template-columns: 1fr;
-    direction: ltr;
+  .benefit-text .text-en {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .benefits-grid {
+  .section-title .title-cn {
+    font-size: 1.5rem;
+  }
+  
+  .section-title .title-en {
+    font-size: 1rem;
+  }
+  
+  .benefit-alternating {
+    gap: 4rem;
+  }
+  
+  .benefit-image-wrapper {
+    height: 350px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+  }
+  
+  .benefit-heading {
+    flex-direction: column;
+  }
+  
+  .benefit-heading .heading-number,
+  .benefit-heading .heading-cn {
+    font-size: 1.75rem;
+  }
+  
+  .benefit-heading .heading-en {
+    font-size: 1.125rem;
+  }
+  
+  .benefit-text .text-cn {
+    font-size: 1rem;
+  }
+  
+  .benefit-text .text-en {
+    font-size: 0.9375rem;
+  }
+  
+  .benefit-heading-divider::before,
+  .benefit-heading-divider::after {
+    display: none;
+  }
+  
+  .testimonial-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .view-more-btn {
+    padding: 0.875rem 2rem;
+    font-size: 0.9375rem;
   }
 }
 

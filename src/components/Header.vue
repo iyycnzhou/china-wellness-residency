@@ -28,7 +28,7 @@ const menuItems = [
   { name: '首页', nameEn: 'Home', path: '/' },
   { name: '驻留权益', nameEn: 'Residency Benefits', path: '/benefits' },
   { name: '会员计划', nameEn: 'Membership Programs', path: '/membership' },
-  { name: '合作伙伴', nameEn: 'Partners', path: '/destinations' },
+  { name: '服务网络', nameEn: 'Service Network', path: '/destinations' },
   { name: '预约咨询', nameEn: 'Book a Consultation', path: '/contact' },
   { name: '关于我们', nameEn: 'About Us', path: '/about' },
 ]
@@ -63,6 +63,7 @@ const getMenuText = (item: typeof menuItems[0]) => {
       
       <div class="header-center">
         <router-link to="/" class="logo" @click="closeMenu">
+          <img src="/logo-icon.svg" alt="Logo" class="logo-icon">
           <span v-show="currentLang === 'zh'" class="logo-cn">中国全球健康驻留权益网络</span>
           <span v-show="currentLang === 'en'" class="logo-en">China Wellness Residency Benefits Network</span>
         </router-link>
@@ -214,9 +215,18 @@ const getMenuText = (item: typeof menuItems[0]) => {
 }
 
 .logo {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
   color: var(--color-black);
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .logo-cn {
@@ -224,6 +234,7 @@ const getMenuText = (item: typeof menuItems[0]) => {
   font-size: 0.875rem;
   letter-spacing: 0.15em;
   font-weight: 400;
+  line-height: 1.3;
 }
 
 .logo-en {
@@ -232,6 +243,7 @@ const getMenuText = (item: typeof menuItems[0]) => {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-stone);
+  line-height: 1.3;
 }
 
 /* 右侧用户区 */
@@ -448,7 +460,16 @@ const getMenuText = (item: typeof menuItems[0]) => {
     padding: 1rem 1.5rem;
   }
   
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
   .logo-cn {
+    display: none;
+  }
+  
+  .logo-en {
     display: none;
   }
   

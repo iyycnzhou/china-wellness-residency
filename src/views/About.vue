@@ -582,7 +582,11 @@ import { currentLang } from '../composables/useLanguage'
 /* Stats Section */
 .stats-section {
   padding: var(--spacing-xl) 0;
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, 
+    rgba(26, 74, 62, 0.85) 0%, 
+    rgba(26, 74, 62, 0.75) 100%),
+    url('@/assets/images/partners-bg.jpg') center/cover no-repeat;
+  position: relative;
 }
 
 .stats-grid {
@@ -590,10 +594,24 @@ import { currentLang } from '../composables/useLanguage'
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .stat-item {
   color: var(--color-white);
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .stat-number {
@@ -729,6 +747,10 @@ import { currentLang } from '../composables/useLanguage'
   .stats-grid,
   .values-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .stat-item:not(:last-child)::after {
+    display: none;
   }
 }
 </style>

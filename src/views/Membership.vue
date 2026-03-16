@@ -312,6 +312,49 @@ const memberships = [
   padding-top: var(--header-height);
 }
 
+/* Intro Section */
+.intro-section {
+  padding: 4rem 0;
+  background-color: var(--color-white);
+}
+
+.intro-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-title-cn,
+.intro-title-en {
+  display: block;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.intro-text {
+  font-size: 1.125rem;
+  line-height: 2;
+  color: #6f7c76;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-highlight {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Page Hero */
 .page-hero {
   position: relative;
