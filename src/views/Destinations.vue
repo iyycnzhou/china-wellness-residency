@@ -1269,68 +1269,79 @@ const coverageStats = [
 }
 
 .divider-label {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-secondary);
-  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.specialties-grid-merged {
+/* 横向专科列表 - 高端极简设计 */
+.specialties-row-horizontal {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
-.specialty-card {
-  padding: 1.75rem 1.5rem;
+.specialty-item-minimal {
+  padding: 1.5rem 1rem;
   background: var(--color-white);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 8px;
+  border-radius: 4px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.specialty-card:hover {
-  border-color: var(--color-secondary);
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
-  transform: translateY(-4px);
+.specialty-item-minimal:hover {
+  border-color: rgba(102, 126, 234, 0.3);
+  background: rgba(102, 126, 234, 0.02);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-.specialty-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+.specialty-name-cn {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+}
+
+.specialty-divider-dot {
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.15);
   line-height: 1;
 }
 
-.specialty-title {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-}
-
-.specialty-desc {
-  font-size: 0.875rem;
+.specialty-desc-cn {
+  font-size: 0.75rem;
   color: var(--color-text-tertiary);
+  margin: 0;
   line-height: 1.5;
+  letter-spacing: 0.02em;
 }
 
-.specialties-footer {
+.specialties-footer-minimal {
   text-align: center;
-  padding: 1.5rem;
-  background: rgba(102, 126, 234, 0.04);
-  border-radius: 8px;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.04) 100%);
+  border-radius: 4px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .footer-text {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--color-text-tertiary);
   line-height: 1.6;
   margin: 0;
+  letter-spacing: 0.05em;
 }
 
 .hospital-image-large {
