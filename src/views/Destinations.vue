@@ -1007,13 +1007,16 @@ const coverageStats = [
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-  align-items: start;
+  align-items: end;
 }
 
 /* 左侧文案区 */
 .medical-left-content {
   padding-top: 1rem;
   max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 /* 上部：大数字 + 标题 */
