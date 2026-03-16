@@ -299,33 +299,31 @@ const coverageStats = [
       </div>
     </section>
 
-    <!-- Medical Partners Section - 方案 C 卡片聚合布局 -->
+    <!-- Medical Partners Section - Mayo Clinic 风格布局 -->
     <section class="partner-section medical-section">
-      <div class="section-container">
-        <!-- 顶部：标题和描述 -->
-        <div class="medical-header">
-          <p class="section-label">
+      <div class="medical-container">
+        <!-- 左侧文案区 -->
+        <div class="medical-content-left">
+          <p class="medical-label">
             <span v-show="currentLang === 'zh'">医疗服务机构</span>
             <span v-show="currentLang === 'en'">Medical Service Network</span>
           </p>
           
-          <h2 class="section-main-title">
+          <h2 class="medical-title">
             <span v-show="currentLang === 'zh'">{{ medicalPartners.sublabelCn }}</span>
             <span v-show="currentLang === 'en'">{{ medicalPartners.sublabelEn }}</span>
           </h2>
           
-          <p class="section-main-desc">
+          <p class="medical-desc">
             <span v-show="currentLang === 'zh'">{{ medicalPartners.descCn }}</span>
             <span v-show="currentLang === 'en'">{{ medicalPartners.descEn }}</span>
           </p>
-        </div>
-        
-        <!-- 统计数据卡片 -->
-        <div class="medical-stats-cards">
-          <div v-for="(stat, index) in medicalPartners.stats" :key="index" class="stat-card">
-            <div class="stat-card-content">
-              <span class="stat-card-number">{{ stat.num }}</span>
-              <span class="stat-card-label">
+          
+          <!-- 统计数据 -->
+          <div class="medical-stats-vertical">
+            <div v-for="(stat, index) in medicalPartners.stats" :key="index" class="stat-vertical-item">
+              <span class="stat-v-number">{{ stat.num }}</span>
+              <span class="stat-v-label">
                 <span v-show="currentLang === 'zh'">{{ stat.labelCn }}</span>
                 <span v-show="currentLang === 'en'">{{ stat.labelEn }}</span>
               </span>
@@ -333,26 +331,81 @@ const coverageStats = [
           </div>
         </div>
         
-        <!-- 医院轮播展示区 -->
-        <div class="hospital-showcase">
-          <p class="showcase-title">
-            <span v-show="currentLang === 'zh'">部分顶级服务医院</span>
-            <span v-show="currentLang === 'en'">Featured Network Hospitals</span>
-          </p>
-          
-          <div class="hospital-carousel">
-            <div v-for="(hospital, index) in medicalPartners.featuredHospitals" :key="index" class="hospital-slide">
-              <div class="hospital-slide-image">
-                <img :src="hospital.image" :alt="hospital.nameCn" class="slide-img" />
-                <div class="slide-rank">{{ hospital.rank }}</div>
-              </div>
-              <div class="slide-info">
-                <h4 class="slide-name">
+        <!-- 右侧医院图片网格 -->
+        <div class="medical-hospitals-grid">
+          <div v-for="(hospital, index) in medicalPartners.featuredHospitals" :key="index" class="hospital-card-mayo">
+            <div class="hospital-card-image">
+              <img :src="hospital.image" :alt="hospital.nameCn" class="card-img" />
+              <div class="card-overlay"></div>
+              <div class="card-content">
+                <h3 class="card-hospital-name">
                   <span v-show="currentLang === 'zh'">{{ hospital.nameCn }}</span>
                   <span v-show="currentLang === 'en'">{{ hospital.nameEn }}</span>
-                </h4>
-                <p class="slide-specialty">{{ hospital.specialty }}</p>
+                </h3>
+                <p class="card-location">{{ hospital.specialty }}</p>
+                <span class="card-rank">{{ hospital.rank }}</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 底部特色科室区域 -->
+      <div class="featured-specialties">
+        <div class="specialties-container">
+          <div class="specialties-header">
+            <h3 class="specialties-title">
+              <span v-show="currentLang === 'zh'">重点服务专科</span>
+              <span v-show="currentLang === 'en'">Featured Specialties</span>
+            </h3>
+            <p class="specialties-desc">
+              <span v-show="currentLang === 'zh'">我们提供 20+ 重点专科的深度医疗服务，涵盖心血管、骨科、肿瘤、神经科等领域</span>
+              <span v-show="currentLang === 'en'">We provide deep medical services in 20+ key specialties</span>
+            </p>
+          </div>
+          
+          <div class="specialties-list">
+            <div class="specialty-item">
+              <span class="specialty-name">
+                <span v-show="currentLang === 'zh'">心血管内科</span>
+                <span v-show="currentLang === 'en'">Cardiology</span>
+              </span>
+              <span class="specialty-arrow">›</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-name">
+                <span v-show="currentLang === 'zh'">骨科</span>
+                <span v-show="currentLang === 'en'">Orthopedics</span>
+              </span>
+              <span class="specialty-arrow">›</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-name">
+                <span v-show="currentLang === 'zh'">肿瘤科</span>
+                <span v-show="currentLang === 'en'">Oncology</span>
+              </span>
+              <span class="specialty-arrow">›</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-name">
+                <span v-show="currentLang === 'zh'">神经科</span>
+                <span v-show="currentLang === 'en'">Neurology</span>
+              </span>
+              <span class="specialty-arrow">›</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-name">
+                <span v-show="currentLang === 'zh'">康复医学</span>
+                <span v-show="currentLang === 'en'">Rehabilitation</span>
+              </span>
+              <span class="specialty-arrow">›</span>
+            </div>
+            <div class="specialty-item">
+              <span class="specialty-name">
+                <span v-show="currentLang === 'zh'">牙科</span>
+                <span v-show="currentLang === 'en'">Dentistry</span>
+              </span>
+              <span class="specialty-arrow">›</span>
             </div>
           </div>
         </div>
@@ -825,25 +878,30 @@ const coverageStats = [
   text-transform: uppercase;
 }
 
-/* ==================== MEDICAL SECTION - 方案 C 卡片聚合布局 ==================== */
+/* ==================== MEDICAL SECTION - Mayo Clinic 风格 ==================== */
 .medical-section {
   background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+  padding: 6rem 0;
 }
 
-.section-container {
-  max-width: 1200px;
+.medical-container {
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 6rem 2rem;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 4rem;
+  align-items: start;
 }
 
-/* 顶部标题区 */
-.medical-header {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 4rem;
+/* 左侧文案区 */
+.medical-content-left {
+  padding-top: 2rem;
+  position: sticky;
+  top: 120px;
 }
 
-.medical-header .section-label {
+.medical-label {
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-secondary);
@@ -852,7 +910,7 @@ const coverageStats = [
   margin-bottom: 1.5rem;
 }
 
-.medical-header .section-main-title {
+.medical-title {
   font-size: 2.5rem;
   font-weight: 400;
   color: var(--color-black);
@@ -860,65 +918,33 @@ const coverageStats = [
   line-height: 1.3;
 }
 
-.medical-header .section-main-desc {
+.medical-desc {
   font-size: 1.125rem;
   line-height: 1.9;
   color: var(--color-stone);
-  max-width: 700px;
-  margin: 0 auto;
+  margin-bottom: 3rem;
 }
 
-/* 统计数据卡片 */
-.medical-stats-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 4rem;
-}
-
-.stat-card {
-  background: var(--color-white);
-  border-radius: 8px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  border: 1px solid rgba(102, 126, 234, 0.15);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-  border-color: rgba(102, 126, 234, 0.3);
-}
-
-.stat-card:hover::before {
-  transform: scaleX(1);
-}
-
-.stat-card-content {
+/* 统计数据垂直排列 */
+.medical-stats-vertical {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  gap: 2rem;
+  padding: 2.5rem;
+  background: var(--color-white);
+  border-radius: 8px;
+  border: 1px solid rgba(102, 126, 234, 0.15);
 }
 
-.stat-card-number {
+.stat-vertical-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-v-number {
   display: block;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
@@ -927,96 +953,161 @@ const coverageStats = [
   line-height: 1;
 }
 
-.stat-card-label {
+.stat-v-label {
   display: block;
   font-size: 0.9375rem;
   color: var(--color-stone);
   font-weight: 500;
 }
 
-/* 医院轮播展示区 */
-.hospital-showcase {
-  padding-top: 2rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.showcase-title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-stone);
-  margin-bottom: 2rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.hospital-carousel {
+/* 右侧医院图片网格 */
+.medical-hospitals-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
+  padding-top: 2rem;
 }
 
-.hospital-slide {
-  background: var(--color-white);
+.hospital-card-mayo {
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hospital-slide:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-secondary);
-}
-
-.hospital-slide-image {
+.hospital-card-image {
   position: relative;
-  height: 200px;
+  height: 280px;
   overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.slide-img {
+.card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-.hospital-slide:hover .slide-img {
+.hospital-card-mayo:hover .card-img {
   transform: scale(1.08);
 }
 
-.slide-rank {
+.card-overlay {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.hospital-card-mayo:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 2;
+}
+
+.card-hospital-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.card-location {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
+}
+
+.card-rank {
+  display: inline-block;
   background: rgba(255, 255, 255, 0.98);
-  padding: 0.5rem 0.875rem;
+  padding: 0.375rem 0.875rem;
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-black);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.slide-info {
-  padding: 1.5rem;
+/* 底部特色科室区域 */
+.featured-specialties {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.slide-name {
-  font-size: 1rem;
-  font-weight: 600;
+.specialties-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.specialties-header {
+  margin-bottom: 3rem;
+}
+
+.specialties-title {
+  font-size: 2rem;
+  font-weight: 400;
   color: var(--color-black);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
+  margin-bottom: 1rem;
 }
 
-.slide-specialty {
-  font-size: 0.875rem;
+.specialties-desc {
+  font-size: 1.125rem;
+  line-height: 1.8;
   color: var(--color-stone);
-  line-height: 1.5;
+  max-width: 700px;
+}
+
+.specialties-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.specialty-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.specialty-item:hover {
+  border-color: var(--color-secondary);
+  background: rgba(102, 126, 234, 0.03);
+  transform: translateX(8px);
+}
+
+.specialty-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.specialty-arrow {
+  font-size: 1.5rem;
+  color: var(--color-secondary);
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.specialty-item:hover .specialty-arrow {
+  transform: translateX(4px);
 }
 
 /* Featured Hospitals */
@@ -1656,21 +1747,22 @@ const coverageStats = [
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .medical-layout {
+  .medical-container {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
   
-  .medical-image-wrapper {
+  .medical-content-left {
     position: relative;
     top: 0;
+    padding-top: 0;
   }
   
-  .medical-stats-grid {
+  .medical-hospitals-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .hospitals-grid {
+  .specialties-list {
     grid-template-columns: repeat(2, 1fr);
   }
   
@@ -1737,29 +1829,49 @@ const coverageStats = [
     padding: 4rem 1.5rem;
   }
   
-  .medical-header .section-main-title {
+  .medical-container {
+    padding: 0 1.5rem;
+  }
+  
+  .medical-title {
     font-size: 1.75rem;
   }
   
-  .medical-header .section-main-desc {
+  .medical-desc {
     font-size: 1rem;
   }
   
-  .medical-stats-cards {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .medical-stats-vertical {
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
   
-  .stat-card {
-    padding: 2rem 1.5rem;
-  }
-  
-  .stat-card-number {
+  .stat-v-number {
     font-size: 2.5rem;
   }
   
-  .hospital-carousel {
+  .medical-hospitals-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .hospital-card-image {
+    height: 240px;
+  }
+  
+  .specialties-container {
+    padding: 0 1.5rem;
+  }
+  
+  .specialties-title {
+    font-size: 1.5rem;
+  }
+  
+  .specialties-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .specialty-item {
+    padding: 1rem 1.25rem;
   }
   
   .hospitals-grid {
