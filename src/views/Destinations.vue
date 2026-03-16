@@ -1,15 +1,57 @@
 <script setup lang="ts">
 import { currentLang } from '../composables/useLanguage'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+// 背景图片轮播数组
+const backgroundImages = [
+  'benefit-detail-medical.png',
+  'medical-mri-scan.jpg',
+  'medical-lab-test.jpg',
+  'wellness-treatment.png',
+  'health-consultation.jpg'
+]
+
+// 当前背景图片索引
+const currentBgIndex = ref(0)
+let bgInterval: number | null = null
+
+// 切换背景图片
+const nextBackground = () => {
+  currentBgIndex.value = (currentBgIndex.value + 1) % backgroundImages.length
+}
+
+// 开始自动轮播
+const startBackgroundRotation = () => {
+  if (bgInterval) return
+  bgInterval = window.setInterval(() => {
+    nextBackground()
+  }, 5000) // 每 5 秒切换一次
+}
+
+// 停止自动轮播
+const stopBackgroundRotation = () => {
+  if (bgInterval) {
+    clearInterval(bgInterval)
+    bgInterval = null
+  }
+}
+
+onMounted(() => {
+  startBackgroundRotation()
+})
+
+onUnmounted(() => {
+  stopBackgroundRotation()
+})
 
 const medicalPartners = {
   number: '50+',
-  labelCn: '合作三甲医院',
-  labelEn: 'Partner Grade-A Hospitals',
+  labelCn: '服务三甲医院',
+  labelEn: 'Network Grade-A Hospitals',
   sublabelCn: '含 15 家全国 Top100 医院',
   sublabelEn: 'Including 15 of China\'s Top 100',
-  descCn: '与全国 50+ 家顶级三甲医院建立深度战略合作关系，其中包括 15 家全国医院 Top100 强。合作涵盖心血管、骨科、牙科、肿瘤、神经科、康复医学等 20+ 重点专科。',
-  descEn: 'Deep strategic partnerships with 50+ top-tier Grade-A hospitals nationwide, including 15 of China\'s Top 100 Hospitals. Cooperation covers 20+ key specialties.',
-  image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&h=800&fit=crop&q=80',
+  descCn: '与全国 50+ 家顶级三甲医院建立深度服务合作关系，其中包括 15 家全国医院 Top100 强。服务涵盖心血管、骨科、牙科、肿瘤、神经科、康复医学等 20+ 重点专科。',
+  descEn: 'Deep service partnerships with 50+ top-tier Grade-A hospitals nationwide, including 15 of China\'s Top 100 Hospitals. Services cover 20+ key specialties.',
   stats: [
     { num: '50+', labelCn: '三甲医院', labelEn: 'Grade-A Hospitals' },
     { num: '15', labelCn: '全国 Top100', labelEn: 'Top 100' },
@@ -50,12 +92,12 @@ const medicalPartners = {
 
 const wellnessPartners = {
   number: '20+',
-  labelCn: '康养基地',
-  labelEn: 'Wellness Bases',
-  sublabelCn: '总面积超 5000 亩',
-  sublabelEn: 'Total Area 5,000+ Mu',
-  descCn: '精选全国 20+ 高端康养社区，总占地面积超 5000 亩，年接待能力 10 万 + 人次。所有康养基地均为自有或控股，确保服务品质与价格优势。',
-  descEn: 'Carefully selected 20+ premium wellness communities nationwide, total area exceeds 5,000 mu, annual reception capacity 100,000+ person-times.',
+  labelCn: '康养服务机构',
+  labelEn: 'Wellness Service Network',
+  sublabelCn: '总面积超 10000 亩',
+  sublabelEn: 'Total Area 10,000+ Mu',
+  descCn: '精选全国 20+ 高端康养社区，总占地面积超 10000 亩，年接待能力 10 万 + 人次。所有康养基地均为服务网络成员，确保服务品质与价格优势。',
+  descEn: 'Carefully selected 20+ premium wellness communities nationwide, total area exceeds 10,000 mu, annual reception capacity 100,000+ person-times.',
   eyebrowCn: '专为您的健康而设计',
   eyebrowEn: 'DESIGNED FOR YOUR WELLNESS',
   titleCn: '康养社区，用心打造',
@@ -64,7 +106,7 @@ const wellnessPartners = {
     { icon: '🏖️', titleCn: '海滨基地', titleEn: 'Coastal Bases', descCn: '6 个海滨疗养基地', descEn: '6 coastal bases', value: '2000+ 床位' },
     { icon: '♨️', titleCn: '温泉中心', titleEn: 'Hot Spring', descCn: '5 个温泉度假基地', descEn: '5 hot spring bases', value: '天然温泉' },
     { icon: '⛰️', titleCn: '山林小镇', titleEn: 'Mountain Towns', descCn: '9 个山林康养基地', descEn: '9 mountain bases', value: '85% 森林' },
-    { icon: '🏠', titleCn: '自有比例', titleEn: 'Ownership', descCn: '12 个自有/控股基地', descEn: '12 owned bases', value: '60% 占比' }
+    { icon: '🏠', titleCn: '服务网络', titleEn: 'Service Network', descCn: '12 个服务网络基地', descEn: '12 network bases', value: '60% 占比' }
   ],
   bases: [
     {
@@ -160,8 +202,27 @@ const coverageStats = [
   <div class="partners-page">
     <!-- Hero Section -->
     <section class="page-hero">
-      <img class="hero-bg" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&h=1080&fit=crop&q=80" alt="Partners Network" />
+      <transition name="fade" mode="out-in">
+        <img 
+          :key="currentBgIndex"
+          class="hero-bg" 
+          :src="`@/assets/images/${backgroundImages[currentBgIndex]}`" 
+          alt="Partners Network" 
+        />
+      </transition>
       <div class="hero-overlay"></div>
+      
+      <!-- 轮播指示器 -->
+      <div class="bg-indicators">
+        <span 
+          v-for="(img, index) in backgroundImages" 
+          :key="index"
+          :class="['indicator-dot', { active: index === currentBgIndex }]"
+          @mouseenter="stopBackgroundRotation"
+          @mouseleave="startBackgroundRotation"
+          @click="currentBgIndex = index"
+        ></span>
+      </div>
       
       <div class="hero-content container">
         <p class="hero-eyebrow">
@@ -169,8 +230,8 @@ const coverageStats = [
           <span v-show="currentLang === 'en'">5 Years · Nationwide Network</span>
         </p>
         <h1>
-          <span v-show="currentLang === 'zh'" class="title-cn">我们的合作伙伴</span>
-          <span v-show="currentLang === 'en'" class="title-en">Our Partners</span>
+          <span v-show="currentLang === 'zh'" class="title-cn">服务网络</span>
+          <span v-show="currentLang === 'en'" class="title-en">Service Network</span>
         </h1>
         <p class="hero-subtitle">
           <span v-show="currentLang === 'zh'" class="subtitle-cn">汇聚中国顶级资源 共创健康未来</span>
@@ -239,8 +300,8 @@ const coverageStats = [
             <div class="section-label">
               <span class="label-icon">🏥</span>
               <span class="label-text">
-                <span v-show="currentLang === 'zh'">医疗合作伙伴</span>
-                <span v-show="currentLang === 'en'">Medical Partners</span>
+                <span v-show="currentLang === 'zh'">医疗服务机构</span>
+                <span v-show="currentLang === 'en'">Medical Service Network</span>
               </span>
             </div>
             
@@ -266,8 +327,8 @@ const coverageStats = [
             
             <div class="featured-hospitals">
               <p class="hospitals-title">
-                <span v-show="currentLang === 'zh'">部分顶级合作医院</span>
-                <span v-show="currentLang === 'en'">Featured Partner Hospitals</span>
+                <span v-show="currentLang === 'zh'">部分顶级服务医院</span>
+                <span v-show="currentLang === 'en'">Featured Network Hospitals</span>
               </p>
               <div class="hospitals-grid">
                 <div v-for="(hospital, index) in medicalPartners.featuredHospitals" :key="index" class="hospital-card">
@@ -355,8 +416,8 @@ const coverageStats = [
           
           <div class="section-label-centered">
             <span class="label-text">
-              <span v-show="currentLang === 'zh'">中医合作伙伴</span>
-              <span v-show="currentLang === 'en'">TCM Partners</span>
+              <span v-show="currentLang === 'zh'">中医服务机构</span>
+              <span v-show="currentLang === 'en'">TCM Service Network</span>
             </span>
           </div>
           
@@ -391,8 +452,8 @@ const coverageStats = [
         
         <div class="tcm-partners-section">
           <p class="logos-title-centered">
-            <span v-show="currentLang === 'zh'">部分合作机构</span>
-            <span v-show="currentLang === 'en'">Selected Partners</span>
+            <span v-show="currentLang === 'zh'">部分服务机构</span>
+            <span v-show="currentLang === 'en'">Selected Service Network</span>
           </p>
           <div class="tcm-logos-grid">
             <div v-for="(partner, index) in tcmPartners.partners" :key="index" class="tcm-logo-item">
@@ -535,6 +596,50 @@ const coverageStats = [
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 1s ease-in-out;
+}
+
+/* 淡入淡出过渡 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 背景轮播指示器 */
+.bg-indicators {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 3;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.indicator-dot:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.indicator-dot.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.3);
+  border-color: rgba(255, 255, 255, 1);
 }
 
 .hero-overlay {
