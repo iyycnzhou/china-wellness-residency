@@ -79,18 +79,18 @@ import { currentLang } from '../composables/useLanguage'
       <div class="container">
         <div class="intro-content">
           <h2 class="company-name">
-            <span class="name-cn">中国全球健康驻留权益网络</span>
-            <span class="name-en">China Wellness Residency Benefits Network</span>
+            <span v-show="currentLang === 'zh'" class="name-cn">中国全球健康驻留权益网络</span>
+            <span v-show="currentLang === 'en'" class="name-en">China Wellness Residency Benefits Network</span>
           </h2>
-          
+
           <p class="intro-text">
-            <span class="text-cn">我们是一个面向全球客户的医疗 + 康养 + 旅游 + 健康保障综合服务平台。</span>
-            <span class="text-en">We are an integrated service platform combining medical care, wellness, tourism, and health protection for global clients.</span>
+            <span v-show="currentLang === 'zh'" class="text-cn">我们是一个面向全球客户的医疗 + 康养 + 旅游 + 健康保障综合服务平台。</span>
+            <span v-show="currentLang === 'en'" class="text-en">We are an integrated service platform combining medical care, wellness, tourism, and health protection for global clients.</span>
           </p>
-          
+
           <p class="intro-text">
-            <span class="text-cn">通过整合中国优质医疗资源与康养资源，我们为国际客户提供 <strong>中国国际健康驻留计划（China Wellness Residency Program）</strong>，让客户购买的不仅是一次旅行，而是中国医疗康养资源的综合使用权与医疗保障权益。</span>
-            <span class="text-en">By integrating China's premium medical and wellness resources, we offer the <strong>China Wellness Residency Program</strong> — giving international clients not just a trip, but comprehensive access to China's medical and wellness resources with health protection benefits.</span>
+            <span v-show="currentLang === 'zh'" class="text-cn">通过整合中国优质医疗资源与康养资源，我们为国际客户提供 <strong>中国国际健康驻留计划（China Wellness Residency Program）</strong>，让客户购买的不仅是一次旅行，而是中国医疗康养资源的综合使用权与医疗保障权益。</span>
+            <span v-show="currentLang === 'en'" class="text-en">By integrating China's premium medical and wellness resources, we offer the <strong>China Wellness Residency Program</strong> — giving international clients not just a trip, but comprehensive access to China's medical and wellness resources with health protection benefits.</span>
           </p>
         </div>
       </div>
@@ -104,15 +104,15 @@ import { currentLang } from '../composables/useLanguage'
             <img class="mv-img" src="@/assets/images/mission.jpg" alt="Mission" />
             <div class="mv-content">
               <h3>
-                <span class="mv-title-cn">我们的使命</span>
-                <span class="mv-title-en">Our Mission</span>
+                <span v-show="currentLang === 'zh'" class="mv-title-cn">我们的使命</span>
+                <span v-show="currentLang === 'en'" class="mv-title-en">Our Mission</span>
               </h3>
               <p class="mv-desc">
-                <span class="mv-desc-cn">
+                <span v-show="currentLang === 'zh'" class="mv-desc-cn">
                   让全球客户在中国找到健康、平静与生命的延续。我们相信，每个人都值得拥有高质量的医疗服务和宁静的生活环境。
                   通过整合中国优质的医疗资源与康养文化，我们致力于为客户打造一个身心平衡的健康生态系统。
                 </span>
-                <span class="mv-desc-en">
+                <span v-show="currentLang === 'en'" class="mv-desc-en">
                   Help global clients find health, peace, and longevity in China. We believe everyone deserves access to high-quality medical care and a tranquil living environment.
                   By integrating China's premium medical resources and wellness culture, we are committed to creating a balanced health ecosystem for our clients.
                 </span>
@@ -124,15 +124,15 @@ import { currentLang } from '../composables/useLanguage'
             <img class="mv-img" src="@/assets/images/vision.jpg" alt="Vision" />
             <div class="mv-content">
               <h3>
-                <span class="mv-title-cn">我们的愿景</span>
-                <span class="mv-title-en">Our Vision</span>
+                <span v-show="currentLang === 'zh'" class="mv-title-cn">我们的愿景</span>
+                <span v-show="currentLang === 'en'" class="mv-title-en">Our Vision</span>
               </h3>
               <p class="mv-desc">
-                <span class="mv-desc-cn">
+                <span v-show="currentLang === 'zh'" class="mv-desc-cn">
                   成为全球领先的医疗康养驻留服务平台。我们希望通过专业的服务、优质的资源和创新的理念，
                   让更多国际客户认识并体验到中国医疗康养的魅力，搭建起中外健康文化交流的桥梁。
                 </span>
-                <span class="mv-desc-en">
+                <span v-show="currentLang === 'en'" class="mv-desc-en">
                   Become the world's leading medical wellness residency platform. We hope that through professional services,
                   premium resources, and innovative concepts, more international clients will discover and experience the charm of China's medical wellness,
                   building a bridge for health and cultural exchange between China and the world.
@@ -151,29 +151,29 @@ import { currentLang } from '../composables/useLanguage'
           <div class="stat-item">
             <span class="stat-number">3+</span>
             <span class="stat-label">
-              <span class="label-cn">会员等级</span>
-              <span class="label-en">Membership Tiers</span>
+              <span v-show="currentLang === 'zh'" class="label-cn">会员等级</span>
+              <span v-show="currentLang === 'en'" class="label-en">Membership Tiers</span>
             </span>
           </div>
           <div class="stat-item">
             <span class="stat-number">50+</span>
             <span class="stat-label">
-              <span class="label-cn">合作医疗机构</span>
-              <span class="label-en">Partner Medical Institutions</span>
+              <span v-show="currentLang === 'zh'" class="label-cn">合作医疗机构</span>
+              <span v-show="currentLang === 'en'" class="label-en">Partner Medical Institutions</span>
             </span>
           </div>
           <div class="stat-item">
             <span class="stat-number">10+</span>
             <span class="stat-label">
-              <span class="label-cn">康养目的地</span>
-              <span class="label-en">Wellness Destinations</span>
+              <span v-show="currentLang === 'zh'" class="label-cn">康养目的地</span>
+              <span v-show="currentLang === 'en'" class="label-en">Wellness Destinations</span>
             </span>
           </div>
           <div class="stat-item">
             <span class="stat-number">24/7</span>
             <span class="stat-label">
-              <span class="label-cn">客户支持</span>
-              <span class="label-en">Customer Support</span>
+              <span v-show="currentLang === 'zh'" class="label-cn">客户支持</span>
+              <span v-show="currentLang === 'en'" class="label-en">Customer Support</span>
             </span>
           </div>
         </div>
@@ -184,56 +184,56 @@ import { currentLang } from '../composables/useLanguage'
     <section class="values-section">
       <div class="container">
         <h2 class="section-title">
-          <span class="title-cn">核心价值观</span>
-          <span class="title-en">Core Values</span>
+          <span v-show="currentLang === 'zh'" class="title-cn">核心价值观</span>
+          <span v-show="currentLang === 'en'" class="title-en">Core Values</span>
         </h2>
 
         <div class="values-grid">
           <div class="value-card">
             <span class="value-icon">🏥</span>
             <h4>
-              <span class="value-cn">专业医疗</span>
-              <span class="value-en">Medical Excellence</span>
+              <span v-show="currentLang === 'zh'" class="value-cn">专业医疗</span>
+              <span v-show="currentLang === 'en'" class="value-en">Medical Excellence</span>
             </h4>
             <p>
-              <span class="value-desc-cn">与三甲医院深度合作，提供世界级医疗服务</span>
-              <span class="value-desc-en">Deep partnerships with Grade-A hospitals for world-class medical care</span>
+              <span v-show="currentLang === 'zh'" class="value-desc-cn">与三甲医院深度合作，提供世界级医疗服务</span>
+              <span v-show="currentLang === 'en'" class="value-desc-en">Deep partnerships with Grade-A hospitals for world-class medical care</span>
             </p>
           </div>
 
           <div class="value-card">
             <span class="value-icon">🌿</span>
             <h4>
-              <span class="value-cn">东方智慧</span>
-              <span class="value-en">Eastern Wisdom</span>
+              <span v-show="currentLang === 'zh'" class="value-cn">东方智慧</span>
+              <span v-show="currentLang === 'en'" class="value-en">Eastern Wisdom</span>
             </h4>
             <p>
-              <span class="value-desc-cn">传承千年中医养生哲学，融入现代健康管理</span>
-              <span class="value-desc-en">Ancient TCM wellness philosophy integrated into modern health management</span>
+              <span v-show="currentLang === 'zh'" class="value-desc-cn">传承千年中医养生哲学，融入现代健康管理</span>
+              <span v-show="currentLang === 'en'" class="value-desc-en">Ancient TCM wellness philosophy integrated into modern health management</span>
             </p>
           </div>
 
           <div class="value-card">
             <span class="value-icon">🛡️</span>
             <h4>
-              <span class="value-cn">安心保障</span>
-              <span class="value-en">Trusted Protection</span>
+              <span v-show="currentLang === 'zh'" class="value-cn">安心保障</span>
+              <span v-show="currentLang === 'en'" class="value-en">Trusted Protection</span>
             </h4>
             <p>
-              <span class="value-desc-cn">完善的医疗保障体系，让客户无后顾之忧</span>
-              <span class="value-desc-en">Comprehensive medical protection for peace of mind</span>
+              <span v-show="currentLang === 'zh'" class="value-desc-cn">完善的医疗保障体系，让客户无后顾之忧</span>
+              <span v-show="currentLang === 'en'" class="value-desc-en">Comprehensive medical protection for peace of mind</span>
             </p>
           </div>
 
           <div class="value-card">
             <span class="value-icon">🌏</span>
             <h4>
-              <span class="value-cn">全球服务</span>
-              <span class="value-en">Global Service</span>
+              <span v-show="currentLang === 'zh'" class="value-cn">全球服务</span>
+              <span v-show="currentLang === 'en'" class="value-en">Global Service</span>
             </h4>
             <p>
-              <span class="value-desc-cn">多语言团队，服务全球客户</span>
-              <span class="value-desc-en">Multilingual team serving clients worldwide</span>
+              <span v-show="currentLang === 'zh'" class="value-desc-cn">多语言团队，服务全球客户</span>
+              <span v-show="currentLang === 'en'" class="value-desc-en">Multilingual team serving clients worldwide</span>
             </p>
           </div>
         </div>
@@ -486,17 +486,16 @@ import { currentLang } from '../composables/useLanguage'
 }
 
 .name-cn {
-  display: block;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: var(--color-black);
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .name-en {
-  display: block;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--color-secondary);
   letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 .intro-text {
@@ -506,13 +505,10 @@ import { currentLang } from '../composables/useLanguage'
 }
 
 .text-cn {
-  display: block;
   color: var(--color-stone);
-  margin-bottom: 0.5rem;
 }
 
 .text-en {
-  display: block;
   color: var(--color-stone);
 }
 
@@ -555,28 +551,28 @@ import { currentLang } from '../composables/useLanguage'
 }
 
 .mv-title-cn {
-  display: block;
-  font-size: 1.75rem;
+  font-size: 2rem;
   color: var(--color-black);
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .mv-title-en {
-  display: block;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: var(--color-secondary);
   letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 .mv-desc-cn {
-  display: block;
   color: var(--color-stone);
-  margin-bottom: 0.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.8;
 }
 
 .mv-desc-en {
-  display: block;
   color: var(--color-stone);
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 /* Stats Section */
@@ -627,16 +623,14 @@ import { currentLang } from '../composables/useLanguage'
 }
 
 .label-cn {
-  display: block;
-  margin-bottom: 0.25rem;
+  font-weight: 500;
 }
 
 .label-en {
-  display: block;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* Values Section */
@@ -651,17 +645,16 @@ import { currentLang } from '../composables/useLanguage'
 }
 
 .title-cn {
-  display: block;
   font-size: 2.5rem;
   color: var(--color-black);
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .title-en {
-  display: block;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--color-secondary);
   letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 .values-grid {
@@ -692,29 +685,28 @@ import { currentLang } from '../composables/useLanguage'
 }
 
 .value-cn {
-  display: block;
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   color: var(--color-black);
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .value-en {
-  display: block;
-  font-size: 0.875rem;
+  font-size: 1.0625rem;
   color: var(--color-secondary);
   letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 .value-desc-cn {
-  display: block;
   color: var(--color-stone);
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .value-desc-en {
-  display: block;
   color: var(--color-stone);
   font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 /* Responsive */
