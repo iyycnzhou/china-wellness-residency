@@ -485,10 +485,17 @@ import { currentLang } from '../composables/useLanguage'
   margin-bottom: 3rem;
 }
 
+.name-cn,
+.name-en {
+  display: block;
+  text-align: center;
+}
+
 .name-cn {
   font-size: 2.5rem;
   color: var(--color-black);
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .name-en {
@@ -504,11 +511,10 @@ import { currentLang } from '../composables/useLanguage'
   margin-bottom: 1.5rem;
 }
 
-.text-cn {
-  color: var(--color-stone);
-}
-
+.text-cn,
 .text-en {
+  display: block;
+  text-align: center;
   color: var(--color-stone);
 }
 
@@ -550,10 +556,17 @@ import { currentLang } from '../composables/useLanguage'
   margin-bottom: 1rem;
 }
 
+.mv-title-cn,
+.mv-title-en {
+  display: block;
+  text-align: center;
+}
+
 .mv-title-cn {
   font-size: 2rem;
   color: var(--color-black);
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .mv-title-en {
@@ -561,6 +574,12 @@ import { currentLang } from '../composables/useLanguage'
   color: var(--color-secondary);
   letter-spacing: 0.1em;
   font-weight: 500;
+}
+
+.mv-desc-cn,
+.mv-desc-en {
+  display: block;
+  text-align: center;
 }
 
 .mv-desc-cn {
@@ -622,8 +641,15 @@ import { currentLang } from '../composables/useLanguage'
   font-size: 0.9375rem;
 }
 
+.label-cn,
+.label-en {
+  display: block;
+  text-align: center;
+}
+
 .label-cn {
   font-weight: 500;
+  margin-bottom: 0.25rem;
 }
 
 .label-en {
@@ -644,10 +670,17 @@ import { currentLang } from '../composables/useLanguage'
   margin-bottom: 3rem;
 }
 
+.title-cn,
+.title-en {
+  display: block;
+  text-align: center;
+}
+
 .title-cn {
   font-size: 2.5rem;
   color: var(--color-black);
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .title-en {
@@ -684,10 +717,17 @@ import { currentLang } from '../composables/useLanguage'
   margin-bottom: 1rem;
 }
 
+.value-cn,
+.value-en {
+  display: block;
+  text-align: center;
+}
+
 .value-cn {
   font-size: 1.375rem;
   color: var(--color-black);
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .value-en {
@@ -695,6 +735,12 @@ import { currentLang } from '../composables/useLanguage'
   color: var(--color-secondary);
   letter-spacing: 0.1em;
   font-weight: 500;
+}
+
+.value-desc-cn,
+.value-desc-en {
+  display: block;
+  text-align: center;
 }
 
 .value-desc-cn {
