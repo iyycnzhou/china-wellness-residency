@@ -1,38 +1,165 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { currentLang } from '../composables/useLanguage'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+// 核心服务旅程卡片 - 替代传统表单
+const journeyCards = [
+  {
+    index: '01',
+    titleCn: '初始咨询',
+    titleEn: 'Initial Consultation',
+    descCn: '从一次对话，开启您的医疗路径',
+    descEn: 'Begin your medical journey with a conversation',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&h=900&fit=crop',
+    imageAlt: 'Private consultation room'
+  },
+  {
+    index: '02',
+    titleCn: '医疗对接',
+    titleEn: 'Clinical Access',
+    descCn: '连接值得信任的医疗体系',
+    descEn: 'Connect with a trusted medical system',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&h=900&fit=crop',
+    imageAlt: 'Advanced medical facilities'
+  },
+  {
+    index: '03',
+    titleCn: '驻留与康复',
+    titleEn: 'Residency & Recovery',
+    descCn: '在疗愈的环境中，回归身体的节奏',
+    descEn: 'Return to your body\'s natural rhythm in a healing environment',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&h=900&fit=crop',
+    imageAlt: 'Luxury wellness residence'
+  },
+  {
+    index: '04',
+    titleCn: '预防与筛查',
+    titleEn: 'Preventive Screening',
+    descCn: '在问题出现之前，理解身体',
+    descEn: 'Understand your body before issues arise',
+    image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1600&h=900&fit=crop',
+    imageAlt: 'Comprehensive health checkup'
+  }
+]
 
 const form = ref({
   fullName: '',
   email: '',
   phone: '',
-  membership: 'undecided',
+  journeyType: '',
   message: '',
-  language: 'en',
 })
 
 const isSubmitting = ref(false)
-const submitSuccess = ref(false)
 
-const membershipOptions = [
-  { value: 'undecided', cn: '尚未决定', en: 'Undecided' },
-  { value: 'basic', cn: '基础康养驻留', en: 'Basic Wellness Residency' },
-  { value: 'medical', cn: '医疗康养驻留', en: 'Medical Wellness Residency' },
-  { value: 'premium', cn: '高端医疗会员', en: 'Premium Medical Residency' },
-]
+// 轮播控制
+const currentIndex = ref(0)
+const autoPlayInterval = ref<number | null>(null)
+const autoPlayDelay = 5000 // 5秒自动切换
+
+// 切换到指定卡片
+const goToSlide = (index: number) => {
+  currentIndex.value = index
+  resetAutoPlay()
+}
+
+// 上一张
+const prevSlide = () => {
+  currentIndex.value = (currentIndex.value - 1 + journeyCards.length) % journeyCards.length
+  resetAutoPlay()
+}
+
+// 下一张
+const nextSlide = () => {
+  currentIndex.value = (currentIndex.value + 1) % journeyCards.length
+  resetAutoPlay()
+}
+
+// 重置自动播放
+const resetAutoPlay = () => {
+  stopAutoPlay()
+  startAutoPlay()
+}
+
+// 开始自动播放
+const startAutoPlay = () => {
+  if (autoPlayInterval.value) return
+  autoPlayInterval.value = window.setInterval(() => {
+    nextSlide()
+  }, autoPlayDelay)
+}
+
+// 停止自动播放
+const stopAutoPlay = () => {
+  if (autoPlayInterval.value) {
+    clearInterval(autoPlayInterval.value)
+    autoPlayInterval.value = null
+  }
+}
+
+// 鼠标悬停时暂停自动播放
+const handleMouseEnter = () => {
+  stopAutoPlay()
+}
+
+const handleMouseLeave = () => {
+  startAutoPlay()
+}
+
+// 触摸滑动支持
+const touchStartX = ref(0)
+const touchEndX = ref(0)
+
+const handleTouchStart = (e: TouchEvent) => {
+  touchStartX.value = e.changedTouches[0].screenX
+}
+
+const handleTouchEnd = (e: TouchEvent) => {
+  touchEndX.value = e.changedTouches[0].screenX
+  handleSwipe()
+}
+
+const handleSwipe = () => {
+  const swipeThreshold = 50
+  const diff = touchStartX.value - touchEndX.value
+  
+  if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+      nextSlide() // 左滑，下一张
+    } else {
+      prevSlide() // 右滑，上一张
+    }
+  }
+}
 
 const handleSubmit = async () => {
   isSubmitting.value = true
-  // TODO: API call to submit consultation
+  // TODO: API call to submit咨询
   await new Promise(resolve => setTimeout(resolve, 1000))
   isSubmitting.value = false
-  submitSuccess.value = true
+  // Reset form after submission
+  form.value = {
+    fullName: '',
+    email: '',
+    phone: '',
+    journeyType: '',
+    message: '',
+  }
 }
+
+// 生命周期
+onMounted(() => {
+  startAutoPlay()
+})
+
+onUnmounted(() => {
+  stopAutoPlay()
+})
 </script>
 
 <template>
   <div class="contact-page">
-    <!-- Hero Section -->
+    <!-- Hero Section - 在 Banner 区域下方 -->
     <section class="page-hero">
       <img class="hero-bg" src="@/assets/images/contact-hero.jpg" alt="Contact Hero" />
       
@@ -41,7 +168,7 @@ const handleSubmit = async () => {
       <div class="hero-content container">
         <!-- 中文版本 -->
         <div v-show="currentLang === 'zh'" class="hero-content-zh">
-          <h1 class="title-cn">预约咨询</h1>
+          <h1 class="title-cn">联系我们</h1>
           <p class="hero-subtitle-cn">
             开启您的健康驻留之旅
           </p>
@@ -66,11 +193,16 @@ const handleSubmit = async () => {
               <span class="tab-text">快速响应 24 小时内联系</span>
             </div>
           </div>
+          <div class="cta-button">
+            <a href="#journey" class="btn-scroll">
+              开始您的旅程 →
+            </a>
+          </div>
         </div>
         
         <!-- 英文版本 -->
         <div v-show="currentLang === 'en'" class="hero-content-en">
-          <h1 class="title-en">Book a Consultation</h1>
+          <h1 class="title-en">Contact Us</h1>
           <p class="hero-subtitle-en">
             Begin Your Wellness Residency Journey
           </p>
@@ -95,9 +227,16 @@ const handleSubmit = async () => {
               <span class="tab-text">Fast Response Within 24 Hours</span>
             </div>
           </div>
+          <div class="cta-button">
+            <a href="#journey" class="btn-scroll">
+              Begin Your Journey →
+            </a>
+          </div>
         </div>
       </div>
     </section>
+
+    
 
     <!-- Intro Section -->
     <section class="intro-section">
@@ -118,193 +257,225 @@ const handleSubmit = async () => {
               and we'll contact you within 24 hours to answer all your questions.
             </span>
           </p>
-          <p class="intro-highlight">
-            <span v-show="currentLang === 'zh'" class="highlight-cn">首次咨询完全免费，无需任何承诺</span>
-            <span v-show="currentLang === 'en'" class="highlight-en">First consultation is completely free with no obligation</span>
-          </p>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
-      <div class="container">
-        <div class="contact-grid">
-          <!-- Contact Form -->
-          <div class="contact-form-wrapper">
-            <div v-if="!submitSuccess" class="contact-form">
-              <h2>
-                <span class="form-title-cn">发送咨询</span>
-                <span class="form-title-en">Send Us a Message</span>
-              </h2>
+    <!-- Care Journey Section - 单卡片轮播 -->
+    <section class="care-journey-section" id="journey">
+      <div class="journey-slider" 
+           @mouseenter="handleMouseEnter" 
+           @mouseleave="handleMouseLeave"
+           @touchstart="handleTouchStart"
+           @touchend="handleTouchEnd">
+        
+        <!-- 轮播指示器 -->
+        <div class="slider-indicators">
+          <div 
+            v-for="(card, index) in journeyCards" 
+            :key="index"
+            :class="['indicator', { active: index === currentIndex }]"
+            @click="goToSlide(index)"
+          >
+            <span class="indicator-index">{{ card.index }}</span>
+          </div>
+        </div>
+
+        <!-- 导航按钮 -->
+        <button class="nav-btn prev" @click="prevSlide" aria-label="Previous">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="nav-btn next" @click="nextSlide" aria-label="Next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- 单卡片展示 -->
+        <div class="slider-track">
+          <transition name="slide" mode="out-in">
+            <div 
+              :key="currentIndex" 
+              class="journey-card"
+            >
+              <div class="card-image">
+                <img 
+                  :src="journeyCards[currentIndex].image" 
+                  :alt="journeyCards[currentIndex].imageAlt"
+                  loading="lazy"
+                />
+              </div>
               
-              <form @submit.prevent="handleSubmit">
-                <div class="form-group">
-                  <label for="fullName">
-                    <span class="label-cn">姓名</span>
-                    <span class="label-en">Full Name</span>
-                  </label>
-                  <input
-                    id="fullName"
-                    v-model="form.fullName"
-                    type="text"
-                    required
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="email">
-                    <span class="label-cn">邮箱</span>
-                    <span class="label-en">Email</span>
-                  </label>
-                  <input
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="phone">
-                    <span class="label-cn">电话</span>
-                    <span class="label-en">Phone Number</span>
-                  </label>
-                  <input
-                    id="phone"
-                    v-model="form.phone"
-                    type="tel"
-                    required
-                    placeholder="+86 XXX XXXX XXXX"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="membership">
-                    <span class="label-cn">意向会员等级</span>
-                    <span class="label-en">Preferred Membership</span>
-                  </label>
-                  <select id="membership" v-model="form.membership">
-                    <option
-                      v-for="option in membershipOptions"
-                      :key="option.value"
-                      :value="option.value"
-                    >
-                      {{ option.cn }} / {{ option.en }}
-                    </option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="message">
-                    <span class="label-cn">留言</span>
-                    <span class="label-en">Message</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    v-model="form.message"
-                    rows="5"
-                    placeholder="Tell us about your needs..."
-                  ></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-gold" :disabled="isSubmitting">
-                  {{ isSubmitting ? '提交中...' : '提交咨询' }}
-                </button>
-              </form>
-            </div>
-
-            <div v-else class="success-message">
-              <span class="success-icon">✓</span>
-              <h3>
-                <span class="success-cn">咨询已提交</span>
-                <span class="success-en">Consultation Submitted</span>
-              </h3>
-              <p>
-                <span class="success-desc-cn">我们将在 24 小时内回复您的咨询。</span>
-                <span class="success-desc-en">We'll respond within 24 hours.</span>
-              </p>
-            </div>
-          </div>
-
-          <!-- Contact Info -->
-          <div class="contact-info-wrapper">
-            <h2>
-              <span class="info-title-cn">联系方式</span>
-              <span class="info-title-en">Contact Information</span>
-            </h2>
-
-            <div class="contact-methods">
-              <div class="contact-method">
-                <span class="method-icon">📧</span>
-                <div class="method-content">
-                  <span class="method-label">
-                    <span class="label-cn">电子邮箱</span>
-                    <span class="label-en">Email</span>
-                  </span>
-                  <a href="mailto:concierge@chinawellnessresidency.com">
-                    concierge@chinawellnessresidency.com
-                  </a>
-                </div>
-              </div>
-
-              <div class="contact-method">
-                <span class="method-icon">📞</span>
-                <div class="method-content">
-                  <span class="method-label">
-                    <span class="label-cn">咨询热线</span>
-                    <span class="label-en">Hotline</span>
-                  </span>
-                  <a href="tel:+86XXXXXXXXXXX">+86-XXX-XXXX-XXXX</a>
-                </div>
-              </div>
-
-              <div class="contact-method">
-                <span class="method-icon">💬</span>
-                <div class="method-content">
-                  <span class="method-label">
-                    <span class="label-cn">在线聊天</span>
-                    <span class="label-en">Live Chat</span>
-                  </span>
-                  <p>
-                    <span class="chat-desc-cn">点击右下角图标，即时沟通</span>
-                    <span class="chat-desc-en">Click the icon in the bottom right corner</span>
-                  </p>
-                </div>
-              </div>
-
-              <div class="contact-method">
-                <span class="method-icon">📍</span>
-                <div class="method-content">
-                  <span class="method-label">
-                    <span class="label-cn">线下中心</span>
-                    <span class="label-en">Visit Us</span>
-                  </span>
-                  <p>
-                    <span class="visit-desc-cn">预约参观我们的康养展示中心</span>
-                    <span class="visit-desc-en">Schedule a tour of our wellness showcase center</span>
-                  </p>
-                </div>
+              <div class="card-content">
+                <span class="card-index">{{ journeyCards[currentIndex].index }}</span>
+                
+                <h3 class="card-title">
+                  <span class="title-cn">{{ journeyCards[currentIndex].titleCn }}</span>
+                  <span class="title-en">{{ journeyCards[currentIndex].titleEn }}</span>
+                </h3>
+                
+                <p class="card-desc">
+                  <span class="desc-cn">{{ journeyCards[currentIndex].descCn }}</span>
+                  <span class="desc-en">{{ journeyCards[currentIndex].descEn }}</span>
+                </p>
+                
+                <router-link :to="{ path: '/contact', hash: '#form' }" class="card-link">
+                  <span v-show="currentLang === 'zh'" class="link-cn">→ 开始咨询</span>
+                  <span v-show="currentLang === 'en'" class="link-en">→ Book Consultation</span>
+                </router-link>
               </div>
             </div>
+          </transition>
+        </div>
 
-            <div class="response-time">
-              <span class="time-icon">⏱</span>
-              <span class="time-text">
-                <span class="time-cn">我们将在 24 小时内回复</span>
-                <span class="time-en">We'll respond within 24 hours</span>
-              </span>
-            </div>
-          </div>
+        <!-- 移动端滑动提示 -->
+        <div class="mobile-hint">
+          <span v-show="currentLang === 'zh'">← 滑动查看更多</span>
+          <span v-show="currentLang === 'en'">← Swipe to explore</span>
         </div>
       </div>
     </section>
 
-    <!-- Map Section (Optional) -->
-    <section class="map-section">
-      <img class="map-bg" src="@/assets/images/office-location.jpg" alt="Office Location" />
+        <!-- Contact Form Section -->
+    <section class="contact-form-section" id="form">
+      <div class="container">
+        <div class="form-section">
+          <h3 class="form-title">
+            <span v-show="currentLang === 'zh'" class="form-title-cn">发送咨询</span>
+            <span v-show="currentLang === 'en'" class="form-title-en">Send Us a Message</span>
+          </h3>
+          
+          <form @submit.prevent="handleSubmit" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">
+                  <span v-show="currentLang === 'zh'">姓名</span>
+                  <span v-show="currentLang === 'en'">Full Name</span>
+                </label>
+                <input
+                  id="fullName"
+                  v-model="form.fullName"
+                  type="text"
+                  required
+                  :placeholder="currentLang === 'zh' ? '您的姓名' : 'Your name'"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">
+                  <span v-show="currentLang === 'zh'">邮箱</span>
+                  <span v-show="currentLang === 'en'">Email</span>
+                </label>
+                <input
+                  id="email"
+                  v-model="form.email"
+                  type="email"
+                  required
+                  :placeholder="currentLang === 'zh' ? '您的邮箱' : 'your@email.com'"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">
+                  <span v-show="currentLang === 'zh'">电话</span>
+                  <span v-show="currentLang === 'en'">Phone</span>
+                </label>
+                <input
+                  id="phone"
+                  v-model="form.phone"
+                  type="tel"
+                  required
+                  :placeholder="currentLang === 'zh' ? '+86 XXX XXXX XXXX' : '+86 XXX XXXX XXXX'"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="journeyType">
+                  <span v-show="currentLang === 'zh'">旅程类型</span>
+                  <span v-show="currentLang === 'en'">Journey Type</span>
+                </label>
+                <select id="journeyType" v-model="form.journeyType">
+                  <option value="" disabled>
+                    {{ currentLang === 'zh' ? '请选择旅程类型' : 'Select journey type' }}
+                  </option>
+                  <option value="consultation">
+                    {{ currentLang === 'zh' ? '初始咨询' : 'Initial Consultation' }}
+                  </option>
+                  <option value="treatment">
+                    {{ currentLang === 'zh' ? '临床对接' : 'Clinical Access' }}
+                  </option>
+                  <option value="residency">
+                    {{ currentLang === 'zh' ? '驻留康复' : 'Residency & Recovery' }}
+                  </option>
+                  <option value="screening">
+                    {{ currentLang === 'zh' ? '预防筛查' : 'Preventive Screening' }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">
+                <span v-show="currentLang === 'zh'">留言</span>
+                <span v-show="currentLang === 'en'">Message</span>
+              </label>
+              <textarea
+                id="message"
+                v-model="form.message"
+                rows="5"
+                :placeholder="currentLang === 'zh' ? '请告诉我们您的需求...' : 'Tell us about your needs...'"
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-gold" :disabled="isSubmitting">
+                {{ isSubmitting ? 
+                  (currentLang === 'zh' ? '提交中...' : 'Submitting...') :
+                  (currentLang === 'zh' ? '提交咨询' : 'Submit Consultation')
+                }}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="contact-info">
+          <h3 class="info-title">
+            <span v-show="currentLang === 'zh'">联系方式</span>
+            <span v-show="currentLang === 'en'">Contact Info</span>
+          </h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-icon">📞</span>
+              <div class="info-content">
+                <span class="info-label" v-show="currentLang === 'zh'">电话</span>
+                <span class="info-label" v-show="currentLang === 'en'">Phone</span>
+                <span class="info-value">400-XXX-XXXX</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">✉️</span>
+              <div class="info-content">
+                <span class="info-label" v-show="currentLang === 'zh'">邮箱</span>
+                <span class="info-label" v-show="currentLang === 'en'">Email</span>
+                <span class="info-value">info@wellness-residency.com</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <div class="info-content">
+                <span class="info-label" v-show="currentLang === 'zh'">地址</span>
+                <span class="info-label" v-show="currentLang === 'en'">Address</span>
+                <span class="info-value">中国山东省济南市历下区...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -314,7 +485,7 @@ const handleSubmit = async () => {
   padding-top: var(--header-height);
 }
 
-/* Page Hero */
+/* Page Hero - 精简版 */
 .page-hero {
   position: relative;
   width: 100%;
@@ -349,9 +520,9 @@ const handleSubmit = async () => {
   z-index: 2;
   text-align: center;
   color: var(--color-white);
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
-  padding-bottom: 2.5rem;
+  padding: 2rem;
 }
 
 .hero-content h1 {
@@ -375,30 +546,7 @@ const handleSubmit = async () => {
   font-weight: 500;
 }
 
-/* Hero Description - Chinese */
-.hero-description-cn {
-  text-align: left;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.hero-description-cn p {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
-  color: var(--color-white) !important;
-}
-
-.hero-description-cn strong {
-  color: var(--color-secondary) !important;
-  font-weight: 600;
-}
-
-/* Hero Description - English */
+.hero-description-cn,
 .hero-description-en {
   text-align: left;
   background: rgba(255, 255, 255, 0.1);
@@ -409,6 +557,7 @@ const handleSubmit = async () => {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.hero-description-cn p,
 .hero-description-en p {
   font-size: 1.125rem;
   line-height: 1.8;
@@ -416,42 +565,12 @@ const handleSubmit = async () => {
   color: var(--color-white) !important;
 }
 
+.hero-description-cn strong,
 .hero-description-en strong {
   color: var(--color-secondary) !important;
   font-weight: 600;
 }
 
-/* Hero Highlights */
-.hero-highlights-cn,
-.hero-highlights-en {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.highlight-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.highlight-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.highlight-text {
-  font-size: 1rem;
-  color: var(--color-white) !important;
-  text-align: left;
-}
-
-/* Hero Tabs - 标签样式 */
 .hero-tabs-cn,
 .hero-tabs-en {
   display: flex;
@@ -485,333 +604,581 @@ const handleSubmit = async () => {
   letter-spacing: 0.05em;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .hero-highlights-cn,
-  .hero-highlights-en {
-    grid-template-columns: 1fr;
-  }
-  
-  .hero-description-cn,
-  .hero-description-en {
-    text-align: center;
-  }
-  
-  .highlight-item {
-    justify-content: center;
-  }
-  
-  .highlight-text {
-    text-align: center;
-  }
+.cta-button {
+  margin-top: 2rem;
 }
 
-@media (max-width: 768px) {
-  .hero-description-cn,
-  .hero-description-en {
-    padding: 1.5rem;
-  }
-  
-  .hero-description-cn p,
-  .hero-description-en p {
-    font-size: 1rem;
-  }
-  
-  .hero-subtitle-cn,
-  .hero-subtitle-en {
-    font-size: 1.25rem;
-  }
-  
-  .highlight-item {
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem;
-  }
-  
-  .highlight-icon {
-    font-size: 2.5rem;
-  }
-  
-  .highlight-text {
-    font-size: 0.9375rem;
-  }
+.btn-scroll {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
 }
 
-/* Contact Section */
-.contact-section {
-  padding: var(--spacing-xl) 0;
-  background-color: var(--color-white);
+.btn-scroll:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(191, 163, 122, 0.3);
+  color: var(--color-white);
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 4rem;
+/* Page Banner */
+.page-banner {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-secondary);
 }
 
-/* Contact Form */
-.contact-form {
-  padding: 2rem;
+.page-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/images/contact-banner-bg.jpg') center/cover no-repeat;
+  opacity: 0.3;
 }
 
-.contact-form h2,
-.contact-info-wrapper h2 {
+.banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-white);
+}
+
+.banner-content h2 {
+  margin-bottom: 1rem;
+}
+
+.banner-title-cn,
+.banner-title-en {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-white);
+}
+
+.divider {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.current {
+  color: var(--color-white);
+  font-weight: 500;
+}
+
+/* Intro Section */
+.intro-section {
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(135deg, var(--color-off-white) 0%, var(--color-white) 100%);
+}
+
+.intro-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-content h2 {
   margin-bottom: 2rem;
 }
 
-.form-title-cn {
+.intro-title-cn,
+.intro-title-en {
+  display: block;
+  font-size: 2.5rem;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.intro-text {
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.intro-highlight {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: 50px;
+}
+
+.highlight-cn,
+.highlight-en {
+  color: var(--color-white) !important;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Care Journey Section - 单卡片轮播 */
+.care-journey-section {
+  padding: 0;
+  background-color: var(--color-sand);
+}
+
+.journey-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  max-height: 900px;
+  overflow: hidden;
+}
+
+/* 轮播指示器 */
+.slider-indicators {
+  position: absolute;
+  top: 50%;
+  left: var(--spacing-lg);
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.indicator {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(26, 26, 26, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.indicator:hover {
+  border-color: var(--color-secondary);
+  background-color: rgba(201, 169, 98, 0.1);
+}
+
+.indicator.active {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.indicator-index {
+  font-size: 0.875rem;
+  color: var(--color-black);
+  font-weight: 500;
+}
+
+.indicator.active .indicator-index {
+  color: var(--color-white);
+}
+
+/* 导航按钮 */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(26, 26, 26, 0.2);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  border-color: var(--color-secondary);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.nav-btn.prev {
+  left: calc(50% - 550px);
+}
+
+.nav-btn.next {
+  right: calc(50% - 550px);
+}
+
+/* 轮播轨道 */
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-xxl);
+}
+
+/* 单卡片 */
+.journey-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  min-height: 450px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 8s ease;
+}
+
+.journey-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: var(--color-white);
+  text-align: left;
+}
+
+.card-index {
+  font-family: var(--font-primary);
+  font-size: 3rem;
+  color: var(--color-secondary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.card-title .title-cn {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.card-title .title-en {
+  display: block;
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+.card-desc {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.card-desc .desc-cn {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc .desc-en {
+  display: block;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  font-size: 0.9375rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.card-link:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  transform: translateX(5px);
+}
+
+/* 移动端提示 */
+.mobile-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-stone);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+/* 幻灯片过渡动画 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.slide-enter-to,
+.slide-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Contact Form Section */
+.contact-form-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-off-white);
+}
+
+.form-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-title .form-title-cn {
   display: block;
   font-size: 2rem;
   color: var(--color-black);
   margin-bottom: 0.5rem;
 }
 
-.form-title-en {
+.form-title .form-title-en {
   display: block;
   font-size: 1.25rem;
   color: var(--color-secondary);
   letter-spacing: 0.1em;
 }
 
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
 .form-group {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
   font-size: 0.9375rem;
   color: var(--color-black);
-}
-
-.label-cn {
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.label-en {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--color-stone);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%;
-  padding: 1rem;
+  padding: 0.875rem;
   border: 1px solid var(--color-sand);
+  border-radius: 8px;
   font-family: var(--font-secondary);
-  font-size: 1rem;
-  transition: border-color 0.2s ease;
-  background-color: var(--color-white);
+  font-size: 0.9375rem;
+  transition: all 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.1);
 }
 
-.form-group textarea {
-  resize: vertical;
-}
-
-/* Success Message */
-.success-message {
+.form-actions {
+  margin-top: 1rem;
   text-align: center;
-  padding: 4rem 2rem;
-}
-
-.success-icon {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  font-size: 2.5rem;
-  border-radius: 50%;
-  margin-bottom: 2rem;
-}
-
-.success-message h3 {
-  margin-bottom: 1rem;
-}
-
-.success-cn {
-  display: block;
-  font-size: 1.75rem;
-  color: var(--color-black);
-  margin-bottom: 0.5rem;
-}
-
-.success-en {
-  display: block;
-  font-size: 1.25rem;
-  color: var(--color-secondary);
-  letter-spacing: 0.1em;
-}
-
-.success-desc-cn {
-  display: block;
-  color: var(--color-stone);
-  margin-bottom: 0.5rem;
-}
-
-.success-desc-en {
-  display: block;
-  color: var(--color-stone);
 }
 
 /* Contact Info */
-.contact-info-wrapper {
-  padding: 2rem;
-  background-color: var(--color-off-white);
-}
-
-.info-title-cn {
-  display: block;
-  font-size: 2rem;
-  color: var(--color-black);
-  margin-bottom: 0.5rem;
-}
-
-.info-title-en {
-  display: block;
-  font-size: 1.25rem;
-  color: var(--color-secondary);
-  letter-spacing: 0.1em;
-}
-
-.contact-methods {
-  margin: 2rem 0;
-}
-
-.contact-method {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.method-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.method-content {
-  flex: 1;
-}
-
-.method-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.9375rem;
-  color: var(--color-black);
-}
-
-.method-content .label-cn {
-  display: block;
-}
-
-.method-content .label-en {
-  display: block;
-  font-size: 0.6875rem;
-  color: var(--color-stone);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.method-content a {
-  color: var(--color-primary);
-  font-size: 1.0625rem;
-  transition: color 0.2s ease;
-}
-
-.method-content a:hover {
-  color: var(--color-secondary);
-}
-
-.method-content p {
-  font-size: 0.9375rem;
-  color: var(--color-stone);
-}
-
-.chat-desc-cn,
-.visit-desc-cn {
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.chat-desc-en,
-.visit-desc-en {
-  display: block;
-  font-size: 0.8125rem;
-}
-
-.response-time {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
+.contact-info {
+  margin-top: 3rem;
+  padding: 3rem;
   background-color: var(--color-sand);
-  margin-top: 2rem;
+  border-radius: 16px;
+  color: var(--color-black);
 }
 
-.time-icon {
-  font-size: 1.5rem;
+.info-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-black);
 }
 
-.time-text {
-  font-size: 0.9375rem;
-  color: var(--color-stone);
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
-.time-cn {
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.info-icon {
+  font-size: 2.5rem;
+}
+
+.info-label {
   display: block;
-  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
 }
 
-.time-en {
+.info-value {
   display: block;
-  font-size: 0.8125rem;
-}
-
-/* Map Section */
-.map-section {
-  height: 400px;
-}
-
-.map-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  font-size: 1.125rem;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .contact-grid {
+@media (max-width: 768px) {
+  .journey-slider {
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    padding: 3rem 0;
+  }
+  
+  .slider-indicators {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .nav-btn {
+    display: none;
+  }
+  
+  .card-image {
+    height: 50vh;
+    min-height: 350px;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .card-index {
+    font-size: 2rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-desc {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .mobile-hint {
+    display: block;
+  }
+  
+  .form-row {
     grid-template-columns: 1fr;
-    gap: 3rem;
   }
   
-  .hero-tabs-cn,
-  .hero-tabs-en {
-    flex-direction: column;
-    align-items: center;
+  .info-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .hero-tab {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-  }
-  
-  .tab-text {
-    font-size: 0.9375rem;
+}
+
+@media (min-width: 769px) {
+  .mobile-hint {
+    display: none;
   }
 }
 </style>

@@ -29,7 +29,7 @@ const menuItems = [
   { name: '驻留权益', nameEn: 'Residency Benefits', path: '/benefits' },
   { name: '会员计划', nameEn: 'Membership Programs', path: '/membership' },
   { name: '服务网络', nameEn: 'Service Network', path: '/destinations' },
-  { name: '预约咨询', nameEn: 'Book a Consultation', path: '/contact' },
+  { name: '联系我们', nameEn: 'Contact Us', path: '/contact' },
   { name: '关于我们', nameEn: 'About Us', path: '/about' },
 ]
 
