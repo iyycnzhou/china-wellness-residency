@@ -1,6 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { currentLang } from '../composables/useLanguage'
+
+// 导入服务图片
+import hospitalImg from '@/assets/images/services/01-hospital.jpg'
+import specialistImg from '@/assets/images/services/02-specialist.jpg'
+import checkupImg from '@/assets/images/services/03-checkup.jpg'
+import wellnessImg from '@/assets/images/services/04-wellness.jpg'
+import hotspringImg from '@/assets/images/services/05-hotspring.jpg'
+import tcmImg from '@/assets/images/services/06-tcm.jpg'
+import hotelImg from '@/assets/images/services/07-hotel.jpg'
+import homestayImg from '@/assets/images/services/08-homestay.jpg'
+import wellnessHotelImg from '@/assets/images/services/09-wellness-hotel.jpg'
+import taichiImg from '@/assets/images/services/10-taichi.jpg'
+import tcmTherapyImg from '@/assets/images/services/11-tcm-therapy.jpg'
+import teaImg from '@/assets/images/services/12-tea.jpg'
+import attractionImg from '@/assets/images/services/13-attraction.jpg'
+import museumImg from '@/assets/images/services/14-museum.jpg'
 
 // 当前激活的Tab
 const activeTab = ref<'membership' | 'services'>('membership')
@@ -143,7 +159,7 @@ const services = [
     rating: 4.8,
     tags: ['医院', '绿色通道', '专家门诊'],
     tagsEn: ['Hospital', 'Priority Access', 'Specialist Consultation'],
-    image: '/assets/images/services/01-hospital.jpg',
+    image: hospitalImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['北京', '上海', '广州', '深圳', '成都', '杭州']
   },
@@ -161,7 +177,7 @@ const services = [
     rating: 4.9,
     tags: ['专科', '专家', '高端治疗'],
     tagsEn: ['Specialized', 'Expert', 'Premium Treatment'],
-    image: '/assets/images/services/02-specialist.jpg',
+    image: specialistImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['上海', '广州', '北京', '成都']
   },
@@ -179,11 +195,11 @@ const services = [
     rating: 4.7,
     tags: ['体检', '健康管理', '预防医学'],
     tagsEn: ['Health Screening', 'Health Management', 'Preventive Medicine'],
-    image: '/assets/images/services/03-checkup.jpg',
+    image: checkupImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['北京', '上海', '广州', '深圳', '杭州']
   },
-  
+
   // 康养驻留
   {
     category: 'wellness',
@@ -199,7 +215,7 @@ const services = [
     rating: 4.9,
     tags: ['康养', '自然', '静修'],
     tagsEn: ['Wellness', 'Nature', 'Retreat'],
-    image: '/assets/images/services/04-wellness.jpg',
+    image: wellnessImg,
     languages: ['zh', 'bilingual'],
     cities: ['三亚', '大理', '黄山', '莫干山', '珠海']
   },
@@ -217,7 +233,7 @@ const services = [
     rating: 4.8,
     tags: ['温泉', '疗养', '康复'],
     tagsEn: ['Hot Spring', 'Therapy', 'Rehabilitation'],
-    image: '/assets/images/services/05-hotspring.jpg',
+    image: hotspringImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['南京', '合肥', '南昌', '福州']
   },
@@ -235,11 +251,11 @@ const services = [
     rating: 4.8,
     tags: ['中医', '调理', '康复'],
     tagsEn: ['TCM', 'Conditioning', 'Rehabilitation'],
-    image: '/assets/images/services/06-tcm.jpg',
+    image: tcmImg,
     languages: ['zh', 'bilingual'],
     cities: ['北京', '上海', '广州', '成都']
   },
-  
+
   // 酒店住宿
   {
     category: 'accommodation',
@@ -255,7 +271,7 @@ const services = [
     rating: 4.8,
     tags: ['五星级', '度假', '豪华'],
     tagsEn: ['5-Star', 'Resort', 'Luxury'],
-    image: '/assets/images/services/07-hotel.jpg',
+    image: hotelImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['北京', '上海', '三亚', '杭州']
   },
@@ -273,7 +289,7 @@ const services = [
     rating: 4.7,
     tags: ['民宿', '文化', '体验'],
     tagsEn: ['Homestay', 'Culture', 'Experience'],
-    image: '/assets/images/services/08-homestay.jpg',
+    image: homestayImg,
     languages: ['zh', 'bilingual'],
     cities: ['大理', '丽江', '厦门', '成都']
   },
@@ -291,11 +307,11 @@ const services = [
     rating: 4.8,
     tags: ['康养', '酒店', '综合服务'],
     tagsEn: ['Wellness', 'Hotel', 'Integrated Services'],
-    image: '/assets/images/services/09-wellness-hotel.jpg',
+    image: wellnessHotelImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['三亚', '珠海', '青岛']
   },
-  
+
   // 文化体验
   {
     category: 'cultural',
@@ -311,7 +327,7 @@ const services = [
     rating: 4.9,
     tags: ['太极', '气功', '养生'],
     tagsEn: ['Tai Chi', 'Qigong', 'Wellness'],
-    image: '/assets/images/services/10-taichi.jpg',
+    image: taichiImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['北京', '上海', '成都', '西安']
   },
@@ -329,7 +345,7 @@ const services = [
     rating: 4.8,
     tags: ['中医', '理疗', '体验'],
     tagsEn: ['TCM', 'Therapy', 'Experience'],
-    image: '/assets/images/services/11-tcm-therapy.jpg',
+    image: tcmTherapyImg,
     languages: ['zh', 'bilingual'],
     cities: ['北京', '上海', '广州']
   },
@@ -347,11 +363,11 @@ const services = [
     rating: 4.8,
     tags: ['茶道', '文化', '艺术'],
     tagsEn: ['Tea Ceremony', 'Culture', 'Art'],
-    image: '/assets/images/services/12-tea.jpg',
+    image: teaImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['杭州', '福州', '厦门', '成都', '西安']
   },
-  
+
   // 景区门票
   {
     category: 'attraction',
@@ -367,7 +383,7 @@ const services = [
     rating: 4.8,
     tags: ['景区', '门票', '优惠'],
     tagsEn: ['Attraction', 'Ticket', 'Discount'],
-    image: '/assets/images/services/13-attraction.jpg',
+    image: attractionImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['北京', '上海', '广州', '成都', '西安', '杭州']
   },
@@ -385,7 +401,7 @@ const services = [
     rating: 4.7,
     tags: ['博物馆', '文化', '历史'],
     tagsEn: ['Museum', 'Culture', 'History'],
-    image: '/assets/images/services/14-museum.jpg',
+    image: museumImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['北京', '上海', '西安', '南京', '杭州']
   }
@@ -407,37 +423,39 @@ const priceRanges = [
 ]
 
 // 计算属性：筛选后的服务列表
-const filteredServices = services.filter(service => {
-  // 分类筛选
-  if (selectedCategory.value !== 'all' && service.category !== selectedCategory.value) {
-    return false
-  }
-  
-  // 城市筛选
-  if (selectedCity.value !== 'all' && !service.cities.includes(selectedCity.value)) {
-    return false
-  }
-  
-  // 价格筛选
-  const price = parseFloat(service.price)
-  if (selectedPriceRange.value === 'low' && price >= 100) return false
-  if (selectedPriceRange.value === 'medium' && (price < 100 || price >= 500)) return false
-  if (selectedPriceRange.value === 'high' && (price < 500 || price >= 1000)) return false
-  if (selectedPriceRange.value === 'premium' && price < 1000) return false
-  
-  // 搜索筛选
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase()
-    const titleCn = service.titleCn.toLowerCase()
-    const titleEn = service.titleEn.toLowerCase()
-    const descCn = service.descriptionCn.toLowerCase()
-    const descEn = service.descriptionEn.toLowerCase()
-    if (!titleCn.includes(query) && !titleEn.includes(query) && !descCn.includes(query) && !descEn.includes(query)) {
+const filteredServices = computed(() => {
+  return services.filter(service => {
+    // 分类筛选
+    if (selectedCategory.value !== 'all' && service.category !== selectedCategory.value) {
       return false
     }
-  }
-  
-  return true
+
+    // 城市筛选
+    if (selectedCity.value !== 'all' && !service.cities.includes(selectedCity.value)) {
+      return false
+    }
+
+    // 价格筛选
+    const price = parseFloat(service.price)
+    if (selectedPriceRange.value === 'low' && price >= 100) return false
+    if (selectedPriceRange.value === 'medium' && (price < 100 || price >= 500)) return false
+    if (selectedPriceRange.value === 'high' && (price < 500 || price >= 1000)) return false
+    if (selectedPriceRange.value === 'premium' && price < 1000) return false
+
+    // 搜索筛选
+    if (searchQuery.value) {
+      const query = searchQuery.value.toLowerCase()
+      const titleCn = service.titleCn.toLowerCase()
+      const titleEn = service.titleEn.toLowerCase()
+      const descCn = service.descriptionCn.toLowerCase()
+      const descEn = service.descriptionEn.toLowerCase()
+      if (!titleCn.includes(query) && !titleEn.includes(query) && !descCn.includes(query) && !descEn.includes(query)) {
+        return false
+      }
+    }
+
+    return true
+  })
 })
 
 // 获取类别标签
@@ -450,6 +468,12 @@ const getCategoryLabel = (category: string) => {
     attraction: { cn: '景区门票', en: 'Attractions' }
   }
   return labels[category] || { cn: '其他', en: 'Other' }
+}
+
+// 获取类别标签（当前语言版本）
+const getCategoryLabelCurrent = (category: string) => {
+  const labels = getCategoryLabel(category)
+  return currentLang.value === 'zh' ? labels.cn : labels.en
 }
 </script>
 
@@ -882,7 +906,7 @@ const getCategoryLabel = (category: string) => {
             <img :src="service.image" :alt="service.titleCn" class="service-image" loading="lazy" />
             <div class="service-content">
               <div class="service-category">
-                <span class="category-label">{{ getCategoryLabel(service.category)[currentLang] }}</span>
+                <span class="category-label">{{ getCategoryLabelCurrent(service.category) }}</span>
               </div>
               
               <h3 class="service-title">
