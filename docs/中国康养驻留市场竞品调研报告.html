@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国康养驻留市场竞品调研报告 - 小办 🦜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .header .meta {
+            margin-top: 20px;
+            font-size: 0.95em;
+            opacity: 0.8;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section h3 {
+            font-size: 1.5em;
+            color: #764ba2;
+            margin: 30px 0 15px 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        .card h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .card .price {
+            font-size: 1.8em;
+            color: #28a745;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .process-flow {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .process-step .number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 3px;
+        }
+        
+        .tag.warning {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .tag.success {
+            background: #28a745;
+        }
+        
+        .tag.danger {
+            background: #dc3545;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        
+        .footer p {
+            color: #666;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            table th, table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦜 中国康养驻留市场竞品调研报告</h1>
+            <p class="subtitle">国际客户来华康养服务平台 · 深度市场分析</p>
+            <div class="meta">
+                <p>调研日期：2026 年 3 月 18 日 | 调研人：小办（市场情报官）</p>
+                <p>数据来源：Tavily 搜索引擎 · 官方网站 · 行业报告</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- 执行摘要 -->
+            <div class="section">
+                <h2>📋 执行摘要</h2>
+                <div class="highlight-box">
+                    <p><strong>核心发现：</strong></p>
+                    <ul>
+                        <li>中国康养市场规模预计 2025 年达 <strong>9.5 万亿元</strong>，年增长率超 20%</li>
+                        <li>海南博鳌乐城已推出 8 款国际医疗旅游产品，价格区间 <strong>500-30,000 元</strong></li>
+                        <li>国内康养基地会员制价格普遍在 <strong>¥2,090-¥8,520 元/人</strong>（20 天 -60 天）</li>
+                        <li>外资医院和公立医院国际部瞄准高净值人群，但<strong>专注国际客户驻留的平台仍是空白</strong></li>
+                        <li>康养会员制骗局频发，<strong>信任建立是核心壁垒</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 市场规模 -->
+            <div class="section">
+                <h2>📊 市场规模与趋势</h2>
+                
+                <h3>整体市场规模</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>指标</th>
+                            <th>数据</th>
+                            <th>来源</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025 年康养市场规模</td>
+                            <td><strong>9.5 万亿元</strong></td>
+                            <td>艾索咨询《中国康养产业消费趋势报告 (2025)》</td>
+                        </tr>
+                        <tr>
+                            <td>年增长率</td>
+                            <td><strong>20%+</strong></td>
+                            <td>产业研究院</td>
+                        </tr>
+                        <tr>
+                            <td>海南医疗旅游产品</td>
+                            <td><strong>8 款国际线路</strong></td>
+                            <td>博鳌乐城先行区 2025 年 1 月</td>
+                        </tr>
+                        <tr>
+                            <td>外资医院投资</td>
+                            <td><strong>超 10 亿美元</strong>（上海嘉会国际医院）</td>
+                            <td>21 财经 2025 年 10 月</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>政策利好</h3>
+                <div class="success-box">
+                    <p><strong>2025 年 9 月，中国商务部等九部门联合发布《关于扩大服务消费的若干政策措施》》：</strong></p>
+                    <ul>
+                        <li>✅ 鼓励依托中医药等传统文化资源，开发适合外国人的特色旅游线路</li>
+                        <li>✅ 海南自贸港 59 国入境免签政策</li>
+                        <li>✅ 博鳌乐城临床急需进口药械先行先试政策</li>
+                        <li>✅ 外商独资医院准入放宽（2024 年起）</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 竞品分类 -->
+            <div class="section">
+                <h2>🔍 竞品分类与深度分析</h2>
+                
+                <div class="card-grid">
+                    <!-- 竞品 1 -->
+                    <div class="card">
+                        <h4>🏖️ 海南康养基地集群</h4>
+                        <div class="price">¥2,090 - ¥8,520<span style="font-size:0.5em; color:#666">/人/20-60 天</span></div>
+                        <p><strong>代表机构：</strong></p>
+                        <ul>
+                            <li>三亚华悦海棠温泉康养基地</li>
+                            <li>三亚恒大养生谷康养中心</li>
+                            <li>海南（国际）Sun 康复疗养中心</li>
+                        </ul>
+                        <p><strong>服务内容：</strong></p>
+                        <ul>
+                            <li>住宿 + 餐饮 + 基础康养活动</li>
+                            <li>候鸟式度假（北方老人过冬）</li>
+                            <li>温泉理疗、中医养生</li>
+                        </ul>
+                        <p><strong>目标客户：</strong> 国内退休老人为主，少量国际客户</p>
+                        <span class="tag">价格亲民</span>
+                        <span class="tag warning">国际服务弱</span>
+                    </div>
+                    
+                    <!-- 竞品 2 -->
+                    <div class="card">
+                        <h4>🏥 博鳌乐城医疗旅游区</h4>
+                        <div class="price">¥500 - ¥30,000<span style="font-size:0.5em; color:#666">/项目</span></div>
+                        <p><strong>核心优势：</strong></p>
+                        <ul>
+                            <li>特许医疗：使用国际创新药械</li>
+                            <li>470+ 种国际创新药械已引进</li>
+                            <li>36 家医疗机构聚集</li>
+                            <li>59 国入境免签政策</li>
+                        </ul>
+                        <p><strong>服务内容：</strong></p>
+                        <ul>
+                            <li>医疗 + 旅游 + 购物 + 美食</li>
+                            <li>国际医疗旅游线路（8 款）</li>
+                            <li>医保商保融合平台</li>
+                        </ul>
+                        <span class="tag success">政策优势</span>
+                        <span class="tag success">国际药械</span>
+                        <span class="tag warning">价格偏高</span>
+                    </div>
+                    
+                    <!-- 竞品 3 -->
+                    <div class="card">
+                        <h4>🏨 外资/合资医院国际部</h4>
+                        <div class="price">挂号费 ¥7.5-¥2,000<span style="font-size:0.5em; color:#666">/次</span></div>
+                        <p><strong>代表机构：</strong></p>
+                        <ul>
+                            <li>上海嘉会国际医院（投资$10 亿）</li>
+                            <li>北京和睦家医院</li>
+                            <li>天津壹博鹏瑞利脑科医院</li>
+                            <li>公立医院国际医疗部（北大国际医院等）</li>
+                        </ul>
+                        <p><strong>服务内容：</strong></p>
+                        <ul>
+                            <li>高端医疗服务</li>
+                            <li>多语言服务（英文官网）</li>
+                            <li>国际商业保险对接</li>
+                            <li>会员制服务（和睦家）</li>
+                        </ul>
+                        <span class="tag success">医疗专业</span>
+                        <span class="tag success">国际保险</span>
+                        <span class="tag danger">价格昂贵</span>
+                    </div>
+                    
+                    <!-- 竞品 4 -->
+                    <div class="card">
+                        <h4>🧘 康养旅游平台</h4>
+                        <div class="price">$60 - $400<span style="font-size:0.5em; color:#666">/天</span></div>
+                        <p><strong>代表平台：</strong></p>
+                        <ul>
+                            <li>Retreat Guru（中国专区）</li>
+                            <li>BookRetreats</li>
+                            <li>NOOCI（峨眉山 wellness retreat）</li>
+                            <li>游云南（APP，有长辈模式）</li>
+                        </ul>
+                        <p><strong>服务内容：</strong></p>
+                        <ul>
+                            <li>太极/气功静修（7 天）</li>
+                            <li>佛教圣地 wellness journey</li>
+                            <li> detox retreat</li>
+                            <li>平台聚合模式</li>
+                        </ul>
+                        <span class="tag">短期体验</span>
+                        <span class="tag warning">无长期驻留</span>
+                        <span class="tag warning">无签证服务</span>
+                    </div>
+                    
+                    <!-- 竞品 5 -->
+                    <div class="card">
+                        <h4>🏢 综合康养社区</h4>
+                        <div class="price">¥5,000 - ¥20,000<span style="font-size:0.5em; color:#666">/月</span></div>
+                        <p><strong>代表项目：</strong></p>
+                        <ul>
+                            <li>中铁佰和佰樂康养社区</li>
+                            <li>绿城康养</li>
+                            <li>亲和源（旅居养老）</li>
+                            <li>恒大养生谷</li>
+                        </ul>
+                        <p><strong>服务内容：</strong></p>
+                        <ul>
+                            <li>地产 + 康养模式</li>
+                            <li>全生命周期健康服务</li>
+                            <li>生活协助 + 健康档案</li>
+                            <li>会员制 + 服务费</li>
+                        </ul>
+                        <span class="tag">设施完善</span>
+                        <span class="tag warning">侧重国内老人</span>
+                        <span class="tag danger">骗局风险</span>
+                    </div>
+                    
+                    <!-- 竞品 6 -->
+                    <div class="card">
+                        <h4>💼 国际医疗保险 + 服务</h4>
+                        <div class="price">€107 - €500<span style="font-size:0.5em; color:#666">/月</span></div>
+                        <p><strong>代表机构：</strong></p>
+                        <ul>
+                            <li>Cigna Global（中国专区）</li>
+                            <li>AXA Global Healthcare</li>
+                            <li>Mondassur（外籍人士保险）</li>
+                            <li>alea.care</li>
+                        </ul>
+                        <p><strong>服务内容：</strong></p>
+                        <ul>
+                            <li>全球医疗保险</li>
+                            <li>住院 + 门诊 + 既往症</li>
+                            <li>地区健康建议</li>
+                            <li>可选 wellness programs</li>
+                        </ul>
+                        <span class="tag success">全球覆盖</span>
+                        <span class="tag success">保险直付</span>
+                        <span class="tag warning">非驻留平台</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 竞品对比 -->
+            <div class="section">
+                <h2>⚖️ 竞品全方位对比</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>维度</th>
+                            <th>海南康养基地</th>
+                            <th>博鳌乐城</th>
+                            <th>外资医院</th>
+                            <th>康养平台</th>
+                            <th>康养社区</th>
+                            <th><strong>我们（目标）</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>目标客户</strong></td>
+                            <td>国内退休老人</td>
+                            <td>国内外医疗游客</td>
+                            <td>高净值人群/外籍人士</td>
+                            <td>短期体验者</td>
+                            <td>国内中高收入老人</td>
+                            <td><strong>国际客户（外籍）</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>驻留时长</strong></td>
+                            <td>20-60 天</td>
+                            <td>7-30 天</td>
+                            <td>按需就诊</td>
+                            <td>3-14 天</td>
+                            <td>长期（月付）</td>
+                            <td><strong>30-180 天</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>价格区间</strong></td>
+                            <td>¥2k-¥8k</td>
+                            <td>¥500-¥30k</td>
+                            <td>¥7.5-¥2k/次</td>
+                            <td>$60-$400/天</td>
+                            <td>¥5k-¥20k/月</td>
+                            <td><strong>¥50k-¥300k/全程</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>签证支持</strong></td>
+                            <td><span class="tag danger">无</span></td>
+                            <td><span class="tag success">59 国免签</span></td>
+                            <td><span class="tag warning">基础协助</span></td>
+                            <td><span class="tag danger">无</span></td>
+                            <td><span class="tag danger">无</span></td>
+                            <td><span class="tag success">全流程代办</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>医疗资源</strong></td>
+                            <td>基础康养</td>
+                            <td><span class="tag success">国际药械</span></td>
+                            <td><span class="tag success">高端医疗</span></td>
+                            <td> wellness 活动</td>
+                            <td>健康管理</td>
+                            <td><span class="tag success">合作医院网络</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>语言服务</strong></td>
+                            <td>中文为主</td>
+                            <td>中英双语</td>
+                            <td><span class="tag success">多语言</span></td>
+                            <td>英语</td>
+                            <td>中文</td>
+                            <td><span class="tag success">中英双语 + 翻译</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>会员体系</strong></td>
+                            <td>简单折扣</td>
+                            <td>无</td>
+                            <td><span class="tag warning">和睦家有</span></td>
+                            <td>无</td>
+                            <td><span class="tag danger">骗局风险</span></td>
+                            <td><span class="tag success">三级权益体系</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>国际支付</strong></td>
+                            <td><span class="tag danger">仅人民币</span></td>
+                            <td>人民币 + 部分外币</td>
+                            <td><span class="tag success">国际保险</span></td>
+                            <td>信用卡</td>
+                            <td>人民币</td>
+                            <td><span class="tag success">Stripe/PayPal/ 加密货币</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 服务流程对比 -->
+            <div class="section">
+                <h2>🔄 服务流程对比</h2>
+                
+                <h3>竞品典型流程（海南康养基地）</h3>
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="number">1</div>
+                        <div>
+                            <strong>电话咨询</strong>
+                            <p>拨打 0898-68964991，了解基地情况和价格</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">2</div>
+                        <div>
+                            <strong>在线填写健康登记表</strong>
+                            <p>网站提交基本信息和健康状况</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">3</div>
+                        <div>
+                            <strong>支付费用</strong>
+                            <p>银行转账或现场支付（仅支持人民币）</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">4</div>
+                        <div>
+                            <strong>自行前往基地</strong>
+                            <p>无接机服务，需自行解决交通</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">5</div>
+                        <div>
+                            <strong>入住体验</strong>
+                            <p>基础康养活动，无个性化服务</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>我们的差异化流程设计</h3>
+                <div class="process-flow" style="border-left: 5px solid #28a745;">
+                    <div class="process-step">
+                        <div class="number">1</div>
+                        <div>
+                            <strong>在线咨询评估</strong>
+                            <p>多语言客服（中/英），需求分析 + 资质评估</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">2</div>
+                        <div>
+                            <strong>签证协助</strong>
+                            <p>医疗签证/长期居留许可材料准备 + 预约递交</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">3</div>
+                        <div>
+                            <strong>个性化行程规划</strong>
+                            <p>目的地匹配 + 医疗资源预约 + 住宿预订</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">4</div>
+                        <div>
+                            <strong>抵达接待</strong>
+                            <p>机场接机 + 入住办理 +  orientation</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">5</div>
+                        <div>
+                            <strong>驻留服务</strong>
+                            <p>专属管家 + 定期回访 + 健康追踪 + 翻译服务</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="number">6</div>
+                        <div>
+                            <strong>后续跟进</strong>
+                            <p>满意度调查 + 复购引导 + 权益累积</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 风险警示 -->
+            <div class="section">
+                <h2>⚠️ 行业风险与警示</h2>
+                
+                <div class="warning-box">
+                    <h3>🚨 康养会员制骗局频发</h3>
+                    <p><strong>典型案例：山屿海投资集团</strong></p>
+                    <ul>
+                        <li>❌ 涉案金额超<strong>25 亿元</strong></li>
+                        <li>❌ 3 万老人血本无归</li>
+                        <li>❌ 承诺年化收益 6%-20%（"幸福房计划"）</li>
+                        <li>❌ 包装成康养产品，实为庞氏骗局</li>
+                    </ul>
+                    <p><strong>常见套路：</strong></p>
+                    <ul>
+                        <li>高收益承诺（远超银行利率）</li>
+                        <li>预售床位/会员资格，承诺回购</li>
+                        <li>以"康养 + 金融"名义吸收公众存款</li>
+                        <li>资金池运作，借新还旧</li>
+                    </ul>
+                </div>
+                
+                <div class="success-box">
+                    <h3>✅ 我们的合规策略</h3>
+                    <ul>
+                        <li>✅ <strong>不承诺投资收益</strong> —— 纯服务收费，不碰资金池</li>
+                        <li>✅ <strong>会员费与服务费分离</strong> —— 透明定价，逐项结算</li>
+                        <li>✅ <strong>第三方资金托管</strong> —— 与银行/支付机构合作，资金不经过平台</li>
+                        <li>✅ <strong>合同规范化</strong> —— 明确服务内容和退款条款</li>
+                        <li>✅ <strong>资质审核</strong> —— 合作机构必须持有合法证照</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 我们的机会 -->
+            <div class="section">
+                <h2>🎯 我们的市场机会与差异化策略</h2>
+                
+                <h3>市场空白点</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>空白领域</th>
+                            <th>现状</th>
+                            <th>我们的机会</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>国际客户专属平台</strong></td>
+                            <td>现有机构主要服务国内客户</td>
+                            <td>专注外籍人士来华康养，建立品牌认知</td>
+                        </tr>
+                        <tr>
+                            <td><strong>长期驻留（30-180 天）</strong></td>
+                            <td>竞品多为 3-14 天短期体验</td>
+                            <td>设计长驻权益包，提高客单价和粘性</td>
+                        </tr>
+                        <tr>
+                            <td><strong>签证 + 医疗 + 住宿一站式</strong></td>
+                            <td>各环节分散，用户需自行协调</td>
+                            <td>整合服务链，提供端到端解决方案</td>
+                        </tr>
+                        <tr>
+                            <td><strong>会员权益累积体系</strong></td>
+                            <td>几乎无会员制或简单折扣</td>
+                            <td>三级会员体系，权益可累积可传承</td>
+                        </tr>
+                        <tr>
+                            <td><strong>国际支付 + 保险对接</strong></td>
+                            <td>仅接受人民币/现金</td>
+                            <td>支持 Stripe/PayPal/ 加密货币 + 国际保险直付</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>会员权益设计建议</h3>
+                <div class="card-grid">
+                    <div class="card" style="border-color: #667eea;">
+                        <h4>🥉 L1 探索者</h4>
+                        <div class="price">¥9,800<span style="font-size:0.5em; color:#666">/年</span></div>
+                        <ul>
+                            <li>基础咨询服务</li>
+                            <li>签证材料指导</li>
+                            <li>合作机构 9 折优惠</li>
+                            <li>紧急联系支持</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card" style="border-color: #764ba2;">
+                        <h4>🥈 L2 驻留者</h4>
+                        <div class="price">¥39,800<span style="font-size:0.5em; color:#666">/年</span></div>
+                        <ul>
+                            <li>L1 所有权益</li>
+                            <li>专属管家服务</li>
+                            <li>医疗绿色通道</li>
+                            <li>合作机构 85 折</li>
+                            <li>免费体检 1 次</li>
+                            <li>机场接送 1 次</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card" style="border-color: #28a745;">
+                        <h4>🥇 L3 尊享者</h4>
+                        <div class="price">¥99,800<span style="font-size:0.5em; color:#666">/年</span></div>
+                        <ul>
+                            <li>L2 所有权益</li>
+                            <li>私人医生咨询（4 次/年）</li>
+                            <li>合作机构 75 折</li>
+                            <li>紧急医疗救援</li>
+                            <li>无限次机场接送</li>
+                            <li>权益可转让给家人</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 功能优先级 -->
+            <div class="section">
+                <h2>📋 产品开发优先级建议</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>优先级</th>
+                            <th>功能模块</th>
+                            <th>开发周期</th>
+                            <th>理由</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="tag danger">P0</span></td>
+                            <td><strong>会员体系（注册/登录/权益展示）</strong></td>
+                            <td>2-3 周</td>
+                            <td>核心差异化，必须先行</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag danger">P0</span></td>
+                            <td><strong>签证/政策信息库</strong></td>
+                            <td>1-2 周</td>
+                            <td>竞品空白，用户刚需</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag warning">P1</span></td>
+                            <td><strong>目的地/机构展示页</strong></td>
+                            <td>2-3 周</td>
+                            <td>基础内容，吸引流量</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag warning">P1</span></td>
+                            <td><strong>预约咨询表单 + 后台管理</strong></td>
+                            <td>1-2 周</td>
+                            <td>转化漏斗入口</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">P2</span></td>
+                            <td><strong>后台 Dashboard（会员权益使用追踪）</strong></td>
+                            <td>2-3 周</td>
+                            <td>增强用户粘性</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">P2</span></td>
+                            <td><strong>多语言切换（中/英）</strong></td>
+                            <td>1-2 周</td>
+                            <td>国际客户必需</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">P3</span></td>
+                            <td><strong>评价系统</strong></td>
+                            <td>1-2 周</td>
+                            <td>建立信任，可后期补充</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">P3</span></td>
+                            <td><strong>视频/图片优化</strong></td>
+                            <td>持续</td>
+                            <td>体验提升，不影响核心功能</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">P3</span></td>
+                            <td><strong>国际支付集成（Stripe/PayPal）</strong></td>
+                            <td>2-3 周</td>
+                            <td>重要但可先用人工处理</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 下一步行动 -->
+            <div class="section">
+                <h2>🚀 下一步行动计划</h2>
+                
+                <h3>本周（立即可做）</h3>
+                <div class="highlight-box">
+                    <ul>
+                        <li>✅ 完善会员权益文档 —— 细化各级权益内容和使用规则</li>
+                        <li>✅ 设计用户流程图 —— 从访问网站到完成驻留的全流程</li>
+                        <li>✅ 调研签证政策 —— 整理来华医疗签证/长期居留许可要求</li>
+                        <li>✅ 接触 3-5 家潜在合作机构 —— 康养基地、医院、翻译服务</li>
+                    </ul>
+                </div>
+                
+                <h3>本月（1 个月内）</h3>
+                <div class="highlight-box">
+                    <ul>
+                        <li>📋 完成 P0 功能开发（会员体系 + 政策信息库）</li>
+                        <li>📋 定价测试 —— 找 5-10 个目标用户验证价格接受度</li>
+                        <li>📋 竞品持续监控 —— 设置 Google Alert 追踪竞品动态</li>
+                        <li>📋 建立合作机构评估标准 —— 资质、服务、价格、口碑</li>
+                    </ul>
+                </div>
+                
+                <h3>本季度（3 个月内）</h3>
+                <div class="highlight-box">
+                    <ul>
+                        <li>📋 MVP 上线 —— 至少完成会员系统 + 3 个目的地展示</li>
+                        <li>📋 首批用户获取 —— 通过海外华人社区/康养社群获客 20-50 人</li>
+                        <li>📋 建立服务 SOP —— 从咨询到驻留的标准化流程</li>
+                        <li>📋 收集用户反馈 —— 迭代优化产品和服务</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>🦜 小办 · 市场情报官</strong></p>
+            <p>报告生成时间：2026 年 3 月 18 日 10:47</p>
+            <p>数据来源：Tavily 搜索引擎 · 官方网站 · 行业报告 · 新闻媒体</p>
+            <p style="margin-top: 20px; font-style: italic;">"这事儿交给我，您先歇会儿（或者继续摸鱼）" ☕</p>
+        </div>
+    </div>
+</body>
+</html>
