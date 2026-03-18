@@ -1059,7 +1059,9 @@ const getCategoryLabel = (category: string) => {
 /* ==================== Hero Section ==================== */
 .page-hero {
   position: relative;
+  width: 100%;
   min-height: 600px;
+  height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,205 +1,403 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { currentLang } from '../composables/useLanguage'
+import { ref, onMounted, onUnmounted } from 'vue'
 
-const form = ref({
-  fullName: '',
-  email: '',
-  whatsapp: '',
-  customerType: '',
-  services: [] as string[],
-  expectedDate: '',
-  duration: '',
-  budget: '',
-  specialNeeds: '',
-  source: '',
-})
-
-const isSubmitting = ref(false)
-const submitSuccess = ref(false)
-const submitError = ref('')
-
-// 客户类型选项
-const customerTypeOptions = [
-  { value: 'expat', labelCn: '外籍商务人士', labelEn: 'Expat Business Professional' },
-  { value: 'medical', labelCn: '医疗旅游客户', labelEn: 'Medical Tourist' },
-  { value: 'wellness', labelCn: '康养度假客户', labelEn: 'Wellness Vacationer' },
-  { value: 'retired', labelCn: '退休外籍人士', labelEn: 'Retired Expat' },
-  { value: 'nomad', labelCn: '数字游民', labelEn: 'Digital Nomad' },
+// 核心服务旅程卡片 - 替代传统表单
+const journeyCards = [
+  {
+    index: '01',
+    titleCn: '初始咨询',
+    titleEn: 'Initial Consultation',
+    descCn: '从一次对话，开启您的医疗路径',
+    descEn: 'Begin your medical journey with a conversation',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&h=900&fit=crop',
+    imageAlt: 'Private consultation room'
+  },
+  {
+    index: '02',
+    titleCn: '医疗对接',
+    titleEn: 'Clinical Access',
+    descCn: '连接值得信任的医疗体系',
+    descEn: 'Connect with a trusted medical system',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&h=900&fit=crop',
+    imageAlt: 'Advanced medical facilities'
+  },
+  {
+    index: '03',
+    titleCn: '驻留与康复',
+    titleEn: 'Residency & Recovery',
+    descCn: '在疗愈的环境中，回归身体的节奏',
+    descEn: 'Return to your body\'s natural rhythm in a healing environment',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&h=900&fit=crop',
+    imageAlt: 'Luxury wellness residence'
+  },
+  {
+    index: '04',
+    titleCn: '预防与筛查',
+    titleEn: 'Preventive Screening',
+    descCn: '在问题出现之前，理解身体',
+    descEn: 'Understand your body before issues arise',
+    image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1600&h=900&fit=crop',
+    imageAlt: 'Comprehensive health checkup'
+  }
 ]
 
-// 服务类型选项
+// 表单数据 - 11字段预约表单
+const form = ref({
+  // 基本信息
+  fullName: '',
+  email: '',
+  phone: '',
+
+  // 预约信息
+  clientType: '',
+  services: [] as string[],
+  arrivalDate: '',
+  duration: '',
+  budgetRange: '',
+  specialRequirements: '',
+  source: '',
+  message: '',
+})
+
+// 选项定义
+const clientTypes = [
+  { value: 'business', labelCn: '外籍商务人士', labelEn: 'Foreign Business Personnel' },
+  { value: 'medical_tourism', labelCn: '医疗旅游', labelEn: 'Medical Tourism' },
+  { value: 'wellness_resort', labelCn: '康养度假', labelEn: 'Wellness Resort' },
+  { value: 'retiree', labelCn: '退休外籍人士', labelEn: 'Retired Foreign Nationals' },
+  { value: 'digital_nomad', labelCn: '数字游民', labelEn: 'Digital Nomad' },
+]
+
 const serviceOptions = [
-  { value: 'healthCheck', labelCn: '健康体检', labelEn: 'Health Checkup' },
-  { value: 'tcm', labelCn: '中医理疗', labelEn: 'TCM Therapy' },
-  { value: 'rehab', labelCn: '康复治疗', labelEn: 'Rehabilitation' },
-  { value: 'wellnessResidency', labelCn: '康养驻留', labelEn: 'Wellness Residency' },
-  { value: 'visaAssist', labelCn: '签证协助', labelEn: 'Visa Assistance' },
+  { value: 'checkup', labelCn: '体检', labelEn: 'Health Checkup' },
+  { value: 'tcm', labelCn: '中医', labelEn: 'Traditional Chinese Medicine' },
+  { value: 'rehabilitation', labelCn: '康复', labelEn: 'Rehabilitation' },
+  { value: 'wellness_stay', labelCn: '康养驻留', labelEn: 'Wellness Residency' },
+  { value: 'visa_assistance', labelCn: '签证协助', labelEn: 'Visa Assistance' },
   { value: 'other', labelCn: '其他', labelEn: 'Other' },
 ]
 
-// 停留时长选项
 const durationOptions = [
-  { value: '7-14days', labelCn: '7-14天', labelEn: '7-14 Days' },
-  { value: '30days', labelCn: '30天', labelEn: '30 Days' },
-  { value: '60days', labelCn: '60天', labelEn: '60 Days' },
-  { value: '90days', labelCn: '90天', labelEn: '90 Days' },
-  { value: '90days+', labelCn: '90天以上', labelEn: '90+ Days' },
-  { value: 'unsure', labelCn: '不确定', labelEn: 'Not Sure' },
+  { value: '7-14_days', labelCn: '7-14天', labelEn: '7-14 Days' },
+  { value: '30_days', labelCn: '30天', labelEn: '30 Days' },
+  { value: '60_days', labelCn: '60天', labelEn: '60 Days' },
+  { value: '90_days', labelCn: '90天', labelEn: '90 Days' },
+  { value: '90+_days', labelCn: '90天以上', labelEn: '90+ Days' },
+  { value: 'uncertain', labelCn: '不确定', labelEn: 'Uncertain' },
 ]
 
-// 预算选项
 const budgetOptions = [
-  { id: 'all', labelCn: '全部价格', labelEn: 'All Prices' },
-  { id: 'low', labelCn: '$5,000以下', labelEn: 'Below $5,000' },
-  { id: 'medium', labelCn: '$5,000-$10,000', labelEn: '$5,000 - $10,000' },
-  { id: 'high', labelCn: '$10,000-$30,000', labelEn: '$10,000 - $30,000' },
-  { id: 'premium', labelCn: '$30,000-$100,000', labelEn: '$30,000 - $100,000' },
-  { id: 'over100k', labelCn: '$100,000以上', labelEn: 'Over $100,000' },
+  { value: 'under_5k', labelCn: '$5k以下', labelEn: 'Under $5k' },
+  { value: '5k_10k', labelCn: '$5k-10k', labelEn: '$5k-10k' },
+  { value: '10k_30k', labelCn: '$10k-30k', labelEn: '$10k-30k' },
+  { value: '30k_100k', labelCn: '$30k-100k', labelEn: '$30k-100k' },
+  { value: '100k_plus', labelCn: '$100k以上', labelEn: '$100k+' },
 ]
 
-// 信息来源选项
 const sourceOptions = [
   { value: 'instagram', labelCn: 'Instagram', labelEn: 'Instagram' },
-  { value: 'google', labelCn: 'Google搜索', labelEn: 'Google Search' },
+  { value: 'google', labelCn: 'Google', labelEn: 'Google' },
   { value: 'referral', labelCn: '朋友推荐', labelEn: 'Friend Referral' },
   { value: 'other', labelCn: '其他', labelEn: 'Other' },
 ]
 
-const handleSubmit = async () => {
-  // 前端验证
-  if (!form.value.fullName || form.value.fullName.length < 2) {
-    submitError.value = currentLang.value === 'zh' ? '请输入有效的姓名' : 'Please enter a valid name'
-    return
-  }
+const isSubmitting = ref(false)
 
-  if (!form.value.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.value.email)) {
-    submitError.value = currentLang.value === 'zh' ? '请输入有效的邮箱地址' : 'Please enter a valid email address'
-    return
-  }
+// 轮播控制
+const currentIndex = ref(0)
+const autoPlayInterval = ref<number | null>(null)
+const autoPlayDelay = 5000 // 5秒自动切换
 
-  if (!form.value.whatsapp) {
-    submitError.value = currentLang.value === 'zh' ? '请输入WhatsApp或微信联系方式' : 'Please enter WhatsApp or WeChat contact'
-    return
-  }
+// 切换到指定卡片
+const goToSlide = (index: number) => {
+  currentIndex.value = index
+  resetAutoPlay()
+}
 
-  if (!form.value.customerType) {
-    submitError.value = currentLang.value === 'zh' ? '请选择客户类型' : 'Please select customer type'
-    return
-  }
+// 上一张
+const prevSlide = () => {
+  currentIndex.value = (currentIndex.value - 1 + journeyCards.length) % journeyCards.length
+  resetAutoPlay()
+}
 
-  if (!form.value.services || form.value.services.length === 0) {
-    submitError.value = currentLang.value === 'zh' ? '请选择至少一项感兴趣的服务' : 'Please select at least one service'
-    return
-  }
+// 下一张
+const nextSlide = () => {
+  currentIndex.value = (currentIndex.value + 1) % journeyCards.length
+  resetAutoPlay()
+}
 
-  if (!form.value.expectedDate) {
-    submitError.value = currentLang.value === 'zh' ? '请选择预计来华时间' : 'Please select expected arrival date'
-    return
-  }
+// 重置自动播放
+const resetAutoPlay = () => {
+  stopAutoPlay()
+  startAutoPlay()
+}
 
-  if (!form.value.duration) {
-    submitError.value = currentLang.value === 'zh' ? '请选择预计停留时长' : 'Please select expected duration'
-    return
-  }
+// 开始自动播放
+const startAutoPlay = () => {
+  if (autoPlayInterval.value) return
+  autoPlayInterval.value = window.setInterval(() => {
+    nextSlide()
+  }, autoPlayDelay)
+}
 
-  if (!form.value.budget) {
-    submitError.value = currentLang.value === 'zh' ? '请选择预算范围' : 'Please select budget range'
-    return
-  }
-
-  // 日期验证：不能选择过去日期
-  const selectedDate = new Date(form.value.expectedDate)
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  if (selectedDate < today) {
-    submitError.value = currentLang.value === 'zh' ? '预计来华时间不能是过去日期' : 'Expected arrival date cannot be in the past'
-    return
-  }
-
-  isSubmitting.value = true
-  submitError.value = ''
-
-  try {
-    // 模拟API调用
-    console.log('Submitting form:', form.value)
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    // 提交成功
-    submitSuccess.value = true
-
-    // 重置表单
-    form.value = {
-      fullName: '',
-      email: '',
-      whatsapp: '',
-      customerType: '',
-      services: [],
-      expectedDate: '',
-      duration: '',
-      budget: '',
-      specialNeeds: '',
-      source: '',
-    }
-
-    // 5秒后隐藏成功提示
-    setTimeout(() => {
-      submitSuccess.value = false
-    }, 5000)
-  } catch (error) {
-    submitError.value = currentLang.value === 'zh' ? '提交失败，请稍后重试' : 'Submission failed, please try again later'
-    console.error('Form submission error:', error)
-  } finally {
-    isSubmitting.value = false
+// 停止自动播放
+const stopAutoPlay = () => {
+  if (autoPlayInterval.value) {
+    clearInterval(autoPlayInterval.value)
+    autoPlayInterval.value = null
   }
 }
+
+// 鼠标悬停时暂停自动播放
+const handleMouseEnter = () => {
+  stopAutoPlay()
+}
+
+const handleMouseLeave = () => {
+  startAutoPlay()
+}
+
+// 触摸滑动支持
+const touchStartX = ref(0)
+const touchEndX = ref(0)
+
+const handleTouchStart = (e: TouchEvent) => {
+  touchStartX.value = e.changedTouches[0].screenX
+}
+
+const handleTouchEnd = (e: TouchEvent) => {
+  touchEndX.value = e.changedTouches[0].screenX
+  handleSwipe()
+}
+
+const handleSwipe = () => {
+  const swipeThreshold = 50
+  const diff = touchStartX.value - touchEndX.value
+  
+  if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+      nextSlide() // 左滑，下一张
+    } else {
+      prevSlide() // 右滑，上一张
+    }
+  }
+}
+
+const handleSubmit = async () => {
+  isSubmitting.value = true
+  // TODO: API call to submit预约表单
+  console.log('Form submitted:', form.value)
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  isSubmitting.value = false
+  // Reset form after submission
+  form.value = {
+    fullName: '',
+    email: '',
+    phone: '',
+    clientType: '',
+    services: [],
+    arrivalDate: '',
+    duration: '',
+    budgetRange: '',
+    specialRequirements: '',
+    source: '',
+    message: '',
+  }
+}
+
+// 生命周期
+onMounted(() => {
+  startAutoPlay()
+})
+
+onUnmounted(() => {
+  stopAutoPlay()
+})
 </script>
 
 <template>
   <div class="contact-page">
-    <!-- Hero Section -->
+    <!-- Hero Section - 在 Banner 区域下方 -->
     <section class="page-hero">
-      <img class="hero-bg" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=80" alt="Contact Hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;" />
+      <img class="hero-bg" src="@/assets/images/contact-hero.jpg" alt="Contact Hero" />
       
       <div class="hero-overlay"></div>
       
       <div class="hero-content container">
-        <div class="hero-subtitle">
-          <span v-show="currentLang === 'zh'" class="hero-subtitle-cn">联系我们</span>
-          <span v-show="currentLang === 'en'" class="hero-subtitle-en">Contact Us</span>
+        <!-- 中文版本 -->
+        <div v-show="currentLang === 'zh'" class="hero-content-zh">
+          <h1 class="title-cn">联系我们</h1>
+          <p class="hero-subtitle-cn">
+            开启您的健康驻留之旅
+          </p>
+          <div class="hero-description-cn">
+            <p>
+              无论您是想了解<strong>会员计划详情</strong>，还是需要<strong>定制化的康养方案</strong>，
+              我们的专业团队都将为您提供一对一的咨询服务。
+            </p>
+            <p>
+              填写下方表单，我们将在<strong>24 小时内</strong>与您联系，为您解答所有疑问。
+              我们的多语言客服团队支持中文、英文、俄语、阿拉伯语等多种语言，确保沟通无障碍。
+            </p>
+          </div>
+          <div class="hero-tabs-cn">
+            <div class="hero-tab">
+              <span class="tab-text">24/7 多语言客服支持</span>
+            </div>
+            <div class="hero-tab">
+              <span class="tab-text">专业医疗顾问团队</span>
+            </div>
+            <div class="hero-tab">
+              <span class="tab-text">快速响应 24 小时内联系</span>
+            </div>
+          </div>
         </div>
         
-        <h1>
-          <span v-show="currentLang === 'zh'">开启您的中国康养之旅</span>
-          <span v-show="currentLang === 'en'">Begin Your China Wellness Journey</span>
-        </h1>
+        <!-- 英文版本 -->
+        <div v-show="currentLang === 'en'" class="hero-content-en">
+          <h1 class="title-en">Contact Us</h1>
+          <p class="hero-subtitle-en">
+            Begin Your Wellness Residency Journey
+          </p>
+          <div class="hero-description-en">
+            <p>
+              Whether you want to learn more about our <strong>membership plans</strong> or need a <strong>customized wellness solution</strong>,
+              our professional team is ready to provide one-on-one consultation.
+            </p>
+            <p>
+              Fill out the form below, and we'll contact you within <strong>24 hours</strong> to answer all your questions.
+              Our multilingual customer service team supports Chinese, English, Russian, Arabic, and more, ensuring seamless communication.
+            </p>
+          </div>
+          <div class="hero-tabs-en">
+            <div class="hero-tab">
+              <span class="tab-text">24/7 Multilingual Support</span>
+            </div>
+            <div class="hero-tab">
+              <span class="tab-text">Professional Medical Advisors</span>
+            </div>
+            <div class="hero-tab">
+              <span class="tab-text">Fast Response Within 24 Hours</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Contact Form Section -->
+    
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+      <div class="container">
+        <div class="intro-content">
+          <h2>
+            <span v-show="currentLang === 'zh'" class="intro-title-cn">我们随时为您服务</span>
+            <span v-show="currentLang === 'en'" class="intro-title-en">We're Here to Help</span>
+          </h2>
+          <p class="intro-text">
+            <span v-show="currentLang === 'zh'" class="intro-desc-cn">
+              无论您是想了解会员计划详情，还是需要定制化的康养方案，我们的专业团队都将为您提供一对一的咨询服务。
+              填写下方表单，我们将在 24 小时内与您联系，为您解答所有疑问。
+            </span>
+            <span v-show="currentLang === 'en'" class="intro-desc-en">
+              Whether you want to learn more about our membership plans or need a customized wellness solution,
+              our professional team is ready to provide one-on-one consultation. Fill out the form below,
+              and we'll contact you within 24 hours to answer all your questions.
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Care Journey Section - 单卡片轮播 -->
+    <section class="care-journey-section" id="journey">
+      <div class="journey-slider" 
+           @mouseenter="handleMouseEnter" 
+           @mouseleave="handleMouseLeave"
+           @touchstart="handleTouchStart"
+           @touchend="handleTouchEnd">
+        
+        <!-- 轮播指示器 -->
+        <div class="slider-indicators">
+          <div 
+            v-for="(card, index) in journeyCards" 
+            :key="index"
+            :class="['indicator', { active: index === currentIndex }]"
+            @click="goToSlide(index)"
+          >
+            <span class="indicator-index">{{ card.index }}</span>
+          </div>
+        </div>
+
+        <!-- 导航按钮 -->
+        <button class="nav-btn prev" @click="prevSlide" aria-label="Previous">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="nav-btn next" @click="nextSlide" aria-label="Next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- 单卡片展示 -->
+        <div class="slider-track">
+          <transition name="slide" mode="out-in">
+            <div 
+              :key="currentIndex" 
+              class="journey-card"
+            >
+              <div class="card-image">
+                <img 
+                  :src="journeyCards[currentIndex].image" 
+                  :alt="journeyCards[currentIndex].imageAlt"
+                  loading="lazy"
+                />
+              </div>
+              
+              <div class="card-content">
+                <span class="card-index">{{ journeyCards[currentIndex].index }}</span>
+                
+                <h3 class="card-title">
+                  <span class="title-cn">{{ journeyCards[currentIndex].titleCn }}</span>
+                  <span class="title-en">{{ journeyCards[currentIndex].titleEn }}</span>
+                </h3>
+                
+                <p class="card-desc">
+                  <span class="desc-cn">{{ journeyCards[currentIndex].descCn }}</span>
+                  <span class="desc-en">{{ journeyCards[currentIndex].descEn }}</span>
+                </p>
+                
+                <router-link :to="{ path: '/contact', hash: '#form' }" class="card-link">
+                  <span v-show="currentLang === 'zh'" class="link-cn">→ 开始咨询</span>
+                  <span v-show="currentLang === 'en'" class="link-en">→ Book Consultation</span>
+                </router-link>
+              </div>
+            </div>
+          </transition>
+        </div>
+
+        <!-- 移动端滑动提示 -->
+        <div class="mobile-hint">
+          <span v-show="currentLang === 'zh'">← 滑动查看更多</span>
+          <span v-show="currentLang === 'en'">← Swipe to explore</span>
+        </div>
+      </div>
+    </section>
+
+        <!-- Contact Form Section -->
     <section class="contact-form-section" id="form">
       <div class="container">
         <div class="form-section">
           <h3 class="form-title">
-            <span v-show="currentLang === 'zh'" class="form-title-cn">预约咨询</span>
-            <span v-show="currentLang === 'en'" class="form-title-en">Book Consultation</span>
+            <span v-show="currentLang === 'zh'" class="form-title-cn">发送咨询</span>
+            <span v-show="currentLang === 'en'" class="form-title-en">Send Us a Message</span>
           </h3>
-
-          <!-- 成功提示 -->
-          <div v-if="submitSuccess" class="success-message">
-            <span class="success-icon">✓</span>
-            <span v-show="currentLang === 'zh'" class="success-text-cn">提交成功！我们将在 24 小时内与您联系。</span>
-            <span v-show="currentLang === 'en'" class="success-text-en">Success! We'll contact you within 24 hours.</span>
-          </div>
-
-          <!-- 错误提示 -->
-          <div v-if="submitError" class="error-message">
-            <span class="error-icon">⚠</span>
-            <span>{{ submitError }}</span>
-          </div>
-
+          
           <form @submit.prevent="handleSubmit" class="contact-form">
-            <!-- 基本信息行 -->
+            <!-- 基本信息 -->
             <div class="form-row">
               <div class="form-group">
                 <label for="fullName">
@@ -211,7 +409,7 @@ const handleSubmit = async () => {
                   v-model="form.fullName"
                   type="text"
                   required
-                  :placeholder="currentLang === 'zh' ? '您的姓名' : 'Your full name'"
+                  :placeholder="currentLang === 'zh' ? '您的姓名' : 'Your name'"
                 />
               </div>
 
@@ -232,13 +430,13 @@ const handleSubmit = async () => {
 
             <div class="form-row">
               <div class="form-group">
-                <label for="whatsapp">
-                  <span v-show="currentLang === 'zh'">WhatsApp / 微信 *</span>
-                  <span v-show="currentLang === 'en'">WhatsApp / WeChat *</span>
+                <label for="phone">
+                  <span v-show="currentLang === 'zh'">电话 *</span>
+                  <span v-show="currentLang === 'en'">Phone *</span>
                 </label>
                 <input
-                  id="whatsapp"
-                  v-model="form.whatsapp"
+                  id="phone"
+                  v-model="form.phone"
                   type="tel"
                   required
                   :placeholder="currentLang === 'zh' ? '+86 XXX XXXX XXXX' : '+86 XXX XXXX XXXX'"
@@ -246,52 +444,51 @@ const handleSubmit = async () => {
               </div>
 
               <div class="form-group">
-                <label for="customerType">
+                <label for="clientType">
                   <span v-show="currentLang === 'zh'">客户类型 *</span>
-                  <span v-show="currentLang === 'en'">Customer Type *</span>
+                  <span v-show="currentLang === 'en'">Client Type *</span>
                 </label>
-                <select id="customerType" v-model="form.customerType" required>
+                <select id="clientType" v-model="form.clientType" required>
                   <option value="" disabled>
-                    {{ currentLang === 'zh' ? '请选择客户类型' : 'Select customer type' }}
+                    {{ currentLang === 'zh' ? '请选择客户类型' : 'Select client type' }}
                   </option>
-                  <option v-for="option in customerTypeOptions" :key="option.value" :value="option.value">
-                    {{ currentLang === 'zh' ? option.labelCn : option.labelEn }}
+                  <option v-for="type in clientTypes" :key="type.value" :value="type.value">
+                    {{ currentLang === 'zh' ? type.labelCn : type.labelEn }}
                   </option>
                 </select>
               </div>
             </div>
 
-            <!-- 服务多选 -->
+            <!-- 预约信息 -->
             <div class="form-group">
               <label>
-                <span v-show="currentLang === 'zh'">感兴趣的服务 *</span>
-                <span v-show="currentLang === 'en'">Interested Services *</span>
+                <span v-show="currentLang === 'zh'">服务需求 *</span>
+                <span v-show="currentLang === 'en'">Services Needed *</span>
               </label>
               <div class="checkbox-group">
-                <label v-for="option in serviceOptions" :key="option.value" class="checkbox-label">
+                <label v-for="service in serviceOptions" :key="service.value" class="checkbox-label">
                   <input
                     type="checkbox"
-                    :value="option.value"
+                    :value="service.value"
                     v-model="form.services"
                   />
-                  <span v-show="currentLang === 'zh'">{{ option.labelCn }}</span>
-                  <span v-show="currentLang === 'en'">{{ option.labelEn }}</span>
+                  <span>{{ currentLang === 'zh' ? service.labelCn : service.labelEn }}</span>
                 </label>
               </div>
             </div>
 
-            <!-- 时间和预算 -->
             <div class="form-row">
               <div class="form-group">
-                <label for="expectedDate">
+                <label for="arrivalDate">
                   <span v-show="currentLang === 'zh'">预计来华时间 *</span>
                   <span v-show="currentLang === 'en'">Expected Arrival Date *</span>
                 </label>
                 <input
-                  id="expectedDate"
-                  v-model="form.expectedDate"
+                  id="arrivalDate"
+                  v-model="form.arrivalDate"
                   type="date"
                   required
+                  :min="new Date().toISOString().split('T')[0]"
                 />
               </div>
 
@@ -304,69 +501,114 @@ const handleSubmit = async () => {
                   <option value="" disabled>
                     {{ currentLang === 'zh' ? '请选择停留时长' : 'Select duration' }}
                   </option>
-                  <option v-for="option in durationOptions" :key="option.value" :value="option.value">
-                    {{ currentLang === 'zh' ? option.labelCn : option.labelEn }}
+                  <option v-for="dur in durationOptions" :key="dur.value" :value="dur.value">
+                    {{ currentLang === 'zh' ? dur.labelCn : dur.labelEn }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="budgetRange">
+                  <span v-show="currentLang === 'zh'">预算范围 *</span>
+                  <span v-show="currentLang === 'en'">Budget Range *</span>
+                </label>
+                <select id="budgetRange" v-model="form.budgetRange" required>
+                  <option value="" disabled>
+                    {{ currentLang === 'zh' ? '请选择预算范围' : 'Select budget range' }}
+                  </option>
+                  <option v-for="budget in budgetOptions" :key="budget.value" :value="budget.value">
+                    {{ currentLang === 'zh' ? budget.labelCn : budget.labelEn }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="source">
+                  <span v-show="currentLang === 'zh'">信息来源 *</span>
+                  <span v-show="currentLang === 'en'">How did you hear about us? *</span>
+                </label>
+                <select id="source" v-model="form.source" required>
+                  <option value="" disabled>
+                    {{ currentLang === 'zh' ? '请选择信息来源' : 'Select source' }}
+                  </option>
+                  <option v-for="src in sourceOptions" :key="src.value" :value="src.value">
+                    {{ currentLang === 'zh' ? src.labelCn : src.labelEn }}
                   </option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="budget">
-                <span v-show="currentLang === 'zh'">预算范围（USD） *</span>
-                <span v-show="currentLang === 'en'">Budget Range (USD) *</span>
-              </label>
-              <select id="budget" v-model="form.budget" required>
-                <option value="" disabled>
-                  {{ currentLang === 'zh' ? '请选择预算范围' : 'Select budget range' }}
-                </option>
-                <option v-for="option in budgetOptions" :key="option.id" :value="option.id">
-                  {{ currentLang === 'zh' ? option.labelCn : option.labelEn }}
-                </option>
-              </select>
-            </div>
-
-            <!-- 特殊需求 -->
-            <div class="form-group">
-              <label for="specialNeeds">
+              <label for="specialRequirements">
                 <span v-show="currentLang === 'zh'">特殊需求（可选）</span>
-                <span v-show="currentLang === 'en'">Special Needs (Optional)</span>
+                <span v-show="currentLang === 'en'">Special Requirements (Optional)</span>
               </label>
               <textarea
-                id="specialNeeds"
-                v-model="form.specialNeeds"
+                id="specialRequirements"
+                v-model="form.specialRequirements"
                 rows="3"
-                maxlength="500"
-                :placeholder="currentLang === 'zh' ? '语言、饮食、无障碍等特殊需求...' : 'Language, dietary, accessibility requirements...'"
+                :placeholder="currentLang === 'zh' ? '请告诉我们您的特殊需求...' : 'Any special requirements...'"
               ></textarea>
-              <div class="char-count">{{ form.specialNeeds.length }}/500</div>
             </div>
 
-            <!-- 信息来源 -->
             <div class="form-group">
-              <label for="source">
-                <span v-show="currentLang === 'zh'">如何知道我们</span>
-                <span v-show="currentLang === 'en'">How did you hear about us</span>
+              <label for="message">
+                <span v-show="currentLang === 'zh'">其他留言（可选）</span>
+                <span v-show="currentLang === 'en'">Additional Message (Optional)</span>
               </label>
-              <select id="source" v-model="form.source">
-                <option value="" disabled>
-                  {{ currentLang === 'zh' ? '请选择' : 'Select' }}
-                </option>
-                <option v-for="option in sourceOptions" :key="option.value" :value="option.value">
-                  {{ currentLang === 'zh' ? option.labelCn : option.labelEn }}
-                </option>
-              </select>
+              <textarea
+                id="message"
+                v-model="form.message"
+                rows="3"
+                :placeholder="currentLang === 'zh' ? '请告诉我们其他需求...' : 'Tell us more about your needs...'"
+              ></textarea>
             </div>
 
             <div class="form-actions">
               <button type="submit" class="btn btn-gold" :disabled="isSubmitting">
                 {{ isSubmitting ?
                   (currentLang === 'zh' ? '提交中...' : 'Submitting...') :
-                  (currentLang === 'zh' ? '提交咨询' : 'Submit Inquiry')
+                  (currentLang === 'zh' ? '提交预约申请' : 'Submit Reservation')
                 }}
               </button>
             </div>
           </form>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="contact-info">
+          <h3 class="info-title">
+            <span v-show="currentLang === 'zh'">联系方式</span>
+            <span v-show="currentLang === 'en'">Contact Info</span>
+          </h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-icon">📞</span>
+              <div class="info-content">
+                <span class="info-label" v-show="currentLang === 'zh'">电话</span>
+                <span class="info-label" v-show="currentLang === 'en'">Phone</span>
+                <span class="info-value">400-XXX-XXXX</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">✉️</span>
+              <div class="info-content">
+                <span class="info-label" v-show="currentLang === 'zh'">邮箱</span>
+                <span class="info-label" v-show="currentLang === 'en'">Email</span>
+                <span class="info-value">info@wellness-residency.com</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <div class="info-content">
+                <span class="info-label" v-show="currentLang === 'zh'">地址</span>
+                <span class="info-label" v-show="currentLang === 'en'">Address</span>
+                <span class="info-value">中国山东省济南市历下区...</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -375,21 +617,15 @@ const handleSubmit = async () => {
 
 <style scoped>
 .contact-page {
-  --color-primary: #2C5F6E;
-  --color-secondary: #C9A962;
-  --color-accent: #D4AF37;
-  --color-sand: #F5E6D3;
-  --color-off-white: #FAF7F2;
-  --color-white: #FFFFFF;
-  color: var(--color-black);
+  padding-top: var(--header-height);
 }
 
-/* Hero Section */
+/* Page Hero - 精简版 */
 .page-hero {
   position: relative;
   width: 100%;
-  min-height: 500px;
-  height: 70vh;
+  min-height: 600px;
+  height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -418,39 +654,471 @@ const handleSubmit = async () => {
   position: relative;
   z-index: 2;
   text-align: center;
-  color: #ffffff;
-  max-width: 900px;
+  color: var(--color-white);
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.hero-subtitle {
-  font-size: 1.125rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-}
-
-.hero-subtitle-cn {
-  display: block;
-  font-size: 1.125rem;
-  color: var(--color-white);
-  opacity: 0.95;
-}
-
-.hero-subtitle-en {
-  display: block;
-  font-size: 1rem;
-  color: var(--color-white);
-  opacity: 0.9;
-  letter-spacing: 0.05em;
+  padding: 2rem;
 }
 
 .hero-content h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.title-cn,
+.title-en {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--color-white) !important;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.hero-subtitle-cn,
+.hero-subtitle-en {
+  font-size: 2rem;
   margin-bottom: 1.5rem;
+  color: var(--color-sand) !important;
+  font-weight: 500;
+}
+
+.hero-description-cn,
+.hero-description-en {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-description-cn p,
+.hero-description-en p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: var(--color-white) !important;
+}
+
+.hero-description-cn strong,
+.hero-description-en strong {
+  color: var(--color-secondary) !important;
+  font-weight: 600;
+}
+
+.hero-tabs-cn,
+.hero-tabs-en {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-tab {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 0.875rem 1.75rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.hero-tab:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.tab-text {
+  font-size: 1rem;
+  color: var(--color-white) !important;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.cta-button {
+  margin-top: 2rem;
+}
+
+.btn-scroll {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-scroll:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(191, 163, 122, 0.3);
+  color: var(--color-white);
+}
+
+/* Page Banner */
+.page-banner {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-secondary);
+}
+
+.page-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/images/contact-banner-bg.jpg') center/cover no-repeat;
+  opacity: 0.3;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-white);
+}
+
+.banner-content h2 {
+  margin-bottom: 1rem;
+}
+
+.banner-title-cn,
+.banner-title-en {
+  display: block;
+  font-size: 3rem;
   font-weight: 700;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-white);
+}
+
+.divider {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.current {
+  color: var(--color-white);
+  font-weight: 500;
+}
+
+/* Intro Section */
+.intro-section {
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(135deg, var(--color-off-white) 0%, var(--color-white) 100%);
+}
+
+.intro-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-content h2 {
+  margin-bottom: 2rem;
+}
+
+.intro-title-cn,
+.intro-title-en {
+  display: block;
+  font-size: 2.5rem;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.intro-text {
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.intro-highlight {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: 50px;
+}
+
+.highlight-cn,
+.highlight-en {
+  color: var(--color-white) !important;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Care Journey Section - 单卡片轮播 */
+.care-journey-section {
+  padding: 0;
+  background-color: var(--color-sand);
+}
+
+.journey-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  max-height: 900px;
+  overflow: hidden;
+}
+
+/* 轮播指示器 */
+.slider-indicators {
+  position: absolute;
+  top: 50%;
+  left: var(--spacing-lg);
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.indicator {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(26, 26, 26, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.indicator:hover {
+  border-color: var(--color-secondary);
+  background-color: rgba(201, 169, 98, 0.1);
+}
+
+.indicator.active {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.indicator-index {
+  font-size: 0.875rem;
+  color: var(--color-black);
+  font-weight: 500;
+}
+
+.indicator.active .indicator-index {
+  color: var(--color-white);
+}
+
+/* 导航按钮 */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(26, 26, 26, 0.2);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  border-color: var(--color-secondary);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.nav-btn.prev {
+  left: calc(50% - 550px);
+}
+
+.nav-btn.next {
+  right: calc(50% - 550px);
+}
+
+/* 轮播轨道 */
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-xxl);
+}
+
+/* 单卡片 */
+.journey-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  min-height: 450px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 8s ease;
+}
+
+.journey-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: var(--color-white);
+  text-align: left;
+}
+
+.card-index {
+  font-family: var(--font-primary);
+  font-size: 3rem;
+  color: var(--color-secondary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.card-title .title-cn {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.card-title .title-en {
+  display: block;
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+.card-desc {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.card-desc .desc-cn {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc .desc-en {
+  display: block;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  font-size: 0.9375rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.card-link:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  transform: translateX(5px);
+}
+
+/* 移动端提示 */
+.mobile-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-stone);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+/* 幻灯片过渡动画 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.slide-enter-to,
+.slide-leave-from {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Contact Form Section */
@@ -459,80 +1127,43 @@ const handleSubmit = async () => {
   background-color: var(--color-off-white);
 }
 
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
 .form-section {
   max-width: 800px;
   margin: 0 auto;
+  padding: 3rem;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .form-title {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 2rem;
-  color: var(--color-primary);
 }
 
-.form-title-cn,
-.form-title-en {
+.form-title .form-title-cn {
   display: block;
-  color: var(--color-primary);
+  font-size: 2rem;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
 }
 
-.form-title-en {
+.form-title .form-title-en {
+  display: block;
   font-size: 1.25rem;
+  color: var(--color-secondary);
   letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
-/* Success/Error Messages */
-.success-message,
-.error-message {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-}
-
-.success-message {
-  background-color: rgba(76, 175, 80, 0.1);
-  border: 1px solid rgba(76, 175, 80, 0.3);
-  color: #4CAF50;
-}
-
-.success-icon {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.error-message {
-  background-color: rgba(244, 67, 54, 0.1);
-  border: 1px solid rgba(244, 67, 54, 0.3);
-  color: #F44336;
-}
-
-.error-icon {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-/* Form Styling */
 .contact-form {
-  background-color: var(--color-white);
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .form-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
@@ -540,23 +1171,23 @@ const handleSubmit = async () => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 1rem;
 }
 
 .form-group label {
   font-size: 0.9375rem;
-  color: #666;
+  color: var(--color-black);
   font-weight: 500;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
+  padding: 0.875rem;
+  border: 1px solid var(--color-sand);
   border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
+  font-family: var(--font-secondary);
+  font-size: 0.9375rem;
+  transition: all 0.3s ease;
 }
 
 .form-group input:focus,
@@ -564,48 +1195,48 @@ const handleSubmit = async () => {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.1);
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #999;
-}
-
+/* Checkbox Group */
 .checkbox-group {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 0.75rem;
-  margin-top: 0.5rem;
 }
 
 .checkbox-label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background-color: var(--color-off-white);
-  border-radius: 8px;
   cursor: pointer;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-sand);
+  border-radius: 8px;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  background-color: var(--color-white);
 }
 
 .checkbox-label:hover {
-  background-color: rgba(201, 169, 98, 0.1);
-  border-color: rgba(201, 169, 98, 0.3);
+  border-color: var(--color-secondary);
+  background-color: rgba(201, 169, 98, 0.05);
 }
 
 .checkbox-label input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
+  accent-color: var(--color-secondary);
 }
 
-.char-count {
-  text-align: right;
-  font-size: 0.75rem;
-  color: var(--color-stone);
-  margin-top: 0.25rem;
+.checkbox-label input[type="checkbox"]:checked + span {
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.checkbox-label span {
+  font-size: 0.9375rem;
+  color: var(--color-text);
 }
 
 .form-actions {
@@ -613,36 +1244,117 @@ const handleSubmit = async () => {
   text-align: center;
 }
 
-.btn-gold {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
-  color: var(--color-white);
-  padding: 0.75rem 3rem;
+/* Contact Info */
+.contact-info {
+  margin-top: 3rem;
+  padding: 3rem;
+  background-color: var(--color-sand);
+  border-radius: 16px;
+  color: var(--color-black);
+}
+
+.info-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-black);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.info-icon {
+  font-size: 2.5rem;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.info-value {
+  display: block;
   font-size: 1.125rem;
-  font-weight: 500;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-gold:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201, 169, 98, 0.4);
-}
-
-.btn-gold:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .journey-slider {
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    padding: 3rem 0;
+  }
+  
+  .slider-indicators {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .nav-btn {
+    display: none;
+  }
+  
+  .card-image {
+    height: 50vh;
+    min-height: 350px;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .card-index {
+    font-size: 2rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-desc {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .mobile-hint {
+    display: block;
+  }
+  
   .form-row {
     grid-template-columns: 1fr;
   }
   
-  .checkbox-group {
+  .info-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-hint {
+    display: none;
   }
 }
 </style>

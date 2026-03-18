@@ -265,8 +265,8 @@ const benefits = [
 .page-hero {
   position: relative;
   width: 100%;
-  min-height: 500px;
-  height: 70vh;
+  min-height: 600px;
+  height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
