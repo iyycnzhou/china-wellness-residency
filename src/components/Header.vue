@@ -2,14 +2,12 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { currentLang, toggleLanguage } from '../composables/useLanguage'
+import { useUserStore } from '../stores/user'
 
 const router = useRouter()
+const userStore = useUserStore()
 const isMenuOpen = ref(false)
 const isScrolled = ref(false)
-
-// 用户状态（模拟）
-const isLoggedIn = ref(false)
-const userName = ref('')
 
 // 切换菜单
 const toggleMenu = () => {
@@ -23,14 +21,20 @@ const closeMenu = () => {
   document.body.style.overflow = 'auto'
 }
 
+// 登出
+const handleLogout = () => {
+  userStore.logout()
+  router.push('/')
+}
+
 // 导航菜单
 const menuItems = [
   { name: '首页', nameEn: 'Home', path: '/' },
-  { name: '驻留权益', nameEn: 'Residency Benefits', path: '/benefits' },
-  { name: '会员计划', nameEn: 'Membership Programs', path: '/membership' },
-  { name: '服务网络', nameEn: 'Service Network', path: '/destinations' },
-  { name: '联系我们', nameEn: 'Contact Us', path: '/contact' },
-  { name: '关于我们', nameEn: 'About Us', path: '/about' },
+  { name: '康养权益', nameEn: 'Wellness Benefits', path: '/benefits' },
+  { name: '会员尊享', nameEn: 'Membership', path: '/membership' },
+  { name: '服务网络', nameEn: 'Destinations', path: '/destinations' },
+  { name: '咨询预约', nameEn: 'Book Now', path: '/contact' },
+  { name: '关于我们', nameEn: 'About', path: '/about' },
 ]
 
 // 滚动监听
@@ -74,10 +78,10 @@ const getMenuText = (item: typeof menuItems[0]) => {
           {{ currentLang === 'zh' ? 'EN' : '中文' }}
         </button>
         
-        <template v-if="isLoggedIn">
+        <template v-if="userStore.isLoggedIn">
           <div class="user-menu">
-            <span class="user-name">{{ userName }}</span>
-            <button class="user-btn" @click="isLoggedIn = false">
+            <span class="user-name">{{ userStore.userName }}</span>
+            <button class="user-btn" @click="handleLogout">
               {{ currentLang === 'zh' ? '登出' : 'Logout' }}
             </button>
           </div>

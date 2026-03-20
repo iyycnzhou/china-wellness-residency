@@ -148,7 +148,7 @@ onUnmounted(() => {
 
         <div class="residency-grid">
           <div class="map-area">
-            <img src="/images/network/world-map-dark.png" alt="Global Network" class="map-image">
+            <img src="@/assets/images/world-map-dark.png" alt="Global Network" class="map-image">
           </div>
 
           <div class="residency-text">

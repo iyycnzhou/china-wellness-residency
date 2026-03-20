@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { currentLang } from '../composables/useLanguage'
+import { currentLang, getCityNames } from '../composables/useLanguage'
+import BookingModal from '../components/BookingModal.vue'
 
 // 导入服务图片
 import hospitalImg from '@/assets/images/services/01-hospital.jpg'
@@ -9,17 +10,29 @@ import checkupImg from '@/assets/images/services/03-checkup.jpg'
 import wellnessImg from '@/assets/images/services/04-wellness.jpg'
 import hotspringImg from '@/assets/images/services/05-hotspring.jpg'
 import tcmImg from '@/assets/images/services/06-tcm.jpg'
-import hotelImg from '@/assets/images/services/07-hotel.jpg'
-import homestayImg from '@/assets/images/services/08-homestay.jpg'
-import wellnessHotelImg from '@/assets/images/services/09-wellness-hotel.jpg'
 import taichiImg from '@/assets/images/services/10-taichi.jpg'
 import tcmTherapyImg from '@/assets/images/services/11-tcm-therapy.jpg'
 import teaImg from '@/assets/images/services/12-tea.jpg'
-import attractionImg from '@/assets/images/services/13-attraction.jpg'
-import museumImg from '@/assets/images/services/14-museum.jpg'
 
 // 当前激活的Tab
 const activeTab = ref<'membership' | 'services'>('membership')
+
+// ==================== 预订模态框状态 ====================
+const isBookingOpen = ref(false)
+const selectedService = ref<any>(null)
+
+// 打开预订模态框
+function openBooking(service: any) {
+  selectedService.value = service
+  isBookingOpen.value = true
+}
+
+// 处理预订提交
+function handleBookingSubmit(booking: any) {
+  console.log('预订提交:', booking)
+  // TODO: 调用API提交预订
+  isBookingOpen.value = false
+}
 
 // ==================== 会员计划数据（重新设计） ====================
 const memberships = [
@@ -256,62 +269,6 @@ const services = [
     cities: ['北京', '上海', '广州', '成都']
   },
 
-  // 酒店住宿
-  {
-    category: 'accommodation',
-    categoryCn: '酒店住宿',
-    categoryEn: 'Accommodation',
-    titleCn: '五星级度假酒店',
-    titleEn: '5-Star Resort Hotels',
-    descriptionCn: '与国内知名五星级酒店合作，提供尊贵的住宿体验和优质服务。',
-    descriptionEn: 'Partnering with renowned 5-star hotels in China to provide prestigious accommodation experiences and premium services.',
-    price: '1200',
-    priceCn: '元/晚',
-    priceEn: 'CNY/night',
-    rating: 4.8,
-    tags: ['五星级', '度假', '豪华'],
-    tagsEn: ['5-Star', 'Resort', 'Luxury'],
-    image: hotelImg,
-    languages: ['zh', 'en', 'bilingual'],
-    cities: ['北京', '上海', '三亚', '杭州']
-  },
-  {
-    category: 'accommodation',
-    categoryCn: '酒店住宿',
-    categoryEn: 'Accommodation',
-    titleCn: '精品民宿',
-    titleEn: 'Boutique Homestays',
-    descriptionCn: '精选本地特色民宿，体验地道的本地文化和生活方式。',
-    descriptionEn: 'Carefully selected local characteristic homestays to experience authentic local culture and lifestyle.',
-    price: '600',
-    priceCn: '元/晚',
-    priceEn: 'CNY/night',
-    rating: 4.7,
-    tags: ['民宿', '文化', '体验'],
-    tagsEn: ['Homestay', 'Culture', 'Experience'],
-    image: homestayImg,
-    languages: ['zh', 'bilingual'],
-    cities: ['大理', '丽江', '厦门', '成都']
-  },
-  {
-    category: 'accommodation',
-    categoryCn: '酒店住宿',
-    categoryEn: 'Accommodation',
-    titleCn: '康养主题酒店',
-    titleEn: 'Wellness Themed Hotels',
-    descriptionCn: '专为康养人士设计的酒店，配备SPA、健身房、营养餐厅等设施。',
-    descriptionEn: 'Hotels designed specifically for wellness seekers, equipped with SPA, gym, nutrition restaurants and other facilities.',
-    price: '900',
-    priceCn: '元/晚',
-    priceEn: 'CNY/night',
-    rating: 4.8,
-    tags: ['康养', '酒店', '综合服务'],
-    tagsEn: ['Wellness', 'Hotel', 'Integrated Services'],
-    image: wellnessHotelImg,
-    languages: ['zh', 'en', 'bilingual'],
-    cities: ['三亚', '珠海', '青岛']
-  },
-
   // 文化体验
   {
     category: 'cultural',
@@ -366,44 +323,6 @@ const services = [
     image: teaImg,
     languages: ['zh', 'en', 'bilingual'],
     cities: ['杭州', '福州', '厦门', '成都', '西安']
-  },
-
-  // 景区门票
-  {
-    category: 'attraction',
-    categoryCn: '景区门票',
-    categoryEn: 'Attraction Tickets',
-    titleCn: '合作景区门票',
-    titleEn: 'Partner Attraction Tickets',
-    descriptionCn: '与国内热门景区合作，为您提供优先购票和专属权益。',
-    descriptionEn: 'Partnering with popular domestic attractions to provide priority ticketing and exclusive benefits.',
-    price: '200',
-    priceCn: '元/张',
-    priceEn: 'CNY/ticket',
-    rating: 4.8,
-    tags: ['景区', '门票', '优惠'],
-    tagsEn: ['Attraction', 'Ticket', 'Discount'],
-    image: attractionImg,
-    languages: ['zh', 'en', 'bilingual'],
-    cities: ['北京', '上海', '广州', '成都', '西安', '杭州']
-  },
-  {
-    category: 'attraction',
-    categoryCn: '景区门票',
-    categoryEn: 'Attraction Tickets',
-    titleCn: '文化景点门票',
-    titleEn: 'Cultural Attraction Tickets',
-    descriptionCn: '博物馆、美术馆、文化遗产地等文化景点的专属门票服务。',
-    descriptionEn: 'Exclusive ticketing services for museums, art galleries, and cultural heritage sites.',
-    price: '150',
-    priceCn: '元/张',
-    priceEn: 'CNY/ticket',
-    rating: 4.7,
-    tags: ['博物馆', '文化', '历史'],
-    tagsEn: ['Museum', 'Culture', 'History'],
-    image: museumImg,
-    languages: ['zh', 'en', 'bilingual'],
-    cities: ['北京', '上海', '西安', '南京', '杭州']
   }
 ]
 
@@ -463,9 +382,7 @@ const getCategoryLabel = (category: string) => {
   const labels: Record<string, { cn: string, en: string }> = {
     medical: { cn: '医疗健康', en: 'Medical' },
     wellness: { cn: '康养驻留', en: 'Wellness' },
-    accommodation: { cn: '酒店住宿', en: 'Accommodation' },
-    cultural: { cn: '文化体验', en: 'Cultural' },
-    attraction: { cn: '景区门票', en: 'Attractions' }
+    cultural: { cn: '文化体验', en: 'Cultural' }
   }
   return labels[category] || { cn: '其他', en: 'Other' }
 }
@@ -852,7 +769,7 @@ const getCategoryLabelCurrent = (category: string) => {
             </label>
             <div class="filter-options">
               <button 
-                v-for="cat in ['all', 'medical', 'wellness', 'accommodation', 'cultural', 'attraction']" 
+                v-for="cat in ['all', 'medical', 'wellness', 'cultural']" 
                 :key="cat"
                 :class="['filter-btn', { active: selectedCategory === cat }]"
                 @click="selectedCategory = cat"
@@ -860,16 +777,12 @@ const getCategoryLabelCurrent = (category: string) => {
                 <span v-show="currentLang === 'zh'">
                   {{ cat === 'all' ? '全部' : 
                     cat === 'medical' ? '医疗健康' :
-                    cat === 'wellness' ? '康养驻留' :
-                    cat === 'accommodation' ? '酒店住宿' :
-                    cat === 'cultural' ? '文化体验' : '景区门票' }}
+                    cat === 'wellness' ? '康养驻留' : '文化体验' }}
                 </span>
                 <span v-show="currentLang === 'en'">
                   {{ cat === 'all' ? 'All' : 
                     cat === 'medical' ? 'Medical' :
-                    cat === 'wellness' ? 'Wellness' :
-                    cat === 'accommodation' ? 'Accommodation' :
-                    cat === 'cultural' ? 'Cultural' : 'Attractions' }}
+                    cat === 'wellness' ? 'Wellness' : 'Cultural' }}
                 </span>
               </button>
             </div>
@@ -952,22 +865,16 @@ const getCategoryLabelCurrent = (category: string) => {
                 <span class="cities-text">
                   <span v-show="currentLang === 'zh'">支持城市：</span>
                   <span v-show="currentLang === 'en'">Available in:</span>
-                  <span class="cities-list">{{ service.cities.slice(0, 3).join(' | ') }}</span>
+                  <span class="cities-list">{{ getCityNames(service.cities.slice(0, 3)) }}</span>
                 </span>
               </div>
               
               <!-- 操作按钮 -->
               <div class="service-actions">
                 <button 
-                  class="btn btn-primary" 
-                  style="flex: 1; padding: 0.75rem; font-size: 1rem; border-radius: 8px;"
-                >
-                  <span v-show="currentLang === 'zh'">查看详情</span>
-                  <span v-show="currentLang === 'en'">View Details</span>
-                </button>
-                <button 
                   class="btn btn-gold" 
-                  style="flex: 1; padding: 0.75rem; font-size: 1rem; border-radius: 8px;"
+                  style="padding: 0.75rem 3rem; font-size: 1rem; border-radius: 8px;"
+                  @click="openBooking(service)"
                 >
                   <span v-show="currentLang === 'zh'">立即预订</span>
                   <span v-show="currentLang === 'en'">Book Now</span>
@@ -1060,6 +967,13 @@ const getCategoryLabelCurrent = (category: string) => {
         </div>
       </div>
     </section>
+
+    <!-- 预订模态框 -->
+    <BookingModal
+      v-model="isBookingOpen"
+      :service="selectedService"
+      @submit="handleBookingSubmit"
+    />
   </div>
 </template>
 

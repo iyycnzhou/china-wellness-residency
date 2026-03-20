@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { currentLang } from '../composables/useLanguage'
 import { ref, onMounted, onUnmounted } from 'vue'
+import * as contactApi from '../api/contact'
 
 // 核心服务旅程卡片 - 替代传统表单
 const journeyCards = [
@@ -184,25 +185,48 @@ const handleSwipe = () => {
   }
 }
 
+// 提交状态
+const submitStatus = ref<{
+  success: boolean
+  message: string
+  inquiryNumber?: string
+} | null>(null)
+
 const handleSubmit = async () => {
   isSubmitting.value = true
-  // TODO: API call to submit预约表单
-  console.log('Form submitted:', form.value)
-  await new Promise(resolve => setTimeout(resolve, 1000))
+  submitStatus.value = null
+  
+  const result = await contactApi.submitInquiry(form.value)
+  
   isSubmitting.value = false
-  // Reset form after submission
-  form.value = {
-    fullName: '',
-    email: '',
-    phone: '',
-    clientType: '',
-    services: [],
-    arrivalDate: '',
-    duration: '',
-    budgetRange: '',
-    specialRequirements: '',
-    source: '',
-    message: '',
+  
+  if (result.success && result.data) {
+    submitStatus.value = {
+      success: true,
+      message: currentLang.value === 'zh' 
+        ? '预约申请提交成功！我们将在24小时内与您联系。' 
+        : 'Your inquiry has been submitted successfully! We will contact you within 24 hours.',
+      inquiryNumber: result.data.inquiryNumber,
+    }
+    // 重置表单
+    form.value = {
+      fullName: '',
+      email: '',
+      phone: '',
+      clientType: '',
+      services: [],
+      arrivalDate: '',
+      duration: '',
+      budgetRange: '',
+      specialRequirements: '',
+      source: '',
+      message: '',
+    }
+  } else {
+    submitStatus.value = {
+      success: false,
+      message: result.error?.message || (currentLang.value === 'zh' ? '提交失败，请稍后重试' : 'Submission failed, please try again later'),
+    }
   }
 }
 
@@ -574,6 +598,21 @@ onUnmounted(() => {
                 }}
               </button>
             </div>
+            
+            <!-- 提交状态提示 -->
+            <transition name="fade">
+              <div v-if="submitStatus" class="submit-status" :class="{ 'success': submitStatus.success, 'error': !submitStatus.success }">
+                <div class="status-icon">
+                  {{ submitStatus.success ? '✓' : '!' }}
+                </div>
+                <div class="status-content">
+                  <p class="status-message">{{ submitStatus.message }}</p>
+                  <p v-if="submitStatus.inquiryNumber" class="status-number">
+                    {{ currentLang === 'zh' ? '咨询编号：' : 'Inquiry Number: ' }}{{ submitStatus.inquiryNumber }}
+                  </p>
+                </div>
+              </div>
+            </transition>
           </form>
         </div>
 
@@ -1355,6 +1394,94 @@ onUnmounted(() => {
 @media (min-width: 769px) {
   .mobile-hint {
     display: none;
+  }
+}
+
+/* 提交状态提示 */
+.submit-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.submit-status.success {
+  background-color: #ecfdf5;
+  border: 1px solid #10b981;
+}
+
+.submit-status.error {
+  background-color: #fef2f2;
+  border: 1px solid #ef4444;
+}
+
+.status-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.submit-status.success .status-icon {
+  background-color: #10b981;
+  color: white;
+}
+
+.submit-status.error .status-icon {
+  background-color: #ef4444;
+  color: white;
+}
+
+.status-content {
+  flex: 1;
+}
+
+.status-message {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.submit-status.success .status-message {
+  color: #065f46;
+}
+
+.submit-status.error .status-message {
+  color: #991b1b;
+}
+
+.status-number {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0.375rem 0 0 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
