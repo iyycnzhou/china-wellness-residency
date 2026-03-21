@@ -4,6 +4,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const scrollContainer = ref<HTMLElement | null>(null)
 const dots = ref<NodeList | null>(null)
+const heroVideo = ref<HTMLVideoElement | null>(null)
 let autoScrollInterval: number | null = null
 
 // 滚动控制
@@ -72,6 +73,15 @@ onMounted(() => {
   
   // 启动自动滚动
   startAutoScroll()
+  
+  // 强制触发视频播放（解决 iOS 自动播放问题）
+  const video = document.querySelector('.hero-video') as HTMLVideoElement
+  if (video) {
+    video.play().catch(() => {
+      // iOS 可能需要用户交互才能播放，静默失败
+      console.log('Video autoplay blocked, user interaction required')
+    })
+  }
 })
 
 onUnmounted(() => {
@@ -85,7 +95,18 @@ onUnmounted(() => {
     <!-- Hero Section - Video Background -->
     <section class="hero">
       <!-- 视频背景 - 压缩优化版本 -->
-      <video class="hero-video" autoplay muted loop playsinline>
+      <video 
+        ref="heroVideo"
+        class="hero-video" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        webkit-playsinline
+        x5-video-player-type="h5"
+        x5-video-player-fullscreen="true"
+        poster="@/assets/images/hero-bg.webp"
+      >
         <source src="@/assets/images/hero-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
