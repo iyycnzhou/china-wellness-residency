@@ -7,6 +7,9 @@ const dots = ref<NodeList | null>(null)
 const heroVideo = ref<HTMLVideoElement | null>(null)
 let autoScrollInterval: number | null = null
 
+// 检测是否是微信浏览器
+const isWechat = /MicroMessenger/i.test(navigator.userAgent)
+
 // 滚动控制
 const scrollLeft = () => {
   if (scrollContainer.value) {
@@ -94,8 +97,12 @@ onUnmounted(() => {
   <div class="home">
     <!-- Hero Section - Video Background -->
     <section class="hero">
-      <!-- 视频背景 - 压缩优化版本 -->
+      <!-- 微信中显示静态图片背景 -->
+      <div v-if="isWechat" class="hero-bg-image"></div>
+      
+      <!-- 非微信环境播放视频 -->
       <video 
+        v-else
         ref="heroVideo"
         class="hero-video" 
         autoplay 
@@ -103,12 +110,9 @@ onUnmounted(() => {
         loop 
         playsinline
         webkit-playsinline
-        x5-video-player-type="h5"
-        x5-video-player-fullscreen="true"
         poster="@/assets/images/hero-bg.webp"
       >
         <source src="@/assets/images/hero-video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
       
       <!-- 半透明遮罩 - 让背景变暗，文字更清晰 -->
@@ -553,6 +557,21 @@ onUnmounted(() => {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+}
+
+/* 微信中显示静态图片背景 */
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('@/assets/images/hero-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  animation: slowZoom 20s ease-in-out infinite;
 }
 
 /* 图片背景备用 (如果视频加载失败) */
