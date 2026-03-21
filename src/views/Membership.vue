@@ -4,15 +4,15 @@ import { currentLang, getCityNames } from '../composables/useLanguage'
 import BookingModal from '../components/BookingModal.vue'
 
 // 导入服务图片
-import hospitalImg from '@/assets/images/services/01-hospital.jpg'
-import specialistImg from '@/assets/images/services/02-specialist.jpg'
-import checkupImg from '@/assets/images/services/03-checkup.jpg'
-import wellnessImg from '@/assets/images/services/04-wellness.jpg'
-import hotspringImg from '@/assets/images/services/05-hotspring.jpg'
-import tcmImg from '@/assets/images/services/06-tcm.jpg'
-import taichiImg from '@/assets/images/services/10-taichi.jpg'
-import tcmTherapyImg from '@/assets/images/services/11-tcm-therapy.jpg'
-import teaImg from '@/assets/images/services/12-tea.jpg'
+import hospitalImg from '@/assets/images/services/01-hospital.webp'
+import specialistImg from '@/assets/images/services/02-specialist.webp'
+import checkupImg from '@/assets/images/services/03-checkup.webp'
+import wellnessImg from '@/assets/images/services/04-wellness.webp'
+import hotspringImg from '@/assets/images/services/05-hotspring.webp'
+import tcmImg from '@/assets/images/services/06-tcm.webp'
+import taichiImg from '@/assets/images/services/10-taichi.webp'
+import tcmTherapyImg from '@/assets/images/services/11-tcm-therapy.webp'
+import teaImg from '@/assets/images/services/12-tea.webp'
 
 // 当前激活的Tab
 const activeTab = ref<'membership' | 'services'>('membership')

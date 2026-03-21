@@ -6,7 +6,7 @@ import { currentLang } from '../composables/useLanguage'
   <div class="about-page">
     <!-- Hero Section -->
     <section class="page-hero">
-      <img class="hero-bg" src="@/assets/images/about-hero.jpg" alt="About Hero" />
+      <img class="hero-bg" src="@/assets/images/about-hero.webp" alt="About Hero" />
       
       <div class="hero-overlay"></div>
       
@@ -101,7 +101,7 @@ import { currentLang } from '../composables/useLanguage'
       <div class="container">
         <div class="mv-grid">
           <div class="mv-card">
-            <img class="mv-img" src="@/assets/images/mission.jpg" alt="Mission" />
+            <img class="mv-img" src="@/assets/images/mission.webp" alt="Mission" />
             <div class="mv-content">
               <h3>
                 <span v-show="currentLang === 'zh'" class="mv-title-cn">我们的使命</span>
@@ -121,7 +121,7 @@ import { currentLang } from '../composables/useLanguage'
           </div>
 
           <div class="mv-card">
-            <img class="mv-img" src="@/assets/images/vision.jpg" alt="Vision" />
+            <img class="mv-img" src="@/assets/images/vision.webp" alt="Vision" />
             <div class="mv-content">
               <h3>
                 <span v-show="currentLang === 'zh'" class="mv-title-cn">我们的愿景</span>
@@ -600,7 +600,7 @@ import { currentLang } from '../composables/useLanguage'
   background: linear-gradient(135deg, 
     rgba(26, 74, 62, 0.85) 0%, 
     rgba(26, 74, 62, 0.75) 100%),
-    url('@/assets/images/partners-bg.jpg') center/cover no-repeat;
+    url('@/assets/images/partners-bg.webp') center/cover no-repeat;
   position: relative;
 }
 

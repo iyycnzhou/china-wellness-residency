@@ -244,7 +244,7 @@ onUnmounted(() => {
   <div class="contact-page">
     <!-- Hero Section - 在 Banner 区域下方 -->
     <section class="page-hero">
-      <img class="hero-bg" src="@/assets/images/contact-hero.jpg" alt="Contact Hero" />
+      <img class="hero-bg" src="@/assets/images/contact-hero.webp" alt="Contact Hero" />
       
       <div class="hero-overlay"></div>
       
@@ -822,7 +822,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/images/contact-banner-bg.jpg') center/cover no-repeat;
+  background: url('/images/contact-banner-bg.webp') center/cover no-repeat;
   opacity: 0.3;
 }
 

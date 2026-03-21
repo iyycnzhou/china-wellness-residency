@@ -9,7 +9,7 @@ const cards = ref([
     titleEn: 'Initial Consultation',
     descCn: '您私人医疗旅程的入口点',
     descEn: 'A private entry point to your care journey',
-    image: '/images/consultation.jpg',
+    image: '/images/consultation.webp',
     imageAlt: 'Private consultation room'
   },
   {
@@ -18,7 +18,7 @@ const cards = ref([
     titleEn: 'Clinical Access',
     descCn: '直连中国顶级医疗资源',
     descEn: 'Direct connection to top-tier medical expertise in China',
-    image: '/images/clinical.jpg',
+    image: '/images/clinical.webp',
     imageAlt: 'Advanced medical facilities'
   },
   {
@@ -27,7 +27,7 @@ const cards = ref([
     titleEn: 'Residency & Recovery',
     descCn: '在精心设计的环境中疗养恢复',
     descEn: 'Stay, recover, and restore in a curated environment',
-    image: '/images/residency.jpg',
+    image: '/images/residency.webp',
     imageAlt: 'Luxury wellness residence'
   },
   {
@@ -36,7 +36,7 @@ const cards = ref([
     titleEn: 'Preventive Screening',
     descCn: '全面健康管理，防患于未然',
     descEn: 'Comprehensive health insights, proactively managed',
-    image: '/images/screening.jpg',
+    image: '/images/screening.webp',
     imageAlt: 'Comprehensive health checkup'
   }
 ])

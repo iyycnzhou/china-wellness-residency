@@ -148,7 +148,7 @@ onUnmounted(() => {
 
         <div class="residency-grid">
           <div class="map-area">
-            <img src="@/assets/images/world-map-dark.png" alt="Global Network" class="map-image">
+            <img src="@/assets/images/world-map-dark.webp" alt="Global Network" class="map-image">
           </div>
 
           <div class="residency-text">
@@ -213,7 +213,7 @@ onUnmounted(() => {
 
         <div class="lifestyle-hero">
           <div class="lifestyle-hero-image">
-            <img src="@/assets/images/shandong-coastal-resort.png" alt="山海疗愈">
+            <img src="@/assets/images/shandong-coastal-resort.webp" alt="山海疗愈">
             <div class="lifestyle-hero-overlay">
               <!-- 英文版：只显示副标题在图片中间 -->
               <div v-show="currentLang === 'en'" class="hero-overlay-content-en">
@@ -389,7 +389,7 @@ onUnmounted(() => {
             @mouseleave="startAutoScroll"
           >
             <div class="highlight-card">
-              <img class="highlight-img" src="@/assets/images/hospital-doctor-consultation.png" alt="医疗绿色通道">
+              <img class="highlight-img" src="@/assets/images/hospital-doctor-consultation.webp" alt="医疗绿色通道">
               <div class="highlight-content">
                 <span class="highlight-icon">🏥</span>
                 <h3>
@@ -404,7 +404,7 @@ onUnmounted(() => {
             </div>
 
             <div class="highlight-card">
-              <img class="highlight-img" src="@/assets/images/tcm-acupuncture-treatment.png" alt="中医康养调理">
+              <img class="highlight-img" src="@/assets/images/tcm-acupuncture-treatment.webp" alt="中医康养调理">
               <div class="highlight-content">
                 <span class="highlight-icon">🌿</span>
                 <h3>
@@ -419,7 +419,7 @@ onUnmounted(() => {
             </div>
 
             <div class="highlight-card">
-              <img class="highlight-img" src="@/assets/images/shandong-coastal-resort.png" alt="优质驻留环境">
+              <img class="highlight-img" src="@/assets/images/shandong-coastal-resort.webp" alt="优质驻留环境">
               <div class="highlight-content">
                 <span class="highlight-icon">🏖️</span>
                 <h3>
@@ -434,7 +434,7 @@ onUnmounted(() => {
             </div>
 
             <div class="highlight-card">
-              <img class="highlight-img" src="@/assets/images/medical-insurance-protection.png" alt="医疗保障体系">
+              <img class="highlight-img" src="@/assets/images/medical-insurance-protection.webp" alt="医疗保障体系">
               <div class="highlight-content">
                 <span class="highlight-icon">🛡️</span>
                 <h3>
@@ -449,7 +449,7 @@ onUnmounted(() => {
             </div>
 
             <div class="highlight-card">
-              <img class="highlight-img" src="@/assets/images/tai-chi-qigong-practice.png" alt="文化沉浸体验">
+              <img class="highlight-img" src="@/assets/images/tai-chi-qigong-practice.webp" alt="文化沉浸体验">
               <div class="highlight-content">
                 <span class="highlight-icon">🎋</span>
                 <h3>
@@ -490,7 +490,7 @@ onUnmounted(() => {
 
     <!-- CTA Section -->
     <section class="cta-section">
-      <img class="cta-bg" src="@/assets/images/cta-background.png" alt="开启您的健康驻留之旅">
+      <img class="cta-bg" src="@/assets/images/cta-background.webp" alt="开启您的健康驻留之旅">
       
       <div class="cta-overlay"></div>
       

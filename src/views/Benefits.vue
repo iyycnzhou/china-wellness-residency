@@ -4,42 +4,42 @@ import { currentLang } from '../composables/useLanguage'
 // 六大权益 - 使用高质量图片替代 emoji 图标
 const benefits = [
   {
-    image: '/images/services/wellness.jpg',
+    image: '/images/services/wellness.webp',
     nameCn: '康养驻留',
     nameEn: 'WELLNESS RESIDENCY',
     descCn: '每年可享 30/60/90 天灵活驻留期\n任选山东海滨疗养院、温泉度假村或康养小镇\n私密套房、管家服务、专属康养顾问\n让您的每一次驻留都成为身心 rejuvenation 的奢华体验',
     descEn: 'Enjoy 30/60/90 days annually with flexible scheduling\nChoose from Shandong coastal resorts, hot spring retreats, or wellness towns\nPrivate suites, butler service, dedicated wellness consultants\nEvery stay becomes a luxurious journey of rejuvenation',
   },
   {
-    image: '/images/services/hospital.jpg',
+    image: '/images/services/hospital.webp',
     nameCn: '医疗接入',
     nameEn: 'MEDICAL ACCESS',
     descCn: '三甲医院绿色通道，48 小时内专家预约\n快速门诊、住院协调、第二诊疗意见\n全程医疗翻译与陪诊服务\n让您在中国享受顶级医疗资源，无忧就医',
     descEn: "Priority access to Grade-A hospitals, specialist appointments within 48 hours\nExpedited consultations, hospitalization coordination, second opinions\nFull-service medical translation and companion care\nAccess China's premier medical resources with peace of mind",
   },
   {
-    image: '/images/services/tcm.jpg',
+    image: '/images/services/tcm.webp',
     nameCn: '年度体检',
     nameEn: 'ANNUAL HEALTH SCREENING',
     descCn: '年度全面健康检查，早发现早预防\n含肿瘤标志物筛查、心脑血管评估、中医体质辨识\n电子健康档案终身管理，云端存储随时查阅\n健康趋势分析，异常指标早期预警',
     descEn: 'Comprehensive annual health screening for early detection\nIncludes tumor markers, cardiovascular assessment, TCM constitution analysis\nLifetime electronic health records with secure cloud access\nHealth trend analysis with early warning system',
   },
   {
-    image: '/images/services/tourism.jpg',
+    image: '/images/services/tourism.webp',
     nameCn: '医疗保障',
     nameEn: 'MEDICAL PROTECTION',
     descCn: '定点医院医疗费用直接结算\n年度最高 50,000 美元医疗保障\n涵盖门诊、住院、手术、药品费用\n让您专注康养，无需担忧医疗费用',
     descEn: 'Direct settlement at designated partner hospitals\nAnnual medical coverage up to $50,000 USD\nCovers consultations, hospitalization, surgery, and medications\nFocus on your wellness without worrying about medical expenses',
   },
   {
-    image: '/images/banner/hero-3.jpg',
+    image: '/images/banner/hero-3.webp',
     nameCn: '康养旅游',
     nameEn: 'WELLNESS TOURISM',
     descCn: '太极、气功、中医养生课程专享\n50+ 5A 级景区门票、私人导游服务\n高端康养活动优先参与权\n探索中国传统养生智慧，品味品质生活',
     descEn: 'Exclusive access to Tai Chi, Qigong, and TCM wellness courses\n50+ 5A scenic attraction tickets with private guide services\nPriority participation in premium wellness activities\nDiscover traditional Chinese wellness wisdom and quality living',
   },
   {
-    image: '/images/services/wellness.jpg',
+    image: '/images/services/wellness.webp',
     nameCn: '家庭共享',
     nameEn: 'FAMILY SHARING',
     descCn: '主卡人可灵活分配权益给配偶、子女、父母\n家庭成员共享健康档案与医疗服务\n一张主卡，全家受益\n让爱与关怀，延伸至您珍视的每一位家人',
@@ -52,7 +52,7 @@ const benefits = [
   <div class="benefits-page">
     <!-- Hero Section -->
     <section class="page-hero">
-      <img class="hero-bg" src="@/assets/images/benefits-hero.jpg" alt="Residency Benefits Hero">
+      <img class="hero-bg" src="@/assets/images/benefits-hero.webp" alt="Residency Benefits Hero">
       
       <div class="hero-overlay"></div>
       
@@ -181,7 +181,7 @@ const benefits = [
             </div>
             <div class="testimonial-author">
               <div class="author-avatar">
-                <img src="/images/testimonials/avatar-david.jpg" alt="David" loading="lazy">
+                <img src="/images/testimonials/avatar-david.webp" alt="David" loading="lazy">
               </div>
               <div class="author-info">
                 <span class="author-name">David</span>
@@ -207,7 +207,7 @@ const benefits = [
             </div>
             <div class="testimonial-author">
               <div class="author-avatar">
-                <img src="/images/testimonials/avatar-maria.jpg" alt="Maria" loading="lazy">
+                <img src="/images/testimonials/avatar-maria.webp" alt="Maria" loading="lazy">
               </div>
               <div class="author-info">
                 <span class="author-name">Maria</span>
@@ -233,7 +233,7 @@ const benefits = [
             </div>
             <div class="testimonial-author">
               <div class="author-avatar">
-                <img src="/images/testimonials/avatar-kenji.jpg" alt="Kenji" loading="lazy">
+                <img src="/images/testimonials/avatar-kenji.webp" alt="Kenji" loading="lazy">
               </div>
               <div class="author-info">
                 <span class="author-name">Kenji</span>

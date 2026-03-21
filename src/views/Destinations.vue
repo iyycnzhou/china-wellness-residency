@@ -3,23 +3,23 @@ import { currentLang } from '../composables/useLanguage'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 // 使用 import.meta.glob 导入图片
-const bgImages = import.meta.glob('@/assets/images/*.jpg', { eager: true, import: 'default' })
-const bgImagesPng = import.meta.glob('@/assets/images/*.png', { eager: true, import: 'default' })
+const bgImages = import.meta.glob('@/assets/images/*.webp', { eager: true, import: 'default' })
+const bgImagesPng = import.meta.glob('@/assets/images/*.webp', { eager: true, import: 'default' })
 
 // 协和医院本地图片
-const xieheImage = bgImages['/src/assets/images/xiehe-caption.jpg']
+const xieheImage = bgImages['/src/assets/images/xiehe-caption.webp']
 // 华山医院本地图片
-const huashanImage = bgImagesPng['/src/assets/images/huashan-caption.png']
+const huashanImage = bgImagesPng['/src/assets/images/huashan-caption.webp']
 // 同济医院本地图片
 const tongjiImage = bgImages['/src/assets/images/tongji-caption.jpeg']
 
 // 背景图片轮播数组 - 使用实际导入的图片路径
 const backgroundImages = [
-  bgImages['/src/assets/images/medical-mri-scan.jpg'],
-  bgImages['/src/assets/images/medical-lab-test.jpg'],
-  bgImages['/src/assets/images/health-consultation.jpg'],
-  bgImagesPng['/src/assets/images/wellness-treatment.png'],
-  bgImagesPng['/src/assets/images/benefit-detail-medical.png']
+  bgImages['/src/assets/images/medical-mri-scan.webp'],
+  bgImages['/src/assets/images/medical-lab-test.webp'],
+  bgImages['/src/assets/images/health-consultation.webp'],
+  bgImagesPng['/src/assets/images/wellness-treatment.webp'],
+  bgImagesPng['/src/assets/images/benefit-detail-medical.webp']
 ]
 
 // 当前背景图片索引（Hero Section）
