@@ -562,15 +562,15 @@ const getCategoryLabelCurrent = (category: string) => {
                       <span v-show="currentLang === 'en'">Member Insurance Coverage</span>
                     </strong>
                   </td>
-                  <td :class="{ highlight: true }" style="background-color: rgba(201, 169, 98, 0.1); font-weight: 600; color: var(--color-primary);">
+                  <td :class="{ highlight: true }" style="background-color: rgba(255, 0, 0, 0.1); font-weight: 600; color: var(--color-primary);">
                     <span v-show="currentLang === 'zh'">$20,000</span>
                     <span v-show="currentLang === 'en'">$20,000</span>
                   </td>
-                  <td style="background-color: rgba(201, 169, 98, 0.05); font-weight: 600; color: var(--color-stone);">
+                  <td style="background-color: rgba(255, 0, 0, 0.05); font-weight: 600; color: var(--color-stone);">
                     <span v-show="currentLang === 'zh'">无</span>
                     <span v-show="currentLang === 'en'">None</span>
                   </td>
-                  <td style="background-color: rgba(201, 169, 98, 0.15); font-weight: 600; color: var(--color-primary);">
+                  <td style="background-color: rgba(255, 0, 0, 0.15); font-weight: 600; color: var(--color-primary);">
                     <span v-show="currentLang === 'zh'">$50,000</span>
                     <span v-show="currentLang === 'en'">$50,000</span>
                   </td>
@@ -578,7 +578,7 @@ const getCategoryLabelCurrent = (category: string) => {
                 
                 <!-- L1基础权益 -->
                 <tr>
-                  <td colspan="4" style="background-color: rgba(201, 169, 98, 0.08); font-weight: 600; color: var(--color-primary);">
+                  <td colspan="4" style="background-color: rgba(255, 0, 0, 0.08); font-weight: 600; color: var(--color-primary);">
                     <span v-show="currentLang === 'zh'">🏡 基础康养驻留权益（L1）</span>
                     <span v-show="currentLang === 'en'">🏡 Basic Wellness Residency Benefits (L1)</span>
                   </td>
@@ -613,7 +613,7 @@ const getCategoryLabelCurrent = (category: string) => {
                 
                 <!-- L2/L3新增权益 -->
                 <tr>
-                  <td colspan="4" style="background-color: rgba(201, 169, 98, 0.08); font-weight: 600; color: var(--color-primary);">
+                  <td colspan="4" style="background-color: rgba(255, 0, 0, 0.08); font-weight: 600; color: var(--color-primary);">
                     <span v-show="currentLang === 'zh'">🏥 医疗康养驻留权益（L2/L3）</span>
                     <span v-show="currentLang === 'en'">🏥 Medical Wellness Residency Benefits (L2/L3)</span>
                   </td>
@@ -648,7 +648,7 @@ const getCategoryLabelCurrent = (category: string) => {
                 
                 <!-- L3专属权益 -->
                 <tr>
-                  <td colspan="4" style="background-color: rgba(201, 169, 98, 0.08); font-weight: 600; color: var(--color-primary);">
+                  <td colspan="4" style="background-color: rgba(255, 0, 0, 0.08); font-weight: 600; color: var(--color-primary);">
                     <span v-show="currentLang === 'zh'">👑 高端医疗会员专属权益（L3）</span>
                     <span v-show="currentLang === 'en'">👑 Premium Medical Exclusive Benefits (L3)</span>
                   </td>
@@ -981,7 +981,7 @@ const getCategoryLabelCurrent = (category: string) => {
 /* ==================== Six Senses 风格变量 ==================== */
 .services-membership-page {
   --color-primary: #2C5F6E;
-  --color-secondary: #C9A962;
+  --color-secondary: #02c39a;
   --color-accent: #D4AF37;
   --color-sand: #F5E6D3;
   --color-off-white: #FAF7F2;
@@ -1094,14 +1094,14 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .tab-btn:hover {
-  background: rgba(201, 169, 98, 0.2);
+  background: rgba(255, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
 .tab-btn.active {
   background: var(--color-secondary);
   color: var(--color-white);
-  box-shadow: 0 4px 20px rgba(201, 169, 98, 0.4);
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
 }
 
 .tab-icon {
@@ -1151,21 +1151,39 @@ const getCategoryLabelCurrent = (category: string) => {
   border-radius: 16px;
   padding: 2.5rem;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(2, 195, 154, 0.12);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.membership-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(2, 195, 154, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .membership-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(2, 195, 154, 0.25), 0 0 30px rgba(2, 195, 154, 0.12);
+}
+
+.membership-card:hover::before {
+  opacity: 1;
 }
 
 .membership-card.highlight {
-  border-color: var(--color-secondary);
-  box-shadow: 0 8px 30px rgba(201, 169, 98, 0.3);
+  border-color: #02c39a;
+  box-shadow: 0 8px 30px rgba(2, 195, 154, 0.3);
 }
 
 .membership-badge {
@@ -1201,7 +1219,7 @@ const getCategoryLabelCurrent = (category: string) => {
   text-align: center;
   margin-bottom: 1rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(191, 163, 122, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 0, 0, 0.1) 100%);
   border-radius: 12px;
 }
 
@@ -1224,8 +1242,8 @@ const getCategoryLabelCurrent = (category: string) => {
   text-align: center;
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: rgba(201, 169, 98, 0.05);
-  border: 1px solid rgba(201, 169, 98, 0.3);
+  background: rgba(255, 0, 0, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.3);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -1267,7 +1285,7 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .feature-check {
-  color: var(--color-secondary);
+  color: #c9a962;
   font-weight: bold;
   flex-shrink: 0;
 }
@@ -1313,7 +1331,7 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .comparison-table th {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #8b7355 100%);
   color: var(--color-white);
   font-weight: 600;
   font-size: 1.125rem;
@@ -1321,7 +1339,7 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .comparison-table th.highlight {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+  background: linear-gradient(135deg, #c9a962 0%, #b89654 100%);
 }
 
 .membership-table-price {
@@ -1333,11 +1351,11 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .comparison-table tbody tr:hover {
-  background-color: rgba(201, 169, 98, 0.05);
+  background-color: rgba(255, 0, 0, 0.05);
 }
 
 .comparison-table td.has {
-  color: var(--color-secondary);
+  color: #c9a962;
   font-weight: bold;
   text-align: center;
 }
@@ -1377,14 +1395,34 @@ const getCategoryLabelCurrent = (category: string) => {
   padding: 2rem 1.5rem;
   background-color: var(--color-white);
   border-radius: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(2, 195, 154, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(2, 195, 154, 0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .payment-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-secondary);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(2, 195, 154, 0.2), 0 0 20px rgba(2, 195, 154, 0.1);
+  border-color: #02c39a;
+}
+
+.payment-card:hover::before {
+  opacity: 1;
 }
 
 .payment-icon {
@@ -1410,9 +1448,9 @@ const getCategoryLabelCurrent = (category: string) => {
   align-items: flex-start;
   gap: 1.5rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, rgba(191, 163, 122, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 0, 0, 0.1) 100%);
   border-radius: 12px;
-  border: 1px solid rgba(201, 169, 98, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 .escrow-icon {
@@ -1513,13 +1551,13 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .filter-btn:hover {
-  border-color: var(--color-secondary);
+  border-color: #c9a962;
   color: var(--color-black);
 }
 
 .filter-btn.active {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background-color: #c9a962;
+  border-color: #c9a962;
   color: var(--color-white);
 }
 
@@ -1569,8 +1607,8 @@ const getCategoryLabelCurrent = (category: string) => {
 .category-label {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: rgba(201, 169, 98, 0.1);
-  color: var(--color-secondary);
+  background-color: rgba(201, 169, 98, 0.15);
+  color: #c9a962;
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -1787,24 +1825,65 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+  background: linear-gradient(135deg, #c9a962 0%, #b89654 50%, #a7854a 100%);
   color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+  z-index: -1;
 }
 
 .btn-gold:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201, 169, 98, 0.4);
+  background: linear-gradient(135deg, #b89654 0%, #a7854a 50%, #96753e 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(201, 169, 98, 0.5), 0 0 20px rgba(201, 169, 98, 0.3);
+}
+
+.btn-gold:hover::before {
+  left: 100%;
 }
 
 .btn-primary {
-  background: var(--color-primary);
+  background: #c9a962;
   color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+  z-index: -1;
 }
 
 .btn-primary:hover {
-  background: #235566;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(44, 95, 110, 0.4);
+  background: #029c7b;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(2, 195, 154, 0.5), 0 0 20px rgba(2, 195, 154, 0.3);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 /* ==================== Responsive Design ==================== */
