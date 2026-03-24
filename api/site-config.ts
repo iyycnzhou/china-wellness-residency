@@ -9,7 +9,22 @@ import { VercelRequest, VercelResponse } from '@vercel/node'
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Headers': 'Content-Type, X-API-Key',
+}
+
+// API Key 验证（可选）
+// 如果设置了 API_KEY 环境变量，则要求请求头包含 X-API-Key
+function validateApiKey(request: VercelRequest): boolean {
+  const apiKey = process.env.SITE_CONFIG_API_KEY
+  
+  // 如果没有设置环境变量，则不验证（允许公开访问）
+  if (!apiKey) {
+    return true
+  }
+  
+  // 如果设置了，则验证请求头
+  const providedKey = request.headers['x-api-key']
+  return providedKey === apiKey
 }
 
 // 网站配置数据
@@ -61,6 +76,14 @@ export default function handler(request: VercelRequest, response: VercelResponse
     return response.status(405).json({ 
       error: 'Method not allowed',
       message: 'Only GET requests are allowed' 
+    })
+  }
+  
+  // API Key 验证
+  if (!validateApiKey(request)) {
+    return response.status(401).json({
+      error: 'Unauthorized',
+      message: 'Invalid or missing API key'
     })
   }
   
