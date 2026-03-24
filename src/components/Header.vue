@@ -67,8 +67,8 @@ const getMenuText = (item: typeof menuItems[0]) => {
       
       <div class="header-center">
         <router-link to="/" class="logo" @click="closeMenu">
-          <img src="/logo-icon.svg" alt="Logo" class="logo-icon">
-          <span v-show="currentLang === 'zh'" class="logo-cn">中国全球健康驻留权益网络</span>
+          <img src="/logo.png" alt="Logo" class="logo-icon">
+          <span v-show="currentLang === 'zh'" class="logo-cn">VITA全球健康驻留权益网络</span>
           <span v-show="currentLang === 'en'" class="logo-en">China Wellness Residency Benefits Network</span>
         </router-link>
       </div>
@@ -118,7 +118,7 @@ const getMenuText = (item: typeof menuItems[0]) => {
           
           <div class="menu-footer">
             <div class="contact-info">
-              <p>concierge@chinawellnessresidency.com</p>
+              <p>iyyzhou13@gmail.com</p>
               <p>+86-XXX-XXXX-XXXX</p>
             </div>
             <div class="social-links">
@@ -227,15 +227,15 @@ const getMenuText = (item: typeof menuItems[0]) => {
 }
 
 .logo-icon {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .logo-cn {
   display: block;
-  font-size: 0.875rem;
+  font-size: 1rem;
   letter-spacing: 0.15em;
   font-weight: 400;
   line-height: 1.3;

@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/benefits',
       name: 'benefits',
-      component: () => import('../views/Benefits.vue'),
+      component: () => import('../views/Benefits1.vue'),
     },
     {
       path: '/membership',

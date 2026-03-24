@@ -636,7 +636,7 @@ onUnmounted(() => {
               <div class="info-content">
                 <span class="info-label" v-show="currentLang === 'zh'">邮箱</span>
                 <span class="info-label" v-show="currentLang === 'en'">Email</span>
-                <span class="info-value">info@wellness-residency.com</span>
+                <span class="info-value">iyyzhou13@gmail.com</span>
               </div>
             </div>
             <div class="info-item">

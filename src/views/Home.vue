@@ -794,7 +794,7 @@ onUnmounted(() => {
 
 .statement-cn {
   display: block;
-  color: var(--color-black);
+  color: #02c39a;
   margin-bottom: 1rem;
   font-weight: 500;
   text-align: center;
@@ -839,12 +839,32 @@ onUnmounted(() => {
   background-color: var(--color-white);
   padding: 2.5rem;
   border: 1px solid var(--color-sand);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(2, 195, 154, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.belief-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(2, 195, 154, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .belief-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 15px 50px rgba(2, 195, 154, 0.25), 0 0 30px rgba(2, 195, 154, 0.12);
+}
+
+.belief-card:hover::before {
+  opacity: 1;
 }
 
 .belief-content {
@@ -867,7 +887,7 @@ onUnmounted(() => {
 
 .belief-cn {
   display: block;
-  color: var(--color-black);
+  color: #02c39a;
   margin-bottom: 0.5rem;
 }
 
@@ -945,7 +965,7 @@ onUnmounted(() => {
   font-size: clamp(1.25rem, 3vw, 1.5rem);
   font-family: var(--font-body);
   font-weight: 400;
-  color: #6f7c76;
+  color: var(--color-primary-light, #00a896);
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -989,7 +1009,7 @@ onUnmounted(() => {
   font-size: 1.5rem;
   font-family: var(--font-body);
   font-weight: 400;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -1018,13 +1038,33 @@ onUnmounted(() => {
   max-width: 350px;
   background-color: var(--color-white);
   scroll-snap-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--color-sand);
+  box-shadow: 0 4px 20px rgba(2, 195, 154, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(2, 195, 154, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .highlight-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(2, 195, 154, 0.25), 0 0 30px rgba(2, 195, 154, 0.12);
+}
+
+.highlight-card:hover::before {
+  opacity: 1;
 }
 
 .highlight-img {
@@ -1232,13 +1272,13 @@ onUnmounted(() => {
 
 .global-residency .section-title .title-cn {
   font-size: 2.375rem;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
   margin-bottom: var(--spacing-sm);
 }
 
 .global-residency .section-title .title-en {
   font-size: 1.75rem;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
   margin-bottom: var(--spacing-sm);
 }
 
@@ -1250,11 +1290,11 @@ onUnmounted(() => {
 }
 
 .global-residency .subtitle-cn {
-  color: #3d3d3d !important;
+  color: var(--color-primary-dark, #094147) !important;
 }
 
 .global-residency .subtitle-en {
-  color: #3d3d3d !important;
+  color: var(--color-primary-dark, #094147) !important;
 }
 
 .residency-grid {
@@ -1282,7 +1322,7 @@ onUnmounted(() => {
   font-size: 1.625rem;
   font-family: var(--font-heading);
   font-weight: 600;
-  color: #3d3d3d;
+  color: #02c39a;
   margin-bottom: var(--spacing-md);
 }
 
@@ -1291,7 +1331,7 @@ onUnmounted(() => {
   font-size: 1.625rem;
   font-family: var(--font-body);
   font-weight: 400;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: var(--spacing-md);
@@ -1299,7 +1339,7 @@ onUnmounted(() => {
 
 .residency-description {
   font-size: 1rem;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
   line-height: 1.8;
   margin-bottom: var(--spacing-md);
 }
@@ -1308,7 +1348,7 @@ onUnmounted(() => {
   font-size: 1.25rem;
   font-family: var(--font-heading);
   font-weight: 600;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
   margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
 }
 
@@ -1317,7 +1357,7 @@ onUnmounted(() => {
   font-size: 1.25rem;
   font-family: var(--font-body);
   font-weight: 400;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: var(--spacing-sm);
@@ -1334,7 +1374,7 @@ onUnmounted(() => {
   padding-left: var(--spacing-md);
   position: relative;
   font-size: 1rem;
-  color: #3d3d3d;
+  color: var(--color-primary-dark, #094147);
 }
 
 .service-list li::before {
@@ -1452,19 +1492,39 @@ onUnmounted(() => {
   text-align: center;
   background: var(--color-off-white);
   border-radius: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(2, 195, 154, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.lifestyle-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(2, 195, 154, 0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .lifestyle-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(2, 195, 154, 0.3), 0 0 20px rgba(2, 195, 154, 0.15);
+}
+
+.lifestyle-card:hover::before {
+  opacity: 1;
 }
 
 .card-title {
   font-size: 1.5rem;
   font-family: var(--font-body);
   font-weight: 400;
-  color: #3d3d3d;
+  color: #02c39a;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1rem;

@@ -101,7 +101,7 @@ const socialLinks = [
             <div class="contact-details">
               <p class="contact-item">
                 <span class="icon">📧</span>
-                concierge@chinawellnessresidency.com
+                iyyzhou13@gmail.com
               </p>
               <p class="contact-item">
                 <span class="icon">📞</span>

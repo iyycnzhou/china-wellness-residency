@@ -3,16 +3,21 @@
    Global Styles - Six Senses Inspired
    ============================================ */
 
-/* CSS Variables - Luxury Wellness Palette */
+/* CSS Variables - Jade Ocean Palette */
 :root {
-  /* Colors - Warm Gray Palette */
-  --color-primary: #6b6b6b;        /* Medium warm gray */
-  --color-primary-light: #e8e6e1;  /* Warm light gray */
-  --color-primary-dark: #3d3d3d;   /* Dark gray */
-  --color-secondary: #c9a962;      /* Gold - luxury */
-  --color-accent: #a8a8a8;         /* Soft gray */
-  --color-sand: #f5f1e8;           /* Warm sand */
-  --color-stone: #8b8680;          /* Neutral stone */
+  /* Colors - Jade Ocean (翡翠海洋) */
+  --color-primary: #0d5c63;        /* Deep Teal - 主色调 */
+  --color-primary-light: #00a896;  /* Mint Green - 次要色 */
+  --color-primary-dark: #094147;   /* Darker Teal */
+  --color-secondary: #02c39a;      /* Bright Green - 强调色 */
+  --color-accent: #00a896;         /* Mint accent */
+  --color-sand: #f0f3f5;           /* Light background */
+  --color-stone: #5a7a7e;          /* Text gray */
+  
+  /* Neutrals */
+  --color-black: #1a1a1a;
+  --color-white: #ffffff;
+  --color-off-white: #fafaf9;
   
   /* Neutrals */
   --color-black: #1a1a1a;
