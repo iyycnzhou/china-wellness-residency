@@ -737,6 +737,75 @@ const getCategoryLabelCurrent = (category: string) => {
           </div>
         </div>
         
+        <!-- 对比区域 - 如何选择（内嵌在服务列表顶部） -->
+        <div class="comparison-guide-inline">
+          <div class="section-header">
+            <h2>
+              <span v-show="currentLang === 'zh'">如何选择？</span>
+              <span v-show="currentLang === 'en'">How to Choose?</span>
+            </h2>
+            <p class="section-subtitle">
+              <span v-show="currentLang === 'zh'">根据您的需求选择最适合的方案，包含企业级医疗责任赔付保障</span>
+              <span v-show="currentLang === 'en'">Choose the plan that best fits your needs, including enterprise-level medical liability coverage</span>
+            </p>
+          </div>
+          
+          <div class="comparison-grid-inline">
+            <div class="comparison-card-inline membership-card-inline">
+              <div class="comparison-icon-inline">💎</div>
+              <h3>
+                <span v-show="currentLang === 'zh'">会员计划</span>
+                <span v-show="currentLang === 'en'">Membership Plan</span>
+              </h3>
+              <ul class="comparison-features-inline">
+                <li>✓ <span v-show="currentLang === 'zh'">年度无限使用</span><span v-show="currentLang === 'en'">Unlimited annual use</span></li>
+                <li>✓ <span v-show="currentLang === 'zh'">会员保险赔付服务</span><span v-show="currentLang === 'en'">Member insurance coverage service</span></li>
+                <li>✓ <span v-show="currentLang === 'zh'">L2: $20,000 / L3: $50,000</span><span v-show="currentLang === 'en'">L2: $20K / L3: $50K</span></li>
+                <li>✓ <span v-show="currentLang === 'zh'">VIP 专属服务</span><span v-show="currentLang === 'en'">VIP exclusive services</span></li>
+                <li>✓ <span v-show="currentLang === 'zh'">签证协助</span><span v-show="currentLang === 'en'">Visa assistance</span></li>
+              </ul>
+              <div class="comparison-suitable-inline">
+                <strong>
+                  <span v-show="currentLang === 'zh'">适合：</span>
+                  <span v-show="currentLang === 'en'">Best for:</span>
+                </strong>
+                <ul>
+                  <li><span v-show="currentLang === 'zh'">• 长期驻留</span><span v-show="currentLang === 'en'">• Long-term residency</span></li>
+                  <li><span v-show="currentLang === 'zh'">• 多次服务需求</span><span v-show="currentLang === 'en'">• Multiple service needs</span></li>
+                  <li><span v-show="currentLang === 'zh'">• 企业高管</span><span v-show="currentLang === 'en'">• Executives</span></li>
+                  <li><span v-show="currentLang === 'zh'">• 需要医疗责任保障</span><span v-show="currentLang === 'en'">• Need medical liability coverage</span></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="comparison-card-inline service-card-inline">
+              <div class="comparison-icon-inline">🏥</div>
+              <h3>
+                <span v-show="currentLang === 'zh'">单次预订</span>
+                <span v-show="currentLang === 'en'">Single Booking</span>
+              </h3>
+              <ul class="comparison-features-inline">
+                <li>✓ <span v-show="currentLang === 'zh'">按需付费</span><span v-show="currentLang === 'en'">Pay as you go</span></li>
+                <li>✓ <span v-show="currentLang === 'zh'">灵活无约束</span><span v-show="currentLang === 'en'">Flexible, no commitment</span></li>
+                <li>✓ <span v-show="currentLang === 'zh'">一次性体验</span><span v-show="currentLang === 'en'">One-time experience</span></li>
+                <li>✓ <span v-show="currentLang === 'zh'">快速预订</span><span v-show="currentLang === 'en'">Quick booking</span></li>
+                <li><span v-show="currentLang === 'zh'">⚠️ 不包含企业级医疗责任赔付</span><span v-show="currentLang === 'en'">⚠️ No enterprise-level medical liability coverage</span></li>
+              </ul>
+              <div class="comparison-suitable-inline">
+                <strong>
+                  <span v-show="currentLang === 'zh'">适合：</span>
+                  <span v-show="currentLang === 'en'">Best for:</span>
+                </strong>
+                <ul>
+                  <li><span v-show="currentLang === 'zh'">• 短期体验</span><span v-show="currentLang === 'en'">• Short-term experience</span></li>
+                  <li><span v-show="currentLang === 'zh'">• 单次体检</span><span v-show="currentLang === 'en'">• Single health checkup</span></li>
+                  <li><span v-show="currentLang === 'zh'">• 康养度假</span><span v-show="currentLang === 'en'">• Wellness vacation</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <!-- 服务列表 -->
         <div class="results-count">
           <span v-show="currentLang === 'zh'">找到 {{ filteredServices.length }} 个服务</span>
@@ -1268,6 +1337,104 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 /* ==================== Comparison Table ==================== */
+/* ==================== Inline Comparison Guide (How to Choose) ==================== */
+.comparison-guide-inline {
+  margin-bottom: 3rem;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(2, 195, 154, 0.08) 0%, rgba(201, 169, 98, 0.08) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(2, 195, 154, 0.2);
+}
+
+.comparison-guide-inline .section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.comparison-guide-inline h2 {
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.comparison-guide-inline .section-subtitle {
+  font-size: 1rem;
+  color: var(--color-stone);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.comparison-grid-inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.comparison-card-inline {
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--color-white);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.comparison-card-inline:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.comparison-card-inline.membership-card-inline {
+  border: 2px solid #c9a962;
+}
+
+.comparison-card-inline.service-card-inline {
+  border: 2px solid var(--color-stone);
+}
+
+.comparison-icon-inline {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.comparison-card-inline h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.comparison-features-inline {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.comparison-features-inline li {
+  padding: 0.5rem 0;
+  color: var(--color-stone-dark);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.comparison-suitable-inline strong {
+  display: block;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.comparison-suitable-inline ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comparison-suitable-inline ul li {
+  padding: 0.25rem 0;
+  color: var(--color-stone);
+  font-size: 0.875rem;
+}
+
+/* ==================== Comparison Table Section ==================== */
 .comparison-table-section {
   margin-bottom: 6rem;
 }
@@ -1771,6 +1938,10 @@ const getCategoryLabelCurrent = (category: string) => {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+  .comparison-grid-inline {
+    grid-template-columns: 1fr;
   }
 }
 
