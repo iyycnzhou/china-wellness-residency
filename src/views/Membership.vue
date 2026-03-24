@@ -437,7 +437,7 @@ const getCategoryLabelCurrent = (category: string) => {
             </span>
           </button>
           <button 
-            :class="['tab-btn', { active: activeTab === 'services' }]"
+            :class="['tab-btn', 'tab-btn-outline', { active: activeTab === 'services' }]"
             @click="activeTab = 'services'"
           >
             <span class="tab-icon">🏥</span>
@@ -1104,6 +1104,43 @@ const getCategoryLabelCurrent = (category: string) => {
   background-color: var(--color-secondary);
   color: var(--color-white);
   box-shadow: 0 6px 20px rgba(2, 195, 154, 0.4);
+}
+
+/* 单次服务按钮 - 黑灰色线框样式 */
+.tab-btn-outline {
+  background-color: transparent;
+  color: var(--color-stone-dark);
+  border: 2px solid var(--color-stone-dark);
+}
+
+.tab-btn-outline:hover {
+  background-color: rgba(2, 195, 154, 0.1);
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.tab-btn-outline.active {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+  box-shadow: 0 6px 20px rgba(2, 195, 154, 0.4);
+  animation: flash-green 0.3s ease;
+}
+
+@keyframes flash-green {
+  0% {
+    background-color: transparent;
+    border-color: var(--color-stone-dark);
+  }
+  50% {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 30px rgba(2, 195, 154, 0.8);
+  }
+  100% {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+  }
 }
 
 .tab-icon {
