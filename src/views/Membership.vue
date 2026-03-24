@@ -1077,31 +1077,33 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .tab-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2.5rem;
-  background: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
   border: 2px solid var(--color-secondary);
   border-radius: 50px;
-  color: var(--color-white);
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .tab-btn:hover {
-  background: rgba(255, 0, 0, 0.2);
+  background-color: transparent;
+  color: var(--color-secondary);
   transform: translateY(-2px);
 }
 
 .tab-btn.active {
-  background: var(--color-secondary);
+  background-color: var(--color-secondary);
   color: var(--color-white);
-  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(2, 195, 154, 0.4);
 }
 
 .tab-icon {
