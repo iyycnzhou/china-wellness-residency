@@ -121,40 +121,6 @@ const memberships = [
   },
 ]
 
-// 支付方式
-const paymentMethods = [
-  {
-    name: 'Visa / Mastercard',
-    icon: '💳',
-    descriptionCn: '支持国际信用卡',
-    descriptionEn: 'Supports international credit cards'
-  },
-  {
-    name: 'Stripe',
-    icon: '🔒',
-    descriptionCn: '安全的在线支付',
-    descriptionEn: 'Secure online payment'
-  },
-  {
-    name: 'PayPal',
-    icon: '🅿️',
-    descriptionCn: '全球即时转账',
-    descriptionEn: 'Global instant transfer'
-  },
-  {
-    name: 'Alipay International',
-    icon: '📱',
-    descriptionCn: '支付宝国际版',
-    descriptionEn: 'Alipay International'
-  },
-  {
-    name: 'USDT',
-    icon: '₮',
-    descriptionCn: '加密货币支付（针对特定客户）',
-    descriptionEn: 'Cryptocurrency payment (for specific clients)'
-  },
-]
-
 // ==================== 服务数据 ====================
 const services = [
   // 医疗健康
@@ -694,43 +660,6 @@ const getCategoryLabelCurrent = (category: string) => {
           </div>
         </div>
         
-        <!-- 支付方式 -->
-        <div class="payment-methods-section">
-          <h3>
-            <span v-show="currentLang === 'zh'">支持的支付方式</span>
-            <span v-show="currentLang === 'en'">Supported Payment Methods</span>
-          </h3>
-          
-          <div class="payment-methods-grid">
-            <div v-for="method in paymentMethods" :key="method.name" class="payment-card">
-              <div class="payment-icon">{{ method.icon }}</div>
-              <div class="payment-name">{{ method.name }}</div>
-              <div class="payment-desc">
-                <span v-show="currentLang === 'zh'">{{ method.descriptionCn }}</span>
-                <span v-show="currentLang === 'en'">{{ method.descriptionEn }}</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="escrow-notice">
-            <div class="escrow-icon">🔐</div>
-            <div class="escrow-content">
-              <div class="escrow-title">
-                <span v-show="currentLang === 'zh'">第三方资金托管保障</span>
-                <span v-show="currentLang === 'en'">Third-Party Escrow Protection</span>
-              </div>
-              <div class="escrow-desc">
-                <span v-show="currentLang === 'zh'">
-                  所有付款均通过第三方资金托管，保障您的资金安全。服务完成后，款项才会释放给服务提供商。
-                </span>
-                <span v-show="currentLang === 'en'">
-                  All payments are held in escrow by a third-party payment processor to ensure your funds are secure.
-                  Funds are only released to service providers after services are completed.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
     
@@ -1410,110 +1339,6 @@ const getCategoryLabelCurrent = (category: string) => {
   margin-bottom: 0.25rem;
 }
 
-/* ==================== Payment Methods ==================== */
-.payment-methods-section {
-  margin-bottom: 4rem;
-}
-
-.payment-methods-section h3 {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--color-primary);
-  margin-bottom: 3rem;
-}
-
-.payment-methods-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.payment-card {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background-color: var(--color-white);
-  border-radius: 12px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 4px 20px rgba(2, 195, 154, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.payment-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, rgba(2, 195, 154, 0.05) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.payment-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 35px rgba(2, 195, 154, 0.2), 0 0 20px rgba(2, 195, 154, 0.1);
-  border-color: #02c39a;
-}
-
-.payment-card:hover::before {
-  opacity: 1;
-}
-
-.payment-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.payment-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-black);
-  margin-bottom: 0.5rem;
-}
-
-.payment-desc {
-  font-size: 0.875rem;
-  color: var(--color-stone);
-  line-height: 1.5;
-}
-
-.escrow-notice {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 0, 0, 0.1) 100%);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 0, 0, 0.3);
-}
-
-.escrow-icon {
-  font-size: 3rem;
-  flex-shrink: 0;
-}
-
-.escrow-content {
-  flex-grow: 1;
-}
-
-.escrow-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-black);
-  margin-bottom: 0.75rem;
-}
-
-.escrow-desc {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--color-stone);
-}
-
 /* ==================== Services Section ==================== */
 .services-section {
   padding: 6rem 0;
@@ -1934,10 +1759,6 @@ const getCategoryLabelCurrent = (category: string) => {
     margin-right: auto;
   }
   
-  .payment-methods-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
   .services-grid {
     grid-template-columns: 1fr;
     max-width: 500px;
@@ -1967,10 +1788,6 @@ const getCategoryLabelCurrent = (category: string) => {
   .filters-row {
     flex-direction: column;
     gap: 2rem;
-  }
-  
-  .payment-methods-grid {
-    grid-template-columns: 1fr;
   }
 }
 </style>
