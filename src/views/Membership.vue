@@ -1081,9 +1081,9 @@ const getCategoryLabelCurrent = (category: string) => {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2.5rem;
-  background-color: var(--color-secondary);
+  background-color: transparent;
   color: var(--color-white);
-  border: 2px solid var(--color-secondary);
+  border: 3px solid var(--color-white);
   border-radius: 50px;
   font-size: 1.125rem;
   font-weight: 600;
@@ -1095,28 +1095,28 @@ const getCategoryLabelCurrent = (category: string) => {
 }
 
 .tab-btn:hover {
-  background-color: transparent;
-  color: var(--color-secondary);
+  background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
 
 .tab-btn.active {
   background-color: var(--color-secondary);
   color: var(--color-white);
+  border-color: var(--color-secondary);
   box-shadow: 0 6px 20px rgba(2, 195, 154, 0.4);
 }
 
-/* 单次服务按钮 - 黑灰色线框样式 */
+/* 单次服务按钮 - 默认白色线框 */
 .tab-btn-outline {
   background-color: transparent;
-  color: var(--color-stone-dark);
-  border: 2px solid var(--color-stone-dark);
+  color: var(--color-white);
+  border: 3px solid var(--color-white);
 }
 
 .tab-btn-outline:hover {
-  background-color: rgba(2, 195, 154, 0.1);
-  color: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 .tab-btn-outline.active {
@@ -1130,7 +1130,7 @@ const getCategoryLabelCurrent = (category: string) => {
 @keyframes flash-green {
   0% {
     background-color: transparent;
-    border-color: var(--color-stone-dark);
+    border-color: var(--color-white);
   }
   50% {
     background-color: var(--color-secondary);
