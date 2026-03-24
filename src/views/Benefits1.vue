@@ -245,11 +245,10 @@ const benefits = [
         
         <!-- 查看更多按钮 -->
         <div class="view-more-container">
-          <button class="view-more-btn">
+          <router-link to="/contact" class="btn btn-gold">
             <span v-show="currentLang === 'zh'">查看更多</span>
             <span v-show="currentLang === 'en'">View More</span>
-            <span class="btn-arrow">→</span>
-          </button>
+          </router-link>
         </div>
       </div>
     </section>
@@ -987,44 +986,11 @@ const benefits = [
   color: #6f7c76;
 }
 
-/* View More Button */
+/* View More Container */
 .view-more-container {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
-}
-
-.view-more-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2.5rem;
-  background: transparent;
-  border: 2px solid var(--secondary);
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--secondary);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.view-more-btn:hover {
-  background: var(--secondary);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(2, 195, 154, 0.4);
-}
-
-.view-more-btn .btn-arrow {
-  font-size: 1.25rem;
-  transition: transform 0.3s ease;
-}
-
-.view-more-btn:hover .btn-arrow {
-  transform: translateX(4px);
 }
 
 /* Responsive */
@@ -1116,11 +1082,6 @@ const benefits = [
   
   .testimonial-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .view-more-btn {
-    padding: 0.875rem 2rem;
-    font-size: 0.9375rem;
   }
 }
 
