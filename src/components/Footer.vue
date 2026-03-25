@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { currentLang } from '../composables/useLanguage'
+import { useSiteConfig } from '../composables/useSiteConfig'
 
 const currentYear = new Date().getFullYear()
+
+// 从 API 获取站点配置
+const whatsappNumber = ref('+86-138-8888-8888')
+
+onMounted(async () => {
+  try {
+    const config = await useSiteConfig()
+    whatsappNumber.value = config.contact.whatsapp
+  } catch (e) {
+    console.error('Failed to load site config:', e)
+  }
+})
 
 const footerLinks = {
   programs: [
@@ -105,7 +119,7 @@ const socialLinks = [
               </p>
               <p class="contact-item">
                 <span class="icon">📞</span>
-                +86-XXX-XXXX-XXXX
+                {{ whatsappNumber }}
               </p>
               <div class="social-links">
                 <a 

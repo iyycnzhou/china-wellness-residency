@@ -7,10 +7,10 @@
 
 export const contactInfo = {
   // WhatsApp 号码（含国家代码）
-  whatsapp: '+86-138-0000-8888',
+  whatsapp: '+86-150-1037-2389',
   
   // 电子邮箱
-  email: 'contact@chinawellnessresidency.com',
+  email: 'iyyzhou13@gmail.com',
   
   // 备用邮箱
   emailSupport: 'support@chinawellnessresidency.com',

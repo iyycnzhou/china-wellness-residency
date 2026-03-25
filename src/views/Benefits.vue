@@ -454,10 +454,10 @@ const benefits = [
   border-radius: 50%;
   background: linear-gradient(135deg, 
     var(--secondary) 0%, 
-    #c9a962 50%, 
-    #b89654 100%);
+    #02c39a 50%, 
+    #00a896 100%);
   box-shadow: 
-    0 4px 15px rgba(201, 169, 98, 0.4),
+    0 4px 15px rgba(2, 195, 154, 0.4),
     inset 0 2px 10px rgba(255, 255, 255, 0.3),
     inset 0 -2px 10px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -479,7 +479,7 @@ const benefits = [
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 1px dashed rgba(201, 169, 98, 0.5);
+  border: 1px dashed rgba(2, 195, 154, 0.5);
   animation: rotate 20s linear infinite;
 }
 
@@ -587,7 +587,7 @@ const benefits = [
 
 
 
-/* ========== Image Wrapper with Gold Border ========== */
+/* ========== Image Wrapper with Green Border ========== */
 .benefit-image-wrapper {
   position: relative;
   width: calc(100% + 50px);
@@ -680,7 +680,7 @@ const benefits = [
   text-transform: uppercase;
 }
 
-/* Double Gold Lines */
+/* Double Green Lines */
 .benefit-heading-divider {
   display: flex;
   align-items: center;
@@ -695,12 +695,12 @@ const benefits = [
   height: 2px;
   background: linear-gradient(90deg, 
     var(--secondary) 0%, 
-    rgba(201, 169, 98, 0.3) 100%);
+    rgba(2, 195, 154, 0.3) 100%);
 }
 
 .benefit-heading-divider::after {
   background: linear-gradient(90deg, 
-    rgba(201, 169, 98, 0.3) 0%, 
+    rgba(2, 195, 154, 0.3) 0%, 
     var(--secondary) 100%);
 }
 
@@ -730,7 +730,7 @@ const benefits = [
   height: 3px;
   background: linear-gradient(90deg, 
     var(--secondary) 0%, 
-    rgba(201, 169, 98, 0.2) 100%);
+    rgba(2, 195, 154, 0.2) 100%);
   border-radius: 2px;
 }
 
@@ -921,13 +921,32 @@ const benefits = [
   background-color: var(--white);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-base);
+  box-shadow: 0 4px 20px rgba(2, 195, 154, 0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(2, 195, 154, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(2, 195, 154, 0.25), 0 0 30px rgba(2, 195, 154, 0.12);
+}
+
+.testimonial-card:hover::before {
+  opacity: 1;
 }
 
 .testimonial-content {
@@ -1005,7 +1024,7 @@ const benefits = [
   background: var(--secondary);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201, 169, 98, 0.4);
+  box-shadow: 0 6px 20px rgba(2, 195, 154, 0.4);
 }
 
 .view-more-btn .btn-arrow {

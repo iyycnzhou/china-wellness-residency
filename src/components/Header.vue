@@ -1,13 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { currentLang, toggleLanguage } from '../composables/useLanguage'
 import { useUserStore } from '../stores/user'
+import { useSiteConfig } from '../composables/useSiteConfig'
 
 const router = useRouter()
 const userStore = useUserStore()
 const isMenuOpen = ref(false)
 const isScrolled = ref(false)
+
+// 从 API 获取站点配置
+const whatsappNumber = ref('+86-138-8888-8888')
+
+onMounted(async () => {
+  try {
+    const config = await useSiteConfig()
+    whatsappNumber.value = config.contact.whatsapp
+  } catch (e) {
+    console.error('Failed to load site config:', e)
+  }
+})
 
 // 切换菜单
 const toggleMenu = () => {
@@ -119,7 +132,7 @@ const getMenuText = (item: typeof menuItems[0]) => {
           <div class="menu-footer">
             <div class="contact-info">
               <p>iyyzhou13@gmail.com</p>
-              <p>+86-XXX-XXXX-XXXX</p>
+              <p>{{ whatsappNumber }}</p>
             </div>
             <div class="social-links">
               <a href="#" aria-label="WeChat">WeChat</a>

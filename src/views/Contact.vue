@@ -1,7 +1,27 @@
 <script setup lang="ts">
 import { currentLang } from '../composables/useLanguage'
+import { contactInfo, whatsappLink, emailLink } from '../config/contact'
 import { ref, onMounted, onUnmounted } from 'vue'
 import * as contactApi from '../api/contact'
+import { useSiteConfig } from '../composables/useSiteConfig'
+
+// 从 API 获取站点配置
+const siteConfig = ref({
+  whatsapp: '+86-138-8888-8888',
+  whatsappLink: 'https://wa.me/8613888888888'
+})
+
+onMounted(async () => {
+  try {
+    const config = await useSiteConfig()
+    siteConfig.value = {
+      whatsapp: config.contact.whatsapp,
+      whatsappLink: config.contact.whatsappLink
+    }
+  } catch (e) {
+    console.error('Failed to load site config:', e)
+  }
+})
 
 // 核心服务旅程卡片 - 替代传统表单
 const journeyCards = [
@@ -628,7 +648,7 @@ onUnmounted(() => {
               <div class="info-content">
                 <span class="info-label" v-show="currentLang === 'zh'">电话</span>
                 <span class="info-label" v-show="currentLang === 'en'">Phone</span>
-                <span class="info-value">400-XXX-XXXX</span>
+                <span class="info-value">{{ siteConfig.whatsapp }}</span>
               </div>
             </div>
             <div class="info-item">
