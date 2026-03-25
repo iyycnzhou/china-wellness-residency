@@ -8,34 +8,32 @@ const { db } = require('./db');
 
 // 获取会员列表
 router.get('/', (req, res) => {
-  db.all(`
-    SELECT m.*, u.name as user_name, u.email as user_email
-    FROM memberships m
-    LEFT JOIN users u ON m.user_id = u.id
-    ORDER BY m.created_at DESC
-  `, [], (err, memberships) => {
-    if (err) {
-      return res.status(500).json({ success: false, message: '数据库错误' });
-    }
+  try {
+    const memberships = db.prepare(`
+      SELECT m.*, u.name as user_name, u.email as user_email
+      FROM memberships m
+      LEFT JOIN users u ON m.user_id = u.id
+      ORDER BY m.created_at DESC
+    `).all();
 
     res.json({
       success: true,
       data: memberships
     });
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '数据库错误' });
+  }
 });
 
 // 获取单个会员
 router.get('/:id', (req, res) => {
-  db.get(`
-    SELECT m.*, u.name as user_name, u.email as user_email
-    FROM memberships m
-    LEFT JOIN users u ON m.user_id = u.id
-    WHERE m.id = ?
-  `, [req.params.id], (err, membership) => {
-    if (err) {
-      return res.status(500).json({ success: false, message: '数据库错误' });
-    }
+  try {
+    const membership = db.prepare(`
+      SELECT m.*, u.name as user_name, u.email as user_email
+      FROM memberships m
+      LEFT JOIN users u ON m.user_id = u.id
+      WHERE m.id = ?
+    `).get(req.params.id);
 
     if (!membership) {
       return res.status(404).json({ success: false, message: '会员记录不存在' });
@@ -45,7 +43,9 @@ router.get('/:id', (req, res) => {
       success: true,
       data: membership
     });
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '数据库错误' });
+  }
 });
 
 // 申请会员
@@ -64,31 +64,29 @@ router.post('/', (req, res) => {
   const end = new Date(start);
   end.setFullYear(end.getFullYear() + 1);
 
-  db.run(
-    `INSERT INTO memberships (user_id, membership_type, start_date, end_date)
-     VALUES (?, ?, ?, ?)`,
-    [userId || null, membershipType, startDate, end.toISOString().split('T')[0]],
-    function(err) {
-      if (err) {
-        return res.status(500).json({ 
-          success: false, 
-          message: '申请失败' 
-        });
-      }
+  try {
+    const result = db.prepare(
+      `INSERT INTO memberships (user_id, membership_type, start_date, end_date)
+       VALUES (?, ?, ?, ?)`
+    ).run(userId || null, membershipType, startDate, end.toISOString().split('T')[0]);
 
-      res.json({
-        success: true,
-        message: '会员申请成功',
-        data: {
-          id: this.lastID,
-          userId,
-          membershipType,
-          startDate,
-          endDate: end.toISOString().split('T')[0]
-        }
-      });
-    }
-  );
+    res.json({
+      success: true,
+      message: '会员申请成功',
+      data: {
+        id: result.lastInsertRowid,
+        userId,
+        membershipType,
+        startDate,
+        endDate: end.toISOString().split('T')[0]
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      message: '申请失败' 
+    });
+  }
 });
 
 // 更新会员状态
@@ -103,34 +101,30 @@ router.put('/:id', (req, res) => {
     });
   }
 
-  db.run(
-    'UPDATE memberships SET status = ? WHERE id = ?',
-    [status, req.params.id],
-    function(err) {
-      if (err) {
-        return res.status(500).json({ success: false, message: '更新失败' });
-      }
+  try {
+    const result = db.prepare(
+      'UPDATE memberships SET status = ? WHERE id = ?'
+    ).run(status, req.params.id);
 
-      if (this.changes === 0) {
-        return res.status(404).json({ success: false, message: '会员记录不存在' });
-      }
-
-      res.json({
-        success: true,
-        message: '状态已更新'
-      });
+    if (result.changes === 0) {
+      return res.status(404).json({ success: false, message: '会员记录不存在' });
     }
-  );
+
+    res.json({
+      success: true,
+      message: '状态已更新'
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '更新失败' });
+  }
 });
 
 // 删除会员
 router.delete('/:id', (req, res) => {
-  db.run('DELETE FROM memberships WHERE id = ?', [req.params.id], function(err) {
-    if (err) {
-      return res.status(500).json({ success: false, message: '删除失败' });
-    }
+  try {
+    const result = db.prepare('DELETE FROM memberships WHERE id = ?').run(req.params.id);
 
-    if (this.changes === 0) {
+    if (result.changes === 0) {
       return res.status(404).json({ success: false, message: '会员记录不存在' });
     }
 
@@ -138,7 +132,9 @@ router.delete('/:id', (req, res) => {
       success: true,
       message: '删除成功'
     });
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '删除失败' });
+  }
 });
 
 module.exports = router;

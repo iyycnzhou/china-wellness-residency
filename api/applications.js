@@ -8,25 +8,22 @@ const { db } = require('./db');
 
 // 获取预约列表
 router.get('/', (req, res) => {
-  db.all('SELECT * FROM applications ORDER BY created_at DESC', [], (err, applications) => {
-    if (err) {
-      return res.status(500).json({ success: false, message: '数据库错误' });
-    }
-
+  try {
+    const applications = db.prepare('SELECT * FROM applications ORDER BY created_at DESC').all();
     res.json({
       success: true,
       data: applications
     });
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '数据库错误' });
+  }
 });
 
 // 获取单个预约
 router.get('/:id', (req, res) => {
-  db.get('SELECT * FROM applications WHERE id = ?', [req.params.id], (err, application) => {
-    if (err) {
-      return res.status(500).json({ success: false, message: '数据库错误' });
-    }
-
+  try {
+    const application = db.prepare('SELECT * FROM applications WHERE id = ?').get(req.params.id);
+    
     if (!application) {
       return res.status(404).json({ success: false, message: '预约不存在' });
     }
@@ -35,7 +32,9 @@ router.get('/:id', (req, res) => {
       success: true,
       data: application
     });
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '数据库错误' });
+  }
 });
 
 // 提交预约申请
@@ -50,33 +49,31 @@ router.post('/', (req, res) => {
     });
   }
 
-  db.run(
-    `INSERT INTO applications (name, email, phone, service_type, preferred_date, message)
-     VALUES (?, ?, ?, ?, ?, ?)`,
-    [name, email, phone, serviceType || '', preferredDate || '', message || ''],
-    function(err) {
-      if (err) {
-        return res.status(500).json({ 
-          success: false, 
-          message: '提交失败' 
-        });
-      }
+  try {
+    const result = db.prepare(
+      `INSERT INTO applications (name, email, phone, service_type, preferred_date, message)
+       VALUES (?, ?, ?, ?, ?, ?)`
+    ).run(name, email, phone, serviceType || '', preferredDate || '', message || '');
 
-      res.json({
-        success: true,
-        message: '预约申请已提交',
-        data: {
-          id: this.lastID,
-          name,
-          email,
-          phone,
-          serviceType,
-          preferredDate,
-          message
-        }
-      });
-    }
-  );
+    res.json({
+      success: true,
+      message: '预约申请已提交',
+      data: {
+        id: result.lastInsertRowid,
+        name,
+        email,
+        phone,
+        serviceType,
+        preferredDate,
+        message
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      message: '提交失败' 
+    });
+  }
 });
 
 // 更新预约状态
@@ -91,34 +88,30 @@ router.put('/:id', (req, res) => {
     });
   }
 
-  db.run(
-    'UPDATE applications SET status = ? WHERE id = ?',
-    [status, req.params.id],
-    function(err) {
-      if (err) {
-        return res.status(500).json({ success: false, message: '更新失败' });
-      }
+  try {
+    const result = db.prepare(
+      'UPDATE applications SET status = ? WHERE id = ?'
+    ).run(status, req.params.id);
 
-      if (this.changes === 0) {
-        return res.status(404).json({ success: false, message: '预约不存在' });
-      }
-
-      res.json({
-        success: true,
-        message: '状态已更新'
-      });
+    if (result.changes === 0) {
+      return res.status(404).json({ success: false, message: '预约不存在' });
     }
-  );
+
+    res.json({
+      success: true,
+      message: '状态已更新'
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '更新失败' });
+  }
 });
 
 // 删除预约
 router.delete('/:id', (req, res) => {
-  db.run('DELETE FROM applications WHERE id = ?', [req.params.id], function(err) {
-    if (err) {
-      return res.status(500).json({ success: false, message: '删除失败' });
-    }
+  try {
+    const result = db.prepare('DELETE FROM applications WHERE id = ?').run(req.params.id);
 
-    if (this.changes === 0) {
+    if (result.changes === 0) {
       return res.status(404).json({ success: false, message: '预约不存在' });
     }
 
@@ -126,7 +119,9 @@ router.delete('/:id', (req, res) => {
       success: true,
       message: '删除成功'
     });
-  });
+  } catch (error) {
+    res.status(500).json({ success: false, message: '删除失败' });
+  }
 });
 
 module.exports = router;
